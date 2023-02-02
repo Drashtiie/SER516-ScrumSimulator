@@ -14,6 +14,7 @@ import javafx.scene.layout.HBox;
 public class ToolBar extends HBox {
 
     private final Button startButton = new Button("Start Sprint");
+    private final Button viewDocs = new Button("Documents");
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
 
@@ -29,18 +30,23 @@ public class ToolBar extends HBox {
         backlogChoiceBox.setTooltip(new Tooltip("Select backlog"));
 
         startButton.setPrefSize(100, 20);
+        viewDocs.setPrefSize(100, 20);
 
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, startButton);
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, startButton, viewDocs);
     }
 
     public void setStartButtonAction(EventHandler<ActionEvent> eventHandler) {
         startButton.setOnAction(eventHandler);
     }
 
+    public void setViewDocsButtonAction(EventHandler<ActionEvent> eventHandler) {
+        viewDocs.setOnAction(eventHandler);
+    }
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         teamChoiceBox.disableProperty().bind(booleanProperty);
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
+        viewDocs.disableProperty().bind(booleanProperty);
     }
 
     public void setTeamChoiceBoxListener(ChangeListener<String> changeListener) {

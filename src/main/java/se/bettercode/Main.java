@@ -1,5 +1,6 @@
 package se.bettercode;
 
+import se.bettercode.scrum.Documents;
 import se.bettercode.scrum.backlog.Backlog;
 import se.bettercode.scrum.backlog.SmallBacklog;
 import se.bettercode.scrum.Sprint;
@@ -13,6 +14,7 @@ public class Main {
         Team team = new CobraTeam();
         Backlog backlog = new SmallBacklog();
         Sprint sprint = new Sprint("First sprint", 10, team, backlog);
+//        Documents documents = new Documents();
         sprint.runSprint();
         System.out.println("Finished command line app.");
     }
