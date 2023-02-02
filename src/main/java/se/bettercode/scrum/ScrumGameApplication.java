@@ -23,6 +23,7 @@ public class ScrumGameApplication extends Application {
 
     private Board board = new Board();
     private Sprint sprint;
+    private Documents documents = new Documents();
     private Team team;
     private Backlog backlog;
     private StatusBar statusBar = new StatusBar();
@@ -107,6 +108,7 @@ public class ScrumGameApplication extends Application {
         toolBar.setTeamChoiceBoxListener(teamChoiceBoxListener);
         toolBar.setBacklogChoiceBoxListener(backlogChoiceBoxListener);
         toolBar.setStartButtonAction((event) -> sprint.runSprint());
+        toolBar.setViewDocsButtonAction((event) -> documents.show());
     }
 
     private void loadData() {
