@@ -104,9 +104,20 @@ public class ScrumGameApplication extends Application {
             }
         };
 
+
         toolBar.setTeamChoiceBoxListener(teamChoiceBoxListener);
         toolBar.setBacklogChoiceBoxListener(backlogChoiceBoxListener);
         toolBar.setStartButtonAction((event) -> sprint.runSprint());
+//        toolBar.setAddNewTeamButton((event)->{
+//            if ((teamNameField.getText() != null && !teamNameField.getText().isEmpty())) {
+//                label.setText(name.getText() + " " + lastName.getText() + ", "
+//                        + "thank you for your comment!");
+//            } else {
+//                label.setText("You have not left a comment.");
+//            }
+//        });
+
+
     }
 
     private void loadData() {

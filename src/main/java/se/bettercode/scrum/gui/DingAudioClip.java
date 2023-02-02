@@ -3,8 +3,6 @@ package se.bettercode.scrum.gui;
 import javafx.scene.media.AudioClip;
 import se.bettercode.scrum.Story;
 
-//import java.applet.AudioClip;
-
 import static java.lang.Thread.sleep;
 
 public class DingAudioClip {
