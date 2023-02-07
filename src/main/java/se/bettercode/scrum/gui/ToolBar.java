@@ -19,7 +19,11 @@ import javafx.scene.layout.HBox;
 import javafx.scene.control.*;
 import java.nio.file.Path;
 import java.nio.file.Files;
+
+
 public class ToolBar extends HBox {
+
+    
 
     private final Button startButton = new Button("Start Sprint");
     private final Button viewDocs = new Button("Documents");
@@ -46,6 +50,38 @@ public class ToolBar extends HBox {
         viewDocs.setPrefSize(100, 20);
 
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory, startButton, viewDocs);
+
+        addUserStory.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                if ((userStory.getText() != null && !userStory.getText().isEmpty())) {
+                    userstoryalert.setText(userStory.getText() +  "- named user story added");
+                    try
+                    {
+                        String filename= "src/main/java/se/bettercode/scrum/gui/UserStory";
+
+                        FileWriter fw = new FileWriter(filename, true);
+                        BufferedWriter bw = new BufferedWriter(fw);   
+                        bw.write(userStory.getText());
+                        bw.newLine();
+                        bw.close();
+
+                        System.out.println("Added user story"+userStory.getText());
+
+
+                    }
+                    catch(IOException ioe)
+                    {
+                        System.err.println("IOException: " + ioe.getMessage());
+                    }
+                } else {
+                    userstoryalert.setText("You have not left a comment.");
+                }
+            }
+        });
+
+
 }
 
 
