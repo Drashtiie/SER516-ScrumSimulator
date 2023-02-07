@@ -122,10 +122,16 @@ public class ScrumGameApplication extends Application {
             }
         };
 
+
         toolBar.setTeamChoiceBoxListener(teamChoiceBoxListener);
         toolBar.setBacklogChoiceBoxListener(backlogChoiceBoxListener);
         toolBar.setStartButtonAction((event) -> sprint.runSprint());
+
+
+
+
         toolBar.setViewDocsButtonAction((event) -> documents.show());
+
     }
 
     private void loadData() {
