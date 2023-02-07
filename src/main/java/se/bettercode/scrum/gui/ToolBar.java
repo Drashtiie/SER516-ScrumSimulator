@@ -19,6 +19,7 @@ import java.nio.file.Path;
 public class ToolBar extends HBox {
 
     private final Button startButton = new Button("Start Sprint");
+    private final Button viewDocs = new Button("Documents");
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
 
@@ -36,7 +37,9 @@ public class ToolBar extends HBox {
         backlogChoiceBox.setTooltip(new Tooltip("Select backlog"));
 
         startButton.setPrefSize(100, 20);
+        viewDocs.setPrefSize(100, 20);
 
+//<<<<<<< drashti
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, startButton,teamNameField, addNewTeamButton, teamAddedAlert);
 
         addNewTeamButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -92,6 +95,9 @@ public class ToolBar extends HBox {
 
         teamChoiceBox.setItems(FXCollections.observableArrayList(teams));
         teamChoiceBox.setTooltip(new Tooltip("Select team"));
+
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, startButton, viewDocs);
+//>>>>>>> main
     }
 
 
@@ -105,11 +111,18 @@ public class ToolBar extends HBox {
 
 
 
+    public void setViewDocsButtonAction(EventHandler<ActionEvent> eventHandler) {
+        viewDocs.setOnAction(eventHandler);
+    }
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
+//<<<<<<< drashti
         addNewTeamButton.disableProperty().bind(booleanProperty);
         teamChoiceBox.disableProperty().bind(booleanProperty);
+//=======
+        viewDocs.disableProperty().bind(booleanProperty);
+//>>>>>>> main
     }
 
     public void setTeamChoiceBoxListener(ChangeListener<String> changeListener) {

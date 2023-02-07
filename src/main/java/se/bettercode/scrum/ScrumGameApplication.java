@@ -23,6 +23,7 @@ public class ScrumGameApplication extends Application {
 
     private Board board = new Board();
     private Sprint sprint;
+    private Documents documents = new Documents();
     private Team team;
     private Backlog backlog;
     private StatusBar statusBar = new StatusBar();
@@ -108,15 +109,11 @@ public class ScrumGameApplication extends Application {
         toolBar.setTeamChoiceBoxListener(teamChoiceBoxListener);
         toolBar.setBacklogChoiceBoxListener(backlogChoiceBoxListener);
         toolBar.setStartButtonAction((event) -> sprint.runSprint());
-//        toolBar.setAddNewTeamButton((event)->{
-//            if ((teamNameField.getText() != null && !teamNameField.getText().isEmpty())) {
-//                label.setText(name.getText() + " " + lastName.getText() + ", "
-//                        + "thank you for your comment!");
-//            } else {
-//                label.setText("You have not left a comment.");
-//            }
-//        });
 
+
+
+
+        toolBar.setViewDocsButtonAction((event) -> documents.show());
 
     }
 
