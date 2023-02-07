@@ -17,7 +17,7 @@ public class SelectableTeams extends Selectable<Team> {
         BufferedReader reader;
 
         try {
-            reader = new BufferedReader(new FileReader("C:\\ser516\\ser516public\\project1\\ScrumBoardSimulator\\src\\main\\java\\se\\bettercode\\scrum\\gui\\Teams"));
+            reader = new BufferedReader(new FileReader("src/main/java/se/bettercode/scrum/gui/Teams"));
             String line = reader.readLine();
 
             while (line != null) {

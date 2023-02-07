@@ -33,9 +33,6 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 public class ToolBar extends HBox {
-
-    
-
     private final Button startButton = new Button("Start Sprint");
     private final Button viewDocs = new Button("Documents");
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
@@ -58,6 +55,8 @@ public class ToolBar extends HBox {
         setSpacing(10);
         setStyle("-fx-background-color: #336699;");
 
+        teamChoiceBox.setItems(FXCollections.observableArrayList(teams));
+        teamChoiceBox.setTooltip(new Tooltip("Select team"));
 
         backlogChoiceBox.setItems(FXCollections.observableArrayList(backlogs));
         backlogChoiceBox.setTooltip(new Tooltip("Select backlog"));
@@ -90,11 +89,13 @@ public class ToolBar extends HBox {
                     {
                         System.err.println("IOException: " + ioe.getMessage());
                     }
-                    } else {
+                    } 
+                    else {
                     userstoryalert.setText("You have not left a comment.");
                 }
                 }
-
+            });
+        
 
 //=======
 //<<<<<<< drashti
@@ -108,7 +109,7 @@ public class ToolBar extends HBox {
                     teamAddedAlert.setText(teamNameField.getText() +  "added as team");
                     try
                     {
-                        String filename= "C:\\ser516\\ser516public\\project1\\ScrumBoardSimulator\\src\\main\\java\\se\\bettercode\\scrum\\gui\\Teams";
+                        String filename= "src/main/java/se/bettercode/scrum/gui/Teams";
 //                        FileWriter fw = new FileWriter(filename,true); //the true will append the new data
 //                        fw.write("add a line\n");//appends the string to the file
 //                        fw.close();
