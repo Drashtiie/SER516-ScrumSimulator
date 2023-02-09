@@ -16,22 +16,8 @@ import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-//=======
-import javafx.scene.control.*;
-//>>>>>>> main
+
 import javafx.scene.layout.HBox;
-import javafx.scene.control.*;
-import java.nio.file.Path;
-import java.nio.file.Files;
-
-
-import java.io.BufferedWriter;
-import java.io.FileWriter;
-import java.io.IOException;
-import java.nio.file.Path;
-import java.io.IOException;
-import java.nio.file.Files;
-import java.nio.file.Path;
 public class ToolBar extends HBox {
 
     private final Button toggleButton = new Button("Hide Burnup");
@@ -41,8 +27,8 @@ public class ToolBar extends HBox {
     private final Button viewDocs = new Button("Documents");
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
+    private final Button addUsers = new Button("Add User");
 
-//<<<<<<< manantpu
 
     Button addUserStory = new Button("Add user story ");
     TextField userStory = new TextField ();
@@ -69,9 +55,9 @@ public class ToolBar extends HBox {
         viewDocs.setPrefSize(100, 20);
         toggleButton.setPrefSize(120,20);
         toggleButton2.setPrefSize(120,20);
+        addUsers.setPrefSize(120,20);
 
-//<<<<<<< manantpu
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2);
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2, addUsers);
 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -161,18 +147,10 @@ public class ToolBar extends HBox {
             }
         });
 
-
-//<<<<<<< manantpu
-//}
-
-//=======
         teamChoiceBox.setItems(FXCollections.observableArrayList(teams));
         teamChoiceBox.setTooltip(new Tooltip("Select team"));
 
-        //getChildren().addAll(teamChoiceBox, backlogChoiceBox, startButton, viewDocs);
-//>>>>>>> main
     }
-//>>>>>>> main
 
 
 
@@ -187,6 +165,9 @@ public class ToolBar extends HBox {
 
     public void setViewDocsButtonAction(EventHandler<ActionEvent> eventHandler) {
         viewDocs.setOnAction(eventHandler);
+    }
+    public void setAddUsedrsButtonAction(EventHandler<ActionEvent> eventHandler) {
+        addUsers.setOnAction(eventHandler);
     }
 
     public void setToggleButtonAction(EventHandler<ActionEvent> eventHandler) {

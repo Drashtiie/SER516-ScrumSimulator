@@ -16,7 +16,7 @@ import se.bettercode.scrum.gui.ToolBar;
 import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
-
+import se.bettercode.scrum.gui.UserWindow;
 
 public class ScrumGameApplication extends Application {
 
@@ -25,6 +25,7 @@ public class ScrumGameApplication extends Application {
     private Board board = new Board();
     private Sprint sprint;
     private Documents documents = new Documents();
+    private UserWindow addUserWindow = new UserWindow();
     private Team team;
     private Backlog backlog;
     private StatusBar statusBar = new StatusBar();
@@ -131,6 +132,7 @@ public class ScrumGameApplication extends Application {
 
 
         toolBar.setViewDocsButtonAction((event) -> documents.show());
+        toolBar.setAddUsedrsButtonAction((event) -> addUserWindow.show());
 
     }
 
