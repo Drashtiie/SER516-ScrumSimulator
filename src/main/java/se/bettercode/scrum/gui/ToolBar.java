@@ -39,11 +39,9 @@ public class ToolBar extends HBox {
         startButton.setPrefSize(100, 20);
         viewDocs.setPrefSize(100, 20);
 
-//<<<<<<< drashti
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, startButton,teamNameField, addNewTeamButton, teamAddedAlert);
 
         addNewTeamButton.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent e) {
                 if ((teamNameField.getText() != null && !teamNameField.getText().isEmpty())) {
@@ -51,33 +49,12 @@ public class ToolBar extends HBox {
                     try
                     {
                         String filename= "C:\\ser516\\ser516public\\project1\\ScrumBoardSimulator\\src\\main\\java\\se\\bettercode\\scrum\\gui\\Teams";
-//                        FileWriter fw = new FileWriter(filename,true); //the true will append the new data
-//                        fw.write("add a line\n");//appends the string to the file
-//                        fw.close();
-
                         FileWriter fw = new FileWriter(filename, true);
                         BufferedWriter bw = new BufferedWriter(fw);
                         bw.write(teamNameField.getText());
                         bw.newLine();
                         bw.close();
-
-//                        String text
-//                                = "Welcome to geekforgeeks\nHappy Learning!";
-//
-//                        // Defining the file name of the file
-//                        Path fileName = Path.of(
-//                                "C:\\ser516\\ser516public\\project1\\ScrumBoardSimulator\\src\\main\\java\\se\\bettercode\\scrum\\gui\\Teams");
-//
-//                        // Writing into the file
-//                        Files.write(fileName, text);
-
-                        // Reading the content of the file
-//                        String file_content = Files.readString(fileName);
-//
-//                        // Printing the content inside the file
-//                        System.out.println(file_content);
                         System.out.println("Added ");
-
 
                         teamChoiceBox.setItems(FXCollections.observableArrayList(teams));
                         teamChoiceBox.setTooltip(new Tooltip("Select team"));
@@ -97,7 +74,6 @@ public class ToolBar extends HBox {
         teamChoiceBox.setTooltip(new Tooltip("Select team"));
 
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, startButton, viewDocs);
-//>>>>>>> main
     }
 
 
@@ -117,12 +93,9 @@ public class ToolBar extends HBox {
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
-//<<<<<<< drashti
         addNewTeamButton.disableProperty().bind(booleanProperty);
         teamChoiceBox.disableProperty().bind(booleanProperty);
-//=======
         viewDocs.disableProperty().bind(booleanProperty);
-//>>>>>>> main
     }
 
     public void setTeamChoiceBoxListener(ChangeListener<String> changeListener) {
