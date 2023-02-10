@@ -1,7 +1,9 @@
 package se.bettercode.scrum;
 
 
-public class Story extends Task {
+import java.util.ArrayList;
+
+public class Story {
 
     private StoryDays storyDays = new StoryDays();
 
@@ -10,6 +12,8 @@ public class Story extends Task {
 
     private StoryStateProperty status = new StoryStateProperty();
     private String title = "";
+
+    private ArrayList<Task> tasks;
 
     public Story(int points) {
         this(points, "");
@@ -21,6 +25,7 @@ public class Story extends Task {
         }
         this.title = title;
         storyPointSet = new StoryPointSet(points);
+        this.tasks = new ArrayList<>();
     }
 
     public StoryStateProperty statusProperty() {
