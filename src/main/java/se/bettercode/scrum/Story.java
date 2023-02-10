@@ -15,6 +15,8 @@ public class Story {
 
     private ArrayList<Task> tasks;
 
+    private ArrayList<Comment> comments;
+
     public Story(int points) {
         this(points, "");
     }
@@ -26,6 +28,7 @@ public class Story {
         this.title = title;
         storyPointSet = new StoryPointSet(points);
         this.tasks = new ArrayList<>();
+        this.comments = new ArrayList<>();
     }
 
     public StoryStateProperty statusProperty() {

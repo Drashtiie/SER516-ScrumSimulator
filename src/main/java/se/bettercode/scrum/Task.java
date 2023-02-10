@@ -1,5 +1,7 @@
 package se.bettercode.scrum;
 
+import java.util.ArrayList;
+
 public class Task {
     private int id;
 
@@ -16,6 +18,8 @@ public class Task {
     }
 
     private int StoryID;
+
+    private ArrayList<Comment> comments;
 
     public int getId() {
         return id;
@@ -39,6 +43,14 @@ public class Task {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public Task(int id, String title, String description, int storyID) {
+        this.id = id;
+        this.title = title;
+        this.description = description;
+        StoryID = storyID;
+        this.comments = new ArrayList<>();
     }
 
     public void addToStory(){
