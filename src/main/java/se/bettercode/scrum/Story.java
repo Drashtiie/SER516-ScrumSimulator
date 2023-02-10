@@ -1,7 +1,7 @@
 package se.bettercode.scrum;
 
 
-public class Story {
+public class Story extends Task {
 
     private StoryDays storyDays = new StoryDays();
 
