@@ -149,3 +149,4 @@ public class ScrumGameApplication extends Application {
         return new BurnupChart(SPRINT_LENGTH_IN_DAYS);
     }
 }
+

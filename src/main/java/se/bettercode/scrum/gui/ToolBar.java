@@ -1,9 +1,13 @@
 package se.bettercode.scrum.gui;
+import javafx.scene.layout.StackPane;
+import javafx.scene.Scene;
+import java.time.LocalDateTime;
+import java.time.Duration;
 
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import javafx.stage.Modality;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -21,6 +25,8 @@ import javafx.scene.control.*;
 //>>>>>>> main
 import javafx.scene.layout.HBox;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
 import java.nio.file.Path;
 import java.nio.file.Files;
 
@@ -223,5 +229,42 @@ public class ToolBar extends HBox {
 //        BurnupChart.this.setIsVisible(toggleButton.isSelected());
 //    });
 //    }
+public void start(final Stage primaryStage) {
+    Button enterTimeButton = new Button();
+    enterTimeButton.setText("Enter time for user story");
+    enterTimeButton.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            final Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(primaryStage);
+            StackPane dialogLayout = new StackPane();
+            Scene dialogScene = new Scene(dialogLayout, 300, 250);
+            dialog.setScene(dialogScene);
+            dialog.show();
+
+            // Create the countdown timer (!!!!!!! change localdatetime before final merge!!!! - Anish)
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime end = now.plusDays(2).plusHours(3).plusMinutes(30);
+            Duration duration = Duration.between(now, end);
+
+            // Add timer to window
+
+            dialogLayout.getChildren().add(new Label(
+                    String.format("Count down: %d days, %d hours, %d minutes",
+                            duration.toDays(),
+                            duration.toHours() - (duration.toDays() * 24),
+                            duration.toMinutes() - (duration.toHours() * 60))
+            ));
+        }
+    });
+
+    StackPane root = new StackPane();
+    root.getChildren().add(enterTimeButton);
+    Scene scene = new Scene(root, 300, 250);
+    primaryStage.setScene(scene);
+    primaryStage.show();
+}
+
 }
 //}
