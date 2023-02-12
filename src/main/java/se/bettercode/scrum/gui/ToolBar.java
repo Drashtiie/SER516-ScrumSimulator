@@ -42,6 +42,8 @@ public class ToolBar extends HBox {
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
 
+    private final Button viewtime = new Button("Enter Time for user story");
+
 //<<<<<<< manantpu
 
     Button addUserStory = new Button("Add user story ");
@@ -71,7 +73,7 @@ public class ToolBar extends HBox {
         toggleButton2.setPrefSize(120,20);
 
 //<<<<<<< manantpu
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2);
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2, viewtime);
 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
