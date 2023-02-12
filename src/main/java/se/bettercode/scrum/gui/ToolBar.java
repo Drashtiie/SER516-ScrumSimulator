@@ -60,13 +60,12 @@ public class ToolBar extends HBox {
 
         backlogChoiceBox.setItems(FXCollections.observableArrayList(backlogs));
         backlogChoiceBox.setTooltip(new Tooltip("Select backlog"));
-
         startButton.setPrefSize(100, 20);
         viewDocs.setPrefSize(100, 20);
 
 //<<<<<<< manantpu
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs);
-
+        /* 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -96,7 +95,7 @@ public class ToolBar extends HBox {
                 }
             });
         
-
+*/
 //=======
 //<<<<<<< drashti
         //getChildren().addAll(teamChoiceBox, backlogChoiceBox, startButton,teamNameField, addNewTeamButton, teamAddedAlert);
@@ -182,6 +181,11 @@ public class ToolBar extends HBox {
     public void setViewDocsButtonAction(EventHandler<ActionEvent> eventHandler) {
         viewDocs.setOnAction(eventHandler);
     }
+
+    public void setUserStoryButtonAction(EventHandler<ActionEvent> eventHandler) {
+        addUserStory.setOnAction(eventHandler);
+    }
+    
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
@@ -190,6 +194,8 @@ public class ToolBar extends HBox {
         teamChoiceBox.disableProperty().bind(booleanProperty);
 //=======
         viewDocs.disableProperty().bind(booleanProperty);
+
+        addUserStory.disableProperty().bind(booleanProperty);
 //>>>>>>> main
     }
 

@@ -24,6 +24,7 @@ public class ScrumGameApplication extends Application {
     private Board board = new Board();
     private Sprint sprint;
     private Documents documents = new Documents();
+    private NewUserStory nws = new NewUserStory();
     private Team team;
     private Backlog backlog;
     private StatusBar statusBar = new StatusBar();
@@ -114,6 +115,8 @@ public class ScrumGameApplication extends Application {
 
 
         toolBar.setViewDocsButtonAction((event) -> documents.show());
+
+        toolBar.setUserStoryButtonAction((event) -> nws.show());
 
     }
 
