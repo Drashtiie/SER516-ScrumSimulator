@@ -16,6 +16,7 @@ import se.bettercode.scrum.gui.ToolBar;
 import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
+import se.bettercode.scrum.team.User;
 
 
 public class ScrumGameApplication extends Application {
