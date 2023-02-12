@@ -64,7 +64,7 @@ public class ToolBar extends HBox {
         viewDocs.setPrefSize(100, 20);
 
 //<<<<<<< manantpu
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs);
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs);
         /* 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 

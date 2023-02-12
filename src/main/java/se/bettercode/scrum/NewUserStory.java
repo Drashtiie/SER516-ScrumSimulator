@@ -8,6 +8,8 @@ import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.event.EventType;
 import javafx.geometry.Insets;
+import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
@@ -31,8 +33,11 @@ import java.util.Scanner;
 public class NewUserStory {
     private HBox toolBar = new HBox();
     private Button addUserStory = new Button();
+
+    private TextField UserStoryPoints = new TextField();
     private TextField userStory = new TextField ();
     private Label userstoryalert = new Label("");
+    private Label storypoints = new Label("");
     public NewUserStory(){
     }
     public void show() {
@@ -40,14 +45,14 @@ public class NewUserStory {
         
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
-
+        UserStoryPoints.setText("Story Points");
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent e) {
                 if ((userStory.getText() != null && !userStory.getText().isEmpty())) {
-                    System.out.println("Hi there reached here");
                     userstoryalert.setText(userStory.getText() +  "- named user story added");
+                    storypoints.setText(userStory.getText() +  "has" + UserStoryPoints.getText()+ "points.");
                     try
                     {
                         String filename= "src/main/java/se/bettercode/scrum/gui/UserStory";
@@ -98,13 +103,21 @@ public class NewUserStory {
 //                addDocFunc();
 //            }
 //        });
-        //secondaryLayout.getChildren().add(list);
+
+        secondaryLayout.getChildren().addAll(storypoints,userstoryalert);
+
+        secondaryLayout.setAlignment(storypoints, Pos.CENTER_RIGHT);
+
+        secondaryLayout.setAlignment(userstoryalert, Pos.CENTER_LEFT);
+
+        
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
         primaryStage.setScene(new Scene(borderPane, 800, 600));
         primaryStage.show();
     }
 
+      
     public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
         
@@ -114,7 +127,8 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,userstoryalert,addUserStory);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints);
+        
     }
 
    /*      
