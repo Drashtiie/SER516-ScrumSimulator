@@ -17,6 +17,22 @@ public class Story {
 
     private ArrayList<Comment> comments;
 
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
+
     public Story(int points) {
         this(points, "");
     }

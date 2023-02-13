@@ -1,5 +1,7 @@
 package se.bettercode.scrum;
 
+import java.util.ArrayList;
+
 public class Comment {
     private int id;
 
@@ -48,12 +50,32 @@ public class Comment {
         this.parentType = parentType;
     }
 
-    public void addToParent(String parentType){
-
+    public Story addToStory(Story userStory){
+        ArrayList<Comment> storyComments = userStory.getComments();
+        storyComments.add(this);
+        userStory.setComments(storyComments);
+        return userStory;
     }
 
-    public void deleteFromParent(String parentType){
+    public Story deleteFromStory(Story userStory){
+        ArrayList<Comment> storyComments = userStory.getComments();
+        storyComments.remove(this);
+        userStory.setComments(storyComments);
+        return userStory;
+    }
 
+    public Task addToTask(Task storyTask){
+        ArrayList<Comment> storyComments = storyTask.getComments();
+        storyComments.add(this);
+        storyTask.setComments(storyComments);
+        return storyTask;
+    }
+
+    public Task deleteFromTask(Task storyTask){
+        ArrayList<Comment> storyComments = storyTask.getComments();
+        storyComments.remove(this);
+        storyTask.setComments(storyComments);
+        return storyTask;
     }
 }
 
