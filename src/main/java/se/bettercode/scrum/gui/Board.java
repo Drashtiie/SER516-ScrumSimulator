@@ -53,7 +53,8 @@ public class Board extends GridPane {
     private void updateBoard() {
         Platform.runLater(() -> {
             clearAllColumns();
-            for (Story story : backlog.getStories()) {
+            Backlog backlog = new Backlog("My Backlog");
+            for (Story story : backlog.readFromTextFile("src/main/java/se/bettercode/scrum/gui/UserStory")) {
                 switch (story.getStatus()) {
                     case TODO:
                         todoColumn.getChildren().add(new StoryCardController(story));
