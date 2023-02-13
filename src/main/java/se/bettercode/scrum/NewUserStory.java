@@ -12,6 +12,7 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
@@ -38,11 +39,12 @@ public class NewUserStory {
     private TextField userStory = new TextField ();
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
+    String st[] = { "Feature", "Bug", "Release", "Other" };
+    private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
     public NewUserStory(){
     }
     public void show() {
         toolBarSetup();
-        
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
         UserStoryPoints.setText("Story Points");
@@ -71,7 +73,7 @@ public class NewUserStory {
                     }
                     } 
                     else {
-                    userstoryalert.setText("You have not left a comment.");
+                    userstoryalert.setText("You have not named the user story");
                 }
                 }
             });
@@ -127,7 +129,7 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype);
         
     }
 
