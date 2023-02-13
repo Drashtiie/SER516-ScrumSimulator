@@ -9,6 +9,7 @@ import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
@@ -32,7 +33,32 @@ public class UserWindow {
     private HBox toolBar = new HBox();
     private Button addButton = new Button();
 
-    TextField userNameField = new TextField();
+    TextField userNameField = new TextField("Add User Name" );
+    TextField userEmailField = new TextField("Add Email Id");
+    //ComboBox<String> userRoleField = new ComboBox<String>();
+     String roles[] =
+    { "Developer","Owner", "Scrum Master", "Stakeholder", "Design", "Front", "Back"};
+
+    // Create a combo box
+    ComboBox userRoleField =
+            new ComboBox(FXCollections
+                    .observableArrayList(roles));
+
+    //TextField userRoleField = new TextField("Add Role");
+    //userRoleField.getItems().addAll("Developer", "Owner");
+    //Setting the prompt text of the combo box
+     // userRoleField.setPromptText("Select Role");
+    //Getting the observable list of the combo box
+//    ObservableList<String> list = userRoleField.getItems();
+//    //Adding items to the combo box
+//      list.add("Java");
+//      list.add("C++");
+//      list.add("Python");
+//      list.add("Big Data");
+//      list.add("Machine Learning");
+//    userNameField.setPromptText("Enter your name");
+//userNameField.setFocusTraversable(false);
+
 
     public UserWindow() {
     }
@@ -62,7 +88,7 @@ public class UserWindow {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(addButton, userNameField);
+        toolBar.getChildren().addAll( userNameField, userEmailField, userRoleField, addButton);
 
 
         addButton.setOnAction(new EventHandler<ActionEvent>() {
@@ -71,7 +97,10 @@ public class UserWindow {
             public void handle(ActionEvent e) {
                 if ((userNameField.getText() != null && !userNameField.getText().isEmpty())) {
                     System.out.println(userNameField.getText());
-                    sendemail(userNameField.getText());
+                    //sendemail(userNameField.getText());
+
+                    //************function to add user to file
+                    //addUser(userNameField.getText(), userEmailField.getText(), userRoleField.getText());
                     System.out.println("Email sent");
 
                 }

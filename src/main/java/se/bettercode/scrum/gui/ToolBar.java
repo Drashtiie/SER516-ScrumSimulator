@@ -27,7 +27,7 @@ public class ToolBar extends HBox {
     private final Button viewDocs = new Button("Documents");
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
-    private final Button addUsers = new Button("Add User");
+    private final Button addUsers = new Button("Users + ");
 
 
     Button addUserStory = new Button("Add user story ");
