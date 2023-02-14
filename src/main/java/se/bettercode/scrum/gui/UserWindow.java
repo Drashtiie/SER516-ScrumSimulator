@@ -18,6 +18,8 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import se.bettercode.scrum.team.User;
+
 import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
@@ -79,6 +81,7 @@ public class UserWindow {
         primaryStage.show();
     }
 
+    
 
     public void setAddUsersButtonAction(EventHandler<ActionEvent> eventHandler) {
         addButton.setOnAction(eventHandler);
@@ -100,8 +103,9 @@ public class UserWindow {
                     //sendemail(userNameField.getText());
 
                     //************function to add user to file
-                    //addUser(userNameField.getText(), userEmailField.getText(), userRoleField.getText());
-                    System.out.println("Email sent");
+                    User x = new User();
+                    x.addUser(userNameField.getText(), userEmailField.getText(),userRoleField.getValue().toString());
+                    //System.out.println("Email sent");
 
                 }
                 else {
