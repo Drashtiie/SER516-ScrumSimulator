@@ -6,6 +6,8 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import se.bettercode.scrum.Story;
+import se.bettercode.scrum.team.UserImpl;
+
 import java.io.*;
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -14,6 +16,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
+
+import static javax.swing.UIManager.put;
 
 public class Backlog {
 
@@ -41,16 +45,16 @@ public class Backlog {
     }
     public void readFromTextFile(String fileName) {
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line;
-            while ((line = reader.readLine()) != null) {
-                // Parse the line to get the required data to create a Story object
-                // For example, you can split the line by a delimiter and extract the story name, points, and status
-                String[] parts = line.split(";");
-                String name = parts[0];
-                int points = Integer.parseInt(parts[1]);
-                Story.StoryState status = Story.StoryState.valueOf(parts[2]);
-                Story story = new Story(name, points, status);
-                this.addStory(story);
+            String line = null;
+            while (line != null) {
+
+                line = reader.readLine();
+                System.out.println(line);
+                // read next line
+                User x = new UserImpl(line, 26);
+                put(x.getName(), x);
+
+
             }
         } catch (IOException e) {
             System.out.println("Error reading from file " + fileName + ": " + e.getMessage());
