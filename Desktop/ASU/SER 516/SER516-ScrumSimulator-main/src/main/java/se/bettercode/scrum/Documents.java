@@ -29,11 +29,12 @@ import java.util.Scanner;
 
 public class Documents {
     private HBox toolBar = new HBox();
-    private Button addButton = new Button();
+    private final Button addButton = new Button();
+    private final Button delButton = new Button();
     private File[] fileList;
     private ObservableList<File> data;
     private ListView<File> list = new ListView<File>();
-    private String path = "src/main/java/se/bettercode/scrum/resources";
+    private final String path = "src/main/java/se/bettercode/scrum/resources";
     private File repo = new File (path);
     public Documents(){
     }
@@ -41,6 +42,8 @@ public class Documents {
         toolBarSetup();
         addButton.setPrefSize(100, 20);
         addButton.setText("Add Doc");
+        delButton.setPrefSize(100, 20);
+        delButton.setText("Delete");
         Stage primaryStage = new Stage();
         StackPane secondaryLayout = new StackPane();
         BorderPane borderPane = new BorderPane();
@@ -98,7 +101,7 @@ public class Documents {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(addButton);
+        toolBar.getChildren().addAll(addButton, delButton);
     }
 
     private void displaySelected(File newValue) {
