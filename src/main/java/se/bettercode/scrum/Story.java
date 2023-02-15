@@ -13,6 +13,7 @@ public class Story {
     private StoryStateProperty status = new StoryStateProperty();
     private String title = "";
 
+    private String taskType = "";
     private ArrayList<Task> tasks;
 
     private ArrayList<Comment> comments;
@@ -34,10 +35,10 @@ public class Story {
     }
 
     public Story(int points) {
-        this(points, "");
+        this(points, "", "");
     }
 
-    public Story(int points, String title) {
+    public Story(int points, String title, String taskType) {
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
         }
@@ -45,8 +46,16 @@ public class Story {
         storyPointSet = new StoryPointSet(points);
         this.tasks = new ArrayList<>();
         this.comments = new ArrayList<>();
+        this.taskType = taskType;
     }
 
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
     public StoryStateProperty statusProperty() {
         return status;
     }
