@@ -77,11 +77,47 @@ public class UserWindow {
 
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
+        User y = new User();
+        System.out.println(y.getUsers());
+
+        ObservableList<String> names = FXCollections.observableArrayList();
+//Add a single entry
+
+        try {
+            File myObj = new File("src/main/java/se/bettercode/scrum/team/usersInfo");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
+                names.add(data);
+                //System.out.println(data);
+            }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+
+
+
+        //ObservableList<ArrayList<String>> names = FXCollections.observableList(y.getUsers());
+                //FXCollections.observableArrayList("Engineering", "MCA", "MBA", "Graduation", "MTECH", "Mphil", "Phd");
+        ListView<String> listView = new ListView<String>(names);
+        //listView.setMaxSize(500, 500);
+        //Creating the layout
+        VBox layout = new VBox(10);
+        layout.setPadding(new Insets(5, 50, 5, 50));
+        layout.getChildren().addAll(listView);
+       // layout.setStyle("-fx-background-color: BEIGE");
+
+
+        secondaryLayout.getChildren().add(layout);
+        //Setting the stage
         primaryStage.setScene(new Scene(borderPane, 800, 600));
         primaryStage.show();
+
     }
 
-    
+
 
     public void setAddUsersButtonAction(EventHandler<ActionEvent> eventHandler) {
         addButton.setOnAction(eventHandler);
