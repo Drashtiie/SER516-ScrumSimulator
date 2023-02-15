@@ -42,6 +42,7 @@ public class NewUserStory {
     String st[] = { "Feature", "Bug", "Release", "Other" };
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
     public NewUserStory(){
+
     }
     public void show() {
         toolBarSetup();
@@ -119,6 +120,11 @@ public class NewUserStory {
         primaryStage.show();
     }
 
+    public Story getStory(){
+        Integer sp = Integer.valueOf(storypoints.getText());
+        Story story = new Story( sp, userStory.getText(), usertasktype.getValue());
+        return story;
+    }
       
     public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);

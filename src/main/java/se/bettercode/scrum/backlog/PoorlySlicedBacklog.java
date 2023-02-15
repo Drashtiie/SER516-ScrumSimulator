@@ -14,10 +14,10 @@ public class PoorlySlicedBacklog extends Backlog {
 
         ArrayList<String> storyTitles = (new RandomStoryTitleGenerator()).generate(STORY_COUNT);
 
-        addStory(new Story(8, storyTitles.get(0)));
-        addStory(new Story(8, storyTitles.get(1)));
-        addStory(new Story(8, storyTitles.get(2)));
-        addStory(new Story(8, storyTitles.get(3)));
+        addStory(new Story(8, storyTitles.get(0),""));
+        addStory(new Story(8, storyTitles.get(1),""));
+        addStory(new Story(8, storyTitles.get(2),""));
+        addStory(new Story(8, storyTitles.get(3),""));
 
     }
 }
