@@ -36,6 +36,7 @@ public class Documents {
     private ListView<File> list = new ListView<File>();
     private final String path = "src/main/java/se/bettercode/scrum/resources";
     private File repo = new File (path);
+    private boolean delButtonClicked = false;
     public Documents(){
     }
     public void show() {
@@ -55,6 +56,12 @@ public class Documents {
                 addDocFunc(primaryStage);
             }
         });
+        delButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent event) {
+                delDocFunc();
+//                listFiles();
+            }
+        });
         secondaryLayout.getChildren().add(list);
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
@@ -66,17 +73,35 @@ public class Documents {
         fileList = repo.listFiles();
         data = FXCollections.observableArrayList(fileList);
         list.setItems(data);
-        list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<File>() {
+        if(!delButtonClicked){
+            System.out.println("inside if statement - button not clicked");
+            list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<File>() {
 
+                @Override
+                public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue) {
+                    // Your action here
+                    displaySelected(newValue);
+                }
+            });
+        }
+    }
+
+    private void delDocFunc(){
+        delButtonClicked = true;
+        System.out.println("Delete mode on");
+        toolBar.setDisable(true);
+        list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<File>() {
             @Override
             public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue) {
-                // Your action here
-                System.out.println("Selected item: " + newValue);
-                displaySelected(newValue);
+                newValue.delete();
+                System.out.println(newValue + " deleted successfully");
+                toolBar.setDisable(false);
+                System.out.println("Delete button clicked is : " + delButtonClicked);
+                listFiles();
+                delButtonClicked = false;
             }
         });
     }
-
     private void addDocFunc(Stage stage) {
         FileChooser fileChooser = new FileChooser();
         fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
@@ -93,9 +118,9 @@ public class Documents {
         listFiles();
     }
 
-    public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
-        addButton.setOnAction(eventHandler);
-    }
+//    public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
+//        addButton.setOnAction(eventHandler);
+//    }
 
     private void toolBarSetup() {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
@@ -110,7 +135,6 @@ public class Documents {
 //        TextArea fileTextArea = new TextArea();
         Text textArea = new Text();
         VBox centerBox = new VBox();
-        System.out.println("Inside displaySelected Func");
 
         BufferedReader reader = null;
         try {
@@ -128,7 +152,6 @@ public class Documents {
 
             String content = stringBuilder.toString();
             textArea.setText(content);
-            System.out.println(content);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }

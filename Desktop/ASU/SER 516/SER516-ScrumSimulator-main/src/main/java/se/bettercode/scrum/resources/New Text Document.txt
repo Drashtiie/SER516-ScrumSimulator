@@ -4,8 +4,7 @@ I will run the code to see if it works fine on my system, look at the flow of th
 
 2nd Standup:
 What did you do yesterday?
-I setup my system by downgrading the java version to jdk 8. Because on jdk 19, javaFX was not supported. I also added the documents button to the existing interface.
-
+Yesterday I worked on 2 tasks, one is Done and the other one is ready to test. The user should now be able to 
 What will you do today?
 Today I will work on reading documents from the file system and enabling users to read the document.
 
