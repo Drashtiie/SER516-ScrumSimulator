@@ -38,6 +38,8 @@ import java.nio.file.Path;
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
+import java.util.Optional;
+
 public class ToolBar extends HBox {
 
     private final Button toggleButton = new Button("Hide Burnup");
@@ -232,6 +234,7 @@ public class ToolBar extends HBox {
 public void start(final Stage primaryStage) {
     Button enterTimeButton = new Button();
     enterTimeButton.setText("Enter time for user story");
+    
     enterTimeButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {

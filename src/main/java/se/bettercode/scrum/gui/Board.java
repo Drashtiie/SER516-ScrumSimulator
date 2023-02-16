@@ -69,20 +69,20 @@ public class Board extends GridPane {
 
     private void run() {
         clearAllColumns();
-        Backlog backlog = new Backlog("My Backlog");
-//        for (Story story : backlog.readFromTextFile("src/main/java/se/bettercode/scrum/gui/UserStory")) {
-//            switch (story.getStatus()) {
-//                case TODO:
-//                    todoColumn.getChildren().add(new StoryCardController(story));
-//                    break;
-//                case STARTED:
-//                    startedColumn.getChildren().add(new StoryCardController(story));
-//                    break;
-//                case FINISHED:
-//                    doneColumn.getChildren().add(new StoryCardController(story));
-//                    break;
-//            }
-//        }
+       // Backlog backlog = new Backlog("My Backlog");
+        for (Story story : backlog.getStories()) {
+            switch (story.getStatus()) {
+                case TODO:
+                    todoColumn.getChildren().add(new StoryCardController(story));
+                    break;
+                case STARTED:
+                    startedColumn.getChildren().add(new StoryCardController(story));
+                    break;
+                case FINISHED:
+                    doneColumn.getChildren().add(new StoryCardController(story));
+                    break;
+            }
+        }
 
     }
 }

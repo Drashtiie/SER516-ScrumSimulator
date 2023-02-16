@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -16,6 +18,10 @@ import se.bettercode.scrum.gui.ToolBar;
 import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Optional;
 
 
 public class ScrumGameApplication extends Application {
@@ -75,6 +81,26 @@ public class ScrumGameApplication extends Application {
             //burnupChart = getNewBurnupChart();
             ToggleButton toggleButton = new ToggleButton("Hide Burnup Chart");
             ToggleButton toggleButton2 = new ToggleButton("Show Burnup Chart");
+
+
+            Button enterTimeButton1 = new Button("Enter time for user stories");
+
+            enterTimeButton1.setOnAction(e -> {
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("Enter Time");
+                dialog.setHeaderText("Enter time for user stories:");
+                Optional<String> result = dialog.showAndWait();
+                result.ifPresent(time -> {
+                    try {
+                        FileWriter writer = new FileWriter("time.txt");
+                        writer.write(time);
+                        writer.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+            });
+
             toolBar.setToggleButtonAction(event -> {
                 if (toggleButton.isSelected()) {
                     burnupChart.setVisible(true);
