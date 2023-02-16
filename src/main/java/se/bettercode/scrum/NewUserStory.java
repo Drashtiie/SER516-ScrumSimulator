@@ -62,7 +62,12 @@ public class NewUserStory {
     
                         FileWriter fw = new FileWriter(filename, true);
                         BufferedWriter bw = new BufferedWriter(fw);   
+
+                        bw.write(UserStoryPoints.getText());
+                        bw.newLine();
                         bw.write(userStory.getText());
+                        bw.newLine();
+                        bw.write(usertasktype.getValue());
                         bw.newLine();
                         bw.close();
     
