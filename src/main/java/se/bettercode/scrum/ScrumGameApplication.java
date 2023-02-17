@@ -25,6 +25,8 @@ public class ScrumGameApplication extends Application {
     private Sprint sprint;
     private Documents documents = new Documents();
     private Team team;
+
+    private NewUserStory nws = new NewUserStory();
     private Backlog backlog;
     private StatusBar statusBar = new StatusBar();
     private SelectableBacklogs backlogs = new SelectableBacklogs();
@@ -33,7 +35,7 @@ public class ScrumGameApplication extends Application {
     private BurnupChart burnupChart = getNewBurnupChart();
     private Stage primaryStage;
     private StageUserPrefs prefs;
-    
+
     public static void main(String[] args) {
         System.out.println("Launching JavaFX application.");
         launch(args);
@@ -109,6 +111,7 @@ public class ScrumGameApplication extends Application {
         toolBar.setBacklogChoiceBoxListener(backlogChoiceBoxListener);
         toolBar.setStartButtonAction((event) -> sprint.runSprint());
         toolBar.setViewDocsButtonAction((event) -> documents.show());
+        toolBar.setUserStoryButtonAction((event -> nws.show()));
     }
 
     private void loadData() {

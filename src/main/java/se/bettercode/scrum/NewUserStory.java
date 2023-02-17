@@ -135,7 +135,6 @@ public class NewUserStory {
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
         toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype);
-
     }
 
    /*
