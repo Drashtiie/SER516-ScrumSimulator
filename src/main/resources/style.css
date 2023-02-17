@@ -19,3 +19,6 @@
     -fx-font: 10px "Verdana";
 }
 
+.add_task_button-container {
+    -fx-padding: 0 2;
+}

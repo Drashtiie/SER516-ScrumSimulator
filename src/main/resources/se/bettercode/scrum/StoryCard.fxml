@@ -10,10 +10,17 @@
          <Text id="storyTitle" fx:id="storyTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Story title" wrappingWidth="211.6953125" BorderPane.alignment="TOP_LEFT" />
       </top>
       <bottom>
-        <HBox styleClass="storycard-button-container">
-           <Button styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">Add Task</Button>
-           <Text id="storyPoints" fx:id="storyPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT" wrappingWidth="32.2578125" BorderPane.alignment="BOTTOM_RIGHT"/>
-        </HBox>
+        <BorderPane styleClass="storycard-button-container">
+           <left>
+              <HBox>
+                 <HBox><Button styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">Add Task</Button></HBox>
+                 <HBox styleClass="add_task_button-container"><Button styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">View Tasks</Button></HBox>
+              </HBox>
+           </left>
+           <right>
+              <Text id="storyPoints" fx:id="storyPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT" wrappingWidth="32.2578125" BorderPane.alignment="BOTTOM_RIGHT"/>
+           </right>
+        </BorderPane>
       </bottom>
    </BorderPane>
 </fx:root>
