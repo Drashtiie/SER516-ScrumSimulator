@@ -144,7 +144,7 @@ public class ScrumGameApplication extends Application {
 
     public void stop() {
         System.out.println("Inside stop()");
-        prefs.save();
+       // prefs.save();
     }
 
     private BurnupChart getNewBurnupChart() {

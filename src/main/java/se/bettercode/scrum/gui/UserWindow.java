@@ -29,7 +29,10 @@ import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-
+import java.util.*;
+import javax.mail.*;
+import javax.mail.internet.*;
+import javax.activation.*;
 public class UserWindow {
 
     private HBox toolBar = new HBox();
@@ -77,9 +80,11 @@ public class UserWindow {
 
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
-        User y = new User();
-        System.out.println(y.getUsers());
+//        User y = new User();
+//        System.out.println(y.getUsers());
 
+        ObservableList<String> emails = FXCollections.observableArrayList();
+        ObservableList<String> roles = FXCollections.observableArrayList();
         ObservableList<String> names = FXCollections.observableArrayList();
 //Add a single entry
 
@@ -88,8 +93,16 @@ public class UserWindow {
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
-                names.add(data);
-                //System.out.println(data);
+
+                System.out.println(data);
+                String[] arrOfStr = data.split(":");
+                String[] arrOfStr2 = arrOfStr[1].split(",");
+                arrOfStr2[1] = arrOfStr2[1].substring(0, arrOfStr2[1].length() - 1);
+                arrOfStr2[0] = arrOfStr2[0].substring(2, arrOfStr2[0].length() );
+                System.out.println(arrOfStr[0]+  arrOfStr2[1]);
+                emails.add(arrOfStr[0]);
+                roles.add(arrOfStr2[1]);
+                names.add(arrOfStr2[0]);
             }
             myReader.close();
         } catch (FileNotFoundException e) {
@@ -101,12 +114,20 @@ public class UserWindow {
 
         //ObservableList<ArrayList<String>> names = FXCollections.observableList(y.getUsers());
                 //FXCollections.observableArrayList("Engineering", "MCA", "MBA", "Graduation", "MTECH", "Mphil", "Phd");
-        ListView<String> listView = new ListView<String>(names);
-        //listView.setMaxSize(500, 500);
+        ListView<String> listView = new ListView<String>(emails);
+        listView.setMaxSize(300, 500);
         //Creating the layout
+        ListView<String> listView2 = new ListView<String>(roles);
+        listView.setMaxSize(300, 500);
+        ListView<String> listView3 = new ListView<String>(names);
+        listView.setMaxSize(300, 500);
+
+        HBox hbox = new HBox();
+        hbox.getChildren().addAll(listView,listView2, listView3);
+
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(5, 50, 5, 50));
-        layout.getChildren().addAll(listView);
+        layout.getChildren().addAll(hbox);
        // layout.setStyle("-fx-background-color: BEIGE");
 
 
