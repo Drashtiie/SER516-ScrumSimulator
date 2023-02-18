@@ -234,7 +234,7 @@ public class ToolBar extends HBox {
 public void start(final Stage primaryStage) {
     Button enterTimeButton = new Button();
     enterTimeButton.setText("Enter time for user story");
-    
+
     enterTimeButton.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
