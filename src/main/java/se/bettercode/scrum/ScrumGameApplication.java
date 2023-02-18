@@ -9,14 +9,10 @@ import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import se.bettercode.scrum.backlog.Backlog;
 import se.bettercode.scrum.backlog.SelectableBacklogs;
-import se.bettercode.scrum.gui.Board;
-import se.bettercode.scrum.gui.BurnupChart;
-import se.bettercode.scrum.gui.StatusBar;
-import se.bettercode.scrum.gui.ToolBar;
+import se.bettercode.scrum.gui.*;
 import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
-import se.bettercode.scrum.gui.UserWindow;
 
 public class ScrumGameApplication extends Application {
 
@@ -26,6 +22,7 @@ public class ScrumGameApplication extends Application {
     private Sprint sprint;
     private Documents documents = new Documents();
     private UserWindow addUserWindow = new UserWindow();
+    private TeamWindow addTeamWindow = new TeamWindow();
     private Team team;
     private Backlog backlog;
     private StatusBar statusBar = new StatusBar();
@@ -133,6 +130,8 @@ public class ScrumGameApplication extends Application {
 
         toolBar.setViewDocsButtonAction((event) -> documents.show());
         toolBar.setAddUsedrsButtonAction((event) -> addUserWindow.show());
+
+        toolBar.setAddTeamButtonAction((event) -> addTeamWindow.show());
 
     }
 
