@@ -1,0 +1,10 @@
+.storycard {
+    -fx-font: 14px "Verdana";
+    -fx-padding: 5;
+    -fx-background-color: #CCFF99;
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 2;
+    -fx-border-radius: 5;
+}
+
