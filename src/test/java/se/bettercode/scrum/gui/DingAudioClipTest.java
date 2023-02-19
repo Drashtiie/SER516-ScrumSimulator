@@ -13,8 +13,8 @@ public class DingAudioClipTest {
 
     @Before
     public void setUp() throws Exception {
-        notDoneStory = new Story(5, "Not done story");
-        doneStory = new Story(3, "Done story");
+        notDoneStory = new Story(5, "Not done story", "New");
+        doneStory = new Story(3, "Done story", "New");
         doneStory.workOnStory(3, 1);
     }
 
