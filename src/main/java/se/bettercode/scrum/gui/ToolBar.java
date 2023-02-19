@@ -103,7 +103,7 @@ public class ToolBar extends HBox {
                 }
             });
 
-
+*/
         teamChoiceBox.setItems(FXCollections.observableArrayList(teams));
         teamChoiceBox.setTooltip(new Tooltip("Select team"));
 
