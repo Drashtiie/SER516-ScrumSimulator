@@ -50,7 +50,7 @@ public class ToolBar extends HBox {
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
 
-    private final Button viewtime = new Button("Enter Time for user story");
+    private final Button viewtime = new Button("Enter Time 1");
 
 //<<<<<<< manantpu
 
@@ -206,6 +206,9 @@ public class ToolBar extends HBox {
     public void setToggleButton2Action(EventHandler<ActionEvent> eventHandler) {
         toggleButton2.setOnAction(eventHandler);
     }
+    public void setViewtimeAction(EventHandler<ActionEvent> eventHandler){
+
+    }
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
@@ -232,10 +235,8 @@ public class ToolBar extends HBox {
 //    });
 //    }
 public void start(final Stage primaryStage) {
-    Button enterTimeButton = new Button();
-    enterTimeButton.setText("Enter time for user story");
 
-    enterTimeButton.setOnAction(new EventHandler<ActionEvent>() {
+    viewtime.setOnAction(new EventHandler<ActionEvent>() {
         @Override
         public void handle(ActionEvent event) {
             final Stage dialog = new Stage();
@@ -263,7 +264,7 @@ public void start(final Stage primaryStage) {
     });
 
     StackPane root = new StackPane();
-    root.getChildren().add(enterTimeButton);
+    root.getChildren().add(viewtime);
     Scene scene = new Scene(root, 300, 250);
     primaryStage.setScene(scene);
     primaryStage.show();

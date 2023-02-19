@@ -83,7 +83,7 @@ public class ScrumGameApplication extends Application {
             ToggleButton toggleButton2 = new ToggleButton("Show Burnup Chart");
 
 
-            Button enterTimeButton1 = new Button("Enter time for user stories");
+            Button enterTimeButton1 = new Button("Enter time");
 
             enterTimeButton1.setOnAction(e -> {
                 TextInputDialog dialog = new TextInputDialog();
