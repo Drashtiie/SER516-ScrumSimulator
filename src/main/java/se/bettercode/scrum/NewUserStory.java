@@ -37,6 +37,7 @@ public class NewUserStory {
 
     private TextField UserStoryPoints = new TextField();
     private TextField userStory = new TextField ();
+    private TextField comments = new TextField();
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
@@ -49,6 +50,7 @@ public class NewUserStory {
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
         UserStoryPoints.setText("Story Points");
+        comments.setPromptText("Add Comment");
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -134,7 +136,7 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,comments);
     }
 
    /*
