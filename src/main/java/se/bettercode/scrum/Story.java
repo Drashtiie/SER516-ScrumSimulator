@@ -1,6 +1,8 @@
 package se.bettercode.scrum;
 
 
+import java.util.ArrayList;
+
 public class Story {
 
     private StoryDays storyDays = new StoryDays();
@@ -11,20 +13,50 @@ public class Story {
     private StoryStateProperty status = new StoryStateProperty();
     private String title = "";
 
-    private String Tasktype = "";
+    private String taskType = "";
+    private ArrayList<Task> tasks;
+
+    private ArrayList<Comment> comments;
+
+    public void setTasks(ArrayList<Task> tasks) {
+        this.tasks = tasks;
+    }
+
+    public void setComments(ArrayList<Comment> comments) {
+        this.comments = comments;
+    }
+
+    public ArrayList<Task> getTasks() {
+        return tasks;
+    }
+
+    public ArrayList<Comment> getComments() {
+        return comments;
+    }
     public Story(int points) {
         this(points, "", "");
     }
 
     public Story(int points, String title, String Tasktype) {
+
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
         }
         this.title = title;
         storyPointSet = new StoryPointSet(points);
-        this.Tasktype = Tasktype;
+
+        this.tasks = new ArrayList<>();
+        this.comments = new ArrayList<>();
+        this.taskType = taskType;
     }
 
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
     public StoryStateProperty statusProperty() {
         return status;
     }

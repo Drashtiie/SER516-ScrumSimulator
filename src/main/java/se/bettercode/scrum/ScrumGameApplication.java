@@ -4,18 +4,15 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
+import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 import se.bettercode.scrum.backlog.Backlog;
 import se.bettercode.scrum.backlog.SelectableBacklogs;
-import se.bettercode.scrum.gui.Board;
-import se.bettercode.scrum.gui.BurnupChart;
-import se.bettercode.scrum.gui.StatusBar;
-import se.bettercode.scrum.gui.ToolBar;
+import se.bettercode.scrum.gui.*;
 import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
-
 
 public class ScrumGameApplication extends Application {
 
@@ -24,8 +21,12 @@ public class ScrumGameApplication extends Application {
     private Board board = new Board();
     private Sprint sprint;
     private Documents documents = new Documents();
-    private NewUserStory nws = new NewUserStory();
+    
+    private UserWindow addUserWindow = new UserWindow();
+    private TeamWindow addTeamWindow = new TeamWindow();
     private Team team;
+
+    private NewUserStory nws = new NewUserStory();
     private Backlog backlog;
     private StatusBar statusBar = new StatusBar();
     private SelectableBacklogs backlogs = new SelectableBacklogs();
@@ -34,7 +35,7 @@ public class ScrumGameApplication extends Application {
     private BurnupChart burnupChart = getNewBurnupChart();
     private Stage primaryStage;
     private StageUserPrefs prefs;
-    
+
     public static void main(String[] args) {
         System.out.println("Launching JavaFX application.");
         launch(args);
@@ -73,6 +74,22 @@ public class ScrumGameApplication extends Application {
             board.bindBacklog(backlog);
             burnupChart.removeAllData();
             //burnupChart = getNewBurnupChart();
+            ToggleButton toggleButton = new ToggleButton("Hide Burnup Chart");
+            ToggleButton toggleButton2 = new ToggleButton("Show Burnup Chart");
+            toolBar.setToggleButtonAction(event -> {
+                if (toggleButton.isSelected()) {
+                    burnupChart.setVisible(true);
+                } else {
+                    burnupChart.setVisible(false);
+                }
+            });
+            toolBar.setToggleButton2Action(event -> {
+                if (toggleButton2.isSelected()) {
+                    burnupChart.setVisible(false);
+                } else {
+                    burnupChart.setVisible(true);
+                }
+            });
             burnupChart.bindBurnupDaysProperty(backlog.getBurnup().burnupDaysProperty());
             toolBar.bindRunningProperty(sprint.runningProperty());
             return true;
@@ -115,7 +132,12 @@ public class ScrumGameApplication extends Application {
 
 
         toolBar.setViewDocsButtonAction((event) -> documents.show());
+//<<<<<<< alok
+        toolBar.setUserStoryButtonAction((event -> nws.show()));
+//=======
+        toolBar.setAddUsedrsButtonAction((event) -> addUserWindow.show());
 
+        toolBar.setAddTeamButtonAction((event) -> addTeamWindow.show());
         toolBar.setUserStoryButtonAction((event) -> nws.show());
 
     }
@@ -128,7 +150,7 @@ public class ScrumGameApplication extends Application {
 
     public void stop() {
         System.out.println("Inside stop()");
-        prefs.save();
+       // prefs.save();
     }
 
     private BurnupChart getNewBurnupChart() {

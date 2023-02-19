@@ -37,5 +37,6 @@ public class SmallBacklog extends Backlog {
         addStory(new Story(5, storyTitles.get(3),""));
         addStory(new Story(1, storyTitles.get(4),""));
         */
+
     }
 }

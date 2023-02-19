@@ -30,6 +30,7 @@ public class WellSlicedBacklog extends Backlog {
         /* 
         ArrayList<String> storyTitles = (new RandomStoryTitleGenerator()).generate(STORY_COUNT);
 
+
         addStory(new Story(3, storyTitles.get(0),""));
         addStory(new Story(1, storyTitles.get(1),""));
         addStory(new Story(1, storyTitles.get(2),""));
@@ -41,5 +42,6 @@ public class WellSlicedBacklog extends Backlog {
         addStory(new Story(1, storyTitles.get(8),""));
         addStory(new Story(1, storyTitles.get(9),""));
         */
+
     }
 }

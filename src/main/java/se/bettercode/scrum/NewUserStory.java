@@ -37,6 +37,8 @@ public class NewUserStory {
 
     private TextField UserStoryPoints = new TextField();
     private TextField userStory = new TextField ();
+  
+    private TextField comments = new TextField();
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
@@ -49,6 +51,8 @@ public class NewUserStory {
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
         UserStoryPoints.setText("Story Points");
+      
+        comments.setPromptText("Add Comment");
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -88,6 +92,7 @@ public class NewUserStory {
         StackPane secondaryLayout = new StackPane();
         BorderPane borderPane = new BorderPane();
         secondaryLayout.prefWidthProperty().bind(primaryStage.widthProperty());
+
         /* 
         String path = "src/main/java/se/bettercode/scrum/resources";
         File repo = new File (path);
@@ -96,7 +101,6 @@ public class NewUserStory {
         ObservableList<File> data = FXCollections.observableArrayList(fileList);
         list.setItems(data);
         list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<File>() {
-
             @Override
             public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue) {
                 // Your action here
@@ -118,7 +122,7 @@ public class NewUserStory {
 
         secondaryLayout.setAlignment(userstoryalert, Pos.CENTER_LEFT);
 
-        
+
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
         primaryStage.setScene(new Scene(borderPane, 800, 600));
@@ -134,17 +138,17 @@ public class NewUserStory {
     public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
         
+
     }
 
     private void toolBarSetup() {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype);
-        
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,comments);
     }
 
-   /*      
+   /*
     private void displaySelected(File newValue) {
         Stage newWindow = new Stage();
         BorderPane root = new BorderPane();
@@ -166,7 +170,6 @@ public class NewUserStory {
             }
             stringBuilder.deleteCharAt(stringBuilder.length() - 1);
             reader.close();
-
             String content = stringBuilder.toString();
             textArea.setText(content);
             System.out.println(content);
@@ -177,9 +180,8 @@ public class NewUserStory {
         root.setCenter(centerBox);
         newWindow.setScene(new Scene(root, 800, 600));
         newWindow.show();
-    
 
-    
+
 
 }*/
 }
