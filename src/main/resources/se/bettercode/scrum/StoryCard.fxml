@@ -13,7 +13,7 @@
         <BorderPane styleClass="storycard-button-container">
            <left>
               <HBox>
-                 <HBox><Button styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">Add Task</Button></HBox>
+                 <HBox><Button id="addTaskButton" fx:id="addTaskButton" styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">Add Task</Button></HBox>
                  <HBox styleClass="add_task_button-container"><Button styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">View Tasks</Button></HBox>
               </HBox>
            </left>
