@@ -21,6 +21,7 @@ public class ScrumGameApplication extends Application {
     private Board board = new Board();
     private Sprint sprint;
     private Documents documents = new Documents();
+    
     private UserWindow addUserWindow = new UserWindow();
     private TeamWindow addTeamWindow = new TeamWindow();
     private Team team;
@@ -137,8 +138,8 @@ public class ScrumGameApplication extends Application {
         toolBar.setAddUsedrsButtonAction((event) -> addUserWindow.show());
 
         toolBar.setAddTeamButtonAction((event) -> addTeamWindow.show());
+        toolBar.setUserStoryButtonAction((event) -> nws.show());
 
-//>>>>>>> sprint2
     }
 
     private void loadData() {

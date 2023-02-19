@@ -71,8 +71,8 @@ public class ToolBar extends HBox {
         toggleButton.setPrefSize(120,20);
         toggleButton2.setPrefSize(120,20);
         addUsers.setPrefSize(120,20);
-
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, viewDocs, toggleButton, toggleButton2, addUsers, addTeam);
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs);
+        /* 
 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -102,8 +102,6 @@ public class ToolBar extends HBox {
                 }
                 }
             });
-        
-
 
 
         teamChoiceBox.setItems(FXCollections.observableArrayList(teams));
@@ -131,6 +129,7 @@ public class ToolBar extends HBox {
     public void setViewDocsButtonAction(EventHandler<ActionEvent> eventHandler) {
         viewDocs.setOnAction(eventHandler);
     }
+
     public void setAddUsedrsButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUsers.setOnAction(eventHandler);
     }
@@ -145,7 +144,6 @@ public class ToolBar extends HBox {
     public void setToggleButton2Action(EventHandler<ActionEvent> eventHandler) {
         toggleButton2.setOnAction(eventHandler);
     }
-
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
@@ -153,12 +151,14 @@ public class ToolBar extends HBox {
         teamChoiceBox.disableProperty().bind(booleanProperty);
         //=======
         viewDocs.disableProperty().bind(booleanProperty);
+
         addUserStory.disableProperty().bind(booleanProperty);
         toggleButton.disableProperty().bind(booleanProperty);
         toggleButton2.disableProperty().bind(booleanProperty);
     }
     public void setUserStoryButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
+
     }
 
     public void setTeamChoiceBoxListener(ChangeListener<String> changeListener) {
