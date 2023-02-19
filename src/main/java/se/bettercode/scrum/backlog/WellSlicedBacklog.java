@@ -3,7 +3,10 @@ package se.bettercode.scrum.backlog;
 import se.bettercode.scrum.RandomStoryTitleGenerator;
 import se.bettercode.scrum.Story;
 
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
+import java.util.Scanner;
 
 public class WellSlicedBacklog extends Backlog {
 
@@ -11,7 +14,20 @@ public class WellSlicedBacklog extends Backlog {
 
     public WellSlicedBacklog() {
         super("Well sliced");
-
+        int storycount  = 0;
+        File file = new File("src/main/java/se/bettercode/scrum/gui/UserStory");
+        Scanner sc;
+        try {
+            sc = new Scanner(file);
+            while (sc.hasNextLine() && storycount<10){
+                addStory(new Story(Integer.valueOf(sc.nextLine()), sc.nextLine(),sc.nextLine()));
+                storycount += 1;
+            }
+            } catch (FileNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        /* 
         ArrayList<String> storyTitles = (new RandomStoryTitleGenerator()).generate(STORY_COUNT);
 
         addStory(new Story(3, storyTitles.get(0),""));
@@ -24,5 +40,6 @@ public class WellSlicedBacklog extends Backlog {
         addStory(new Story(3, storyTitles.get(7),""));
         addStory(new Story(1, storyTitles.get(8),""));
         addStory(new Story(1, storyTitles.get(9),""));
+        */
     }
 }

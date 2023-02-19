@@ -24,12 +24,14 @@ public class PoorlySlicedBacklog extends Backlog {
         addStory(new Story(8, storyTitles.get(2),""));
         addStory(new Story(8, storyTitles.get(3),""));
         */
+        int storycount  = 0;
         File file = new File("src/main/java/se/bettercode/scrum/gui/UserStory");
         Scanner sc;
         try {
             sc = new Scanner(file);
-            while (sc.hasNextLine()){
+            while (sc.hasNextLine() && storycount<4){
                 addStory(new Story(Integer.valueOf(sc.nextLine()), sc.nextLine(),sc.nextLine()));
+                storycount += 1;
             }
             } catch (FileNotFoundException e) {
             // TODO Auto-generated catch block
