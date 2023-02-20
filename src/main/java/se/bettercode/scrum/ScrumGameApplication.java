@@ -80,12 +80,13 @@ public class ScrumGameApplication extends Application {
             burnupChart.removeAllData();
             //burnupChart = getNewBurnupChart();
             ToggleButton toggleButton = new ToggleButton("Hide Burnup Chart");
-            ToggleButton toggleButton2 = new ToggleButton("Show Burnup Chart");
+            ToggleButton toggleButton2 = new ToggleButton("Show Burnup Chart2");
 
 
-            Button enterTimeButton1 = new Button("Enter time");
+            ToggleButton viewtime = new ToggleButton("Enter time");
 
-            enterTimeButton1.setOnAction(e -> {
+            viewtime.setOnAction(e -> {
+
                 TextInputDialog dialog = new TextInputDialog();
                 dialog.setTitle("Enter Time");
                 dialog.setHeaderText("Enter time for user stories:");
@@ -115,13 +116,31 @@ public class ScrumGameApplication extends Application {
                     burnupChart.setVisible(true);
                 }
             });
+
+            toolBar.setViewtimeAction(event -> {
+                if(viewtime.isSelected())
+                {TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("Enter Time");
+                dialog.setHeaderText("Enter time for user stories:");
+                Optional<String> result = dialog.showAndWait();
+                result.ifPresent(time -> {
+                    try {
+                        FileWriter writer = new FileWriter("time.txt");
+                        writer.write(time);
+                        writer.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+            }
+            });
             burnupChart.bindBurnupDaysProperty(backlog.getBurnup().burnupDaysProperty());
             toolBar.bindRunningProperty(sprint.runningProperty());
             return true;
         }
         return false;
     }
-
+    
     private void bindSprintDataToStatusBar() {
         statusBar.bindTeamName(team.nameProperty());
         statusBar.bindTeamVelocity(team.velocityProperty());

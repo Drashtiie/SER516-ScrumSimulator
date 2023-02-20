@@ -207,7 +207,7 @@ public class ToolBar extends HBox {
         toggleButton2.setOnAction(eventHandler);
     }
     public void setViewtimeAction(EventHandler<ActionEvent> eventHandler){
-
+            viewtime.setOnAction(eventHandler);
     }
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
@@ -219,6 +219,7 @@ public class ToolBar extends HBox {
         viewDocs.disableProperty().bind(booleanProperty);
         toggleButton.disableProperty().bind(booleanProperty);
         toggleButton2.disableProperty().bind(booleanProperty);
+        viewtime.disableProperty().bind(booleanProperty);
     }
 
     public void setTeamChoiceBoxListener(ChangeListener<String> changeListener) {
