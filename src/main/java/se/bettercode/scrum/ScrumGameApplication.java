@@ -1,3 +1,4 @@
+
 package se.bettercode.scrum;
 
 import javafx.application.Application;
@@ -132,8 +133,8 @@ public class ScrumGameApplication extends Application {
 
 
         toolBar.setViewDocsButtonAction((event) -> documents.show());
-//<<<<<<< alok
-        toolBar.setUserStoryButtonAction((event -> nws.show()));
+    
+        
 //=======
         toolBar.setAddUsedrsButtonAction((event) -> addUserWindow.show());
 

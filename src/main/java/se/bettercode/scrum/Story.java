@@ -85,7 +85,7 @@ public class Story {
     }
 
     public String getTasktype() {
-        return Tasktype;
+        return taskType;
     }
 
     public void setTitle(String title) {
@@ -93,7 +93,7 @@ public class Story {
     }
 
     public void setTasktype(String Tasktype) {
-        this.Tasktype = Tasktype;
+        this.taskType = Tasktype;
     }
 
     public double getLeadTime() {
