@@ -62,12 +62,12 @@ public ToolBar(String[] teams, String[] backlogs) {
 
 
 //<<<<<<< manantpu
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2, viewtime);
+        //getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2, viewtime);
         addUsers.setPrefSize(120,20);
 
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, viewDocs, toggleButton, toggleButton2, addUsers, addTeam);
 
-
+/* 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
