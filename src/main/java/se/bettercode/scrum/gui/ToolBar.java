@@ -1,13 +1,19 @@
 package se.bettercode.scrum.gui;
+
+import javafx.scene.layout.StackPane;
+import javafx.scene.Scene;
+import java.time.LocalDateTime;
+import java.time.Duration;
 //Added comment for testing integration
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
 
+
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
+import javafx.stage.Modality;
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
@@ -23,6 +29,8 @@ import javafx.scene.control.Tooltip;
 import javafx.scene.control.*;
 import javafx.scene.layout.HBox;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
+
 import java.nio.file.Path;
 import java.nio.file.Files;
 
@@ -35,6 +43,11 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 
+import java.util.Optional;
+
+public class ToolBar extends HBox {
+
+
 public class ToolBar extends HBox {
     
     private final Button toggleButton = new Button("Hide Burnup");
@@ -43,6 +56,11 @@ public class ToolBar extends HBox {
     private final Button viewDocs = new Button("Documents");
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
+
+
+    private final Button viewtime = new Button("Enter Time 1");
+
+
     private final Button addUsers = new Button("Users + ");
     private final Button addTeam = new Button("Team + ");
 
@@ -70,9 +88,15 @@ public class ToolBar extends HBox {
         viewDocs.setPrefSize(100, 20);
         toggleButton.setPrefSize(120,20);
         toggleButton2.setPrefSize(120,20);
+
+
+//<<<<<<< manantpu
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2, viewtime);
+=======
         addUsers.setPrefSize(120,20);
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs);
         /* 
+
 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -144,6 +168,9 @@ public class ToolBar extends HBox {
     public void setToggleButton2Action(EventHandler<ActionEvent> eventHandler) {
         toggleButton2.setOnAction(eventHandler);
     }
+    public void setViewtimeAction(EventHandler<ActionEvent> eventHandler){
+            viewtime.setOnAction(eventHandler);
+    }
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
@@ -155,6 +182,7 @@ public class ToolBar extends HBox {
         addUserStory.disableProperty().bind(booleanProperty);
         toggleButton.disableProperty().bind(booleanProperty);
         toggleButton2.disableProperty().bind(booleanProperty);
+        viewtime.disableProperty().bind(booleanProperty);
     }
     public void setUserStoryButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
@@ -168,6 +196,47 @@ public class ToolBar extends HBox {
     public void setBacklogChoiceBoxListener(ChangeListener<String> changeListener) {
         backlogChoiceBox.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }
+
+
+//    public void setToggleButtonAction(EventHandler<ActionEvent> eventHandler) {toggleButton.setOnAction(event -> {
+//        BurnupChart.this.setIsVisible(toggleButton.isSelected());
+//    });
+//    }
+public void start(final Stage primaryStage) {
+
+    viewtime.setOnAction(new EventHandler<ActionEvent>() {
+        @Override
+        public void handle(ActionEvent event) {
+            final Stage dialog = new Stage();
+            dialog.initModality(Modality.APPLICATION_MODAL);
+            dialog.initOwner(primaryStage);
+            StackPane dialogLayout = new StackPane();
+            Scene dialogScene = new Scene(dialogLayout, 300, 250);
+            dialog.setScene(dialogScene);
+            dialog.show();
+
+            // Create the countdown timer (!!!!!!! change localdatetime before final merge!!!! - Anish)
+            LocalDateTime now = LocalDateTime.now();
+            LocalDateTime end = now.plusDays(2).plusHours(3).plusMinutes(30);
+            Duration duration = Duration.between(now, end);
+
+            // Add timer to window
+
+            dialogLayout.getChildren().add(new Label(
+                    String.format("Count down: %d days, %d hours, %d minutes",
+                            duration.toDays(),
+                            duration.toHours() - (duration.toDays() * 24),
+                            duration.toMinutes() - (duration.toHours() * 60))
+            ));
+        }
+    });
+
+    StackPane root = new StackPane();
+    root.getChildren().add(viewtime);
+    Scene scene = new Scene(root, 300, 250);
+    primaryStage.setScene(scene);
+    primaryStage.show();
+}
 
 
 }

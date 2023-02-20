@@ -4,6 +4,8 @@ import javafx.application.Application;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.control.TextInputDialog;
 import javafx.scene.control.ToggleButton;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
@@ -13,6 +15,13 @@ import se.bettercode.scrum.gui.*;
 import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
+
+
+import java.io.FileWriter;
+import java.io.IOException;
+import java.util.Optional;
+
+
 
 public class ScrumGameApplication extends Application {
 
@@ -75,7 +84,28 @@ public class ScrumGameApplication extends Application {
             burnupChart.removeAllData();
             //burnupChart = getNewBurnupChart();
             ToggleButton toggleButton = new ToggleButton("Hide Burnup Chart");
-            ToggleButton toggleButton2 = new ToggleButton("Show Burnup Chart");
+            ToggleButton toggleButton2 = new ToggleButton("Show Burnup Chart2");
+
+
+            ToggleButton viewtime = new ToggleButton("Enter time");
+
+            viewtime.setOnAction(e -> {
+
+                TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("Enter Time");
+                dialog.setHeaderText("Enter time for user stories:");
+                Optional<String> result = dialog.showAndWait();
+                result.ifPresent(time -> {
+                    try {
+                        FileWriter writer = new FileWriter("time.txt");
+                        writer.write(time);
+                        writer.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+            });
+
             toolBar.setToggleButtonAction(event -> {
                 if (toggleButton.isSelected()) {
                     burnupChart.setVisible(true);
@@ -90,13 +120,31 @@ public class ScrumGameApplication extends Application {
                     burnupChart.setVisible(true);
                 }
             });
+
+            toolBar.setViewtimeAction(event -> {
+                if(viewtime.isSelected())
+                {TextInputDialog dialog = new TextInputDialog();
+                dialog.setTitle("Enter Time");
+                dialog.setHeaderText("Enter time for user stories:");
+                Optional<String> result = dialog.showAndWait();
+                result.ifPresent(time -> {
+                    try {
+                        FileWriter writer = new FileWriter("time.txt");
+                        writer.write(time);
+                        writer.close();
+                    } catch (IOException ex) {
+                        ex.printStackTrace();
+                    }
+                });
+            }
+            });
             burnupChart.bindBurnupDaysProperty(backlog.getBurnup().burnupDaysProperty());
             toolBar.bindRunningProperty(sprint.runningProperty());
             return true;
         }
         return false;
     }
-
+    
     private void bindSprintDataToStatusBar() {
         statusBar.bindTeamName(team.nameProperty());
         statusBar.bindTeamVelocity(team.velocityProperty());
@@ -157,3 +205,4 @@ public class ScrumGameApplication extends Application {
         return new BurnupChart(SPRINT_LENGTH_IN_DAYS);
     }
 }
+
