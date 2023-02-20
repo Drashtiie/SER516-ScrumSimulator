@@ -45,8 +45,6 @@ import java.nio.file.Path;
 
 import java.util.Optional;
 
-public class ToolBar extends HBox {
-
 
 public class ToolBar extends HBox {
     
@@ -92,9 +90,8 @@ public class ToolBar extends HBox {
 
 //<<<<<<< manantpu
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2, viewtime);
-=======
         addUsers.setPrefSize(120,20);
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs);
+//        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs);
         /* 
 
 
@@ -144,10 +141,6 @@ public class ToolBar extends HBox {
     public void setAddNewTeamButton(EventHandler<ActionEvent> eventHandler) {
         addNewTeamButton.setOnAction(eventHandler);
     }
-
-
-
-
 
 
     public void setViewDocsButtonAction(EventHandler<ActionEvent> eventHandler) {
