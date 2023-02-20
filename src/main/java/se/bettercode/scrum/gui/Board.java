@@ -51,23 +51,7 @@ public class Board extends GridPane {
     }
 
     private void updateBoard() {
-        Platform.runLater(() -> {
-            clearAllColumns();
-            for (Story story : backlog.getStories()) {
-                switch (story.getStatus()) {
-                    case TODO:
-                        todoColumn.getChildren().add(new StoryCardController(story));
-                        break;
-                    case STARTED:
-                        startedColumn.getChildren().add(new StoryCardController(story));
-                        break;
-                    case FINISHED:
-                        doneColumn.getChildren().add(new StoryCardController(story));
-                        break;
-                }
-            }
-
-        });
+        Platform.runLater(this::run);
     }
 
     private void clearAllColumns() {
@@ -81,5 +65,24 @@ public class Board extends GridPane {
         todoColumn.getChildren().add(new Text("TODO"));
         startedColumn.getChildren().add(new Text("STARTED"));
         doneColumn.getChildren().add(new Text("DONE"));
+    }
+
+    private void run() {
+        clearAllColumns();
+       // Backlog backlog = new Backlog("My Backlog");
+        for (Story story : backlog.getStories()) {
+            switch (story.getStatus()) {
+                case TODO:
+                    todoColumn.getChildren().add(new StoryCardController(story));
+                    break;
+                case STARTED:
+                    startedColumn.getChildren().add(new StoryCardController(story));
+                    break;
+                case FINISHED:
+                    doneColumn.getChildren().add(new StoryCardController(story));
+                    break;
+            }
+        }
+
     }
 }

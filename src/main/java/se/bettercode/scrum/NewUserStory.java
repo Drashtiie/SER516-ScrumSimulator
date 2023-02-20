@@ -37,6 +37,7 @@ public class NewUserStory {
 
     private TextField UserStoryPoints = new TextField();
     private TextField userStory = new TextField ();
+  
     private TextField comments = new TextField();
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
@@ -50,6 +51,7 @@ public class NewUserStory {
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
         UserStoryPoints.setText("Story Points");
+      
         comments.setPromptText("Add Comment");
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -61,31 +63,37 @@ public class NewUserStory {
                     try
                     {
                         String filename= "src/main/java/se/bettercode/scrum/gui/UserStory";
-
+    
                         FileWriter fw = new FileWriter(filename, true);
-                        BufferedWriter bw = new BufferedWriter(fw);
+                        BufferedWriter bw = new BufferedWriter(fw);   
+
+                        bw.write(UserStoryPoints.getText());
+                        bw.newLine();
                         bw.write(userStory.getText());
                         bw.newLine();
+                        bw.write(usertasktype.getValue());
+                        bw.newLine();
                         bw.close();
-
+    
                         System.out.println("Added user story"+userStory.getText());
                     }
                     catch(IOException ioe)
                     {
                         System.err.println("IOException: " + ioe.getMessage());
                     }
-                }
-                else {
+                    } 
+                    else {
                     userstoryalert.setText("You have not named the user story");
                 }
-            }
-        });
-
+                }
+            });
+        
         Stage primaryStage = new Stage();
         StackPane secondaryLayout = new StackPane();
         BorderPane borderPane = new BorderPane();
         secondaryLayout.prefWidthProperty().bind(primaryStage.widthProperty());
-        /*
+
+        /* 
         String path = "src/main/java/se/bettercode/scrum/resources";
         File repo = new File (path);
         File[] fileList = repo.listFiles();
@@ -126,9 +134,10 @@ public class NewUserStory {
         Story story = new Story( sp, userStory.getText(), usertasktype.getValue());
         return story;
     }
-
+      
     public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
+        
 
     }
 
@@ -147,6 +156,7 @@ public class NewUserStory {
         Text textArea = new Text();
         VBox centerBox = new VBox();
         System.out.println("Inside displaySelected Func");
+
         BufferedReader reader = null;
         try {
             Charset inputCharset = StandardCharsets.ISO_8859_1;
@@ -170,6 +180,7 @@ public class NewUserStory {
         root.setCenter(centerBox);
         newWindow.setScene(new Scene(root, 800, 600));
         newWindow.show();
+
 
 
 }*/

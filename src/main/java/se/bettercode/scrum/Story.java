@@ -33,17 +33,18 @@ public class Story {
     public ArrayList<Comment> getComments() {
         return comments;
     }
-
     public Story(int points) {
         this(points, "", "");
     }
 
-    public Story(int points, String title, String taskType) {
+    public Story(int points, String title, String Tasktype) {
+
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
         }
         this.title = title;
         storyPointSet = new StoryPointSet(points);
+
         this.tasks = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.taskType = taskType;
@@ -83,8 +84,16 @@ public class Story {
         return title;
     }
 
+    public String getTasktype() {
+        return Tasktype;
+    }
+
     public void setTitle(String title) {
         this.title = title;
+    }
+
+    public void setTasktype(String Tasktype) {
+        this.Tasktype = Tasktype;
     }
 
     public double getLeadTime() {
