@@ -17,6 +17,7 @@ import javafx.scene.control.Label;
 import javafx.scene.control.ListView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -43,6 +44,10 @@ public class NewUserStory {
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
+
+    String status[] = { "New", "In Progress", "Ready to test","Completed", "Blocked" };
+    private ChoiceBox<String> userstorystatus = new ChoiceBox<>(FXCollections.observableArrayList(status));
+
     public NewUserStory(){
 
     }
@@ -63,6 +68,7 @@ public class NewUserStory {
                     try
                     {
                         String filename= "src/main/java/se/bettercode/scrum/gui/UserStory";
+                        
     
                         FileWriter fw = new FileWriter(filename, true);
                         BufferedWriter bw = new BufferedWriter(fw);   
@@ -142,10 +148,14 @@ public class NewUserStory {
     }
 
     private void toolBarSetup() {
+
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,comments);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userstorystatus,comments);
+
+        usertasktype.setTooltip(new Tooltip("Task Type"));
+        userstorystatus.setTooltip(new Tooltip("Status"));
     }
 
    /*
