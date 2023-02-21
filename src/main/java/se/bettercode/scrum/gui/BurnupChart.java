@@ -10,12 +10,18 @@ import se.bettercode.scrum.backlog.BurnupDay;
 
 
 public class BurnupChart extends AreaChart<Number, Number> {
+//    ToggleButton toggleButton = new ToggleButton("Toggle Burn Up Chart");
+//    getChildren().add(toggleButton);
+
+
+
 
     XYChart.Series totalSeries;
     XYChart.Series doneSeries;
     static final double lowerBound = 0;
     static final double yUpperBound = 26; //TODO: Make to backlog size in points?
     static final double tickUnit = 1;
+
 
     public BurnupChart(int xUpperBound) {
         super(new NumberAxis(lowerBound, xUpperBound, tickUnit), new NumberAxis(lowerBound, yUpperBound, tickUnit));
@@ -63,5 +69,7 @@ public class BurnupChart extends AreaChart<Number, Number> {
     private Data makeDoneSeriesData(BurnupDay burnupDay) {
         return new Data(burnupDay.getDay(), burnupDay.getDone());
     }
+
+
 
 }

@@ -1,5 +1,4 @@
 package se.bettercode.scrum;
-
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
@@ -17,6 +16,7 @@ import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
+import javafx.stage.FileChooser;
 import javafx.stage.Stage;
 import se.bettercode.scrum.gui.Board;
 
@@ -25,42 +25,43 @@ import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.util.Scanner;
+//import org.apache.commons.io.FileUtils;
 
 public class Documents {
     private HBox toolBar = new HBox();
-    private Button addButton = new Button();
+    private final Button addButton = new Button();
+    private final Button delButton = new Button();
+    private File[] fileList;
+    private ObservableList<File> data;
+    private ListView<File> list = new ListView<File>();
+    private final String path = "src/main/java/se/bettercode/scrum/resources";
+    private File repo = new File (path);
+    private boolean delButtonClicked = false;
     public Documents(){
     }
     public void show() {
         toolBarSetup();
         addButton.setPrefSize(100, 20);
         addButton.setText("Add Doc");
+        delButton.setPrefSize(100, 20);
+        delButton.setText("Delete");
         Stage primaryStage = new Stage();
         StackPane secondaryLayout = new StackPane();
         BorderPane borderPane = new BorderPane();
         secondaryLayout.prefWidthProperty().bind(primaryStage.widthProperty());
+        listFiles();
 
-        String path = "src/main/java/se/bettercode/scrum/resources";
-        File repo = new File (path);
-        File[] fileList = repo.listFiles();
-        ListView<File> list = new ListView<File>();
-        ObservableList<File> data = FXCollections.observableArrayList(fileList);
-        list.setItems(data);
-        list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<File>() {
-
-            @Override
-            public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue) {
-                // Your action here
-                System.out.println("Selected item: " + newValue);
-                displaySelected(newValue);
+        addButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent event) {
+                addDocFunc(primaryStage);
             }
         });
-
-//        addButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override public void handle(ActionEvent event) {
-//                addDocFunc();
-//            }
-//        });
+        delButton.setOnAction(new EventHandler<ActionEvent>() {
+            @Override public void handle(ActionEvent event) {
+                delDocFunc();
+//                listFiles();
+            }
+        });
         secondaryLayout.getChildren().add(list);
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
@@ -68,19 +69,64 @@ public class Documents {
         primaryStage.show();
     }
 
+    public void listFiles(){
+        fileList = repo.listFiles();
+        data = FXCollections.observableArrayList(fileList);
+        list.setItems(data);
+        if(!delButtonClicked){
+            System.out.println("inside if statement - button not clicked");
+            list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<File>() {
+
+                @Override
+                public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue) {
+                    // Your action here
+                    displaySelected(newValue);
+                }
+            });
+        }
+    }
+
+    private void delDocFunc(){
+        delButtonClicked = true;
+        System.out.println("Delete mode on");
+        toolBar.setDisable(true);
+        list.getSelectionModel().selectedItemProperty().addListener(new ChangeListener<File>() {
+            @Override
+            public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue) {
+                newValue.delete();
+                System.out.println(newValue + " deleted successfully");
+                toolBar.setDisable(false);
+                System.out.println("Delete button clicked is : " + delButtonClicked);
+                listFiles();
+                delButtonClicked = false;
+            }
+        });
+    }
     private void addDocFunc(Stage stage) {
-
+        FileChooser fileChooser = new FileChooser();
+        fileChooser.getExtensionFilters().addAll(new FileChooser.ExtensionFilter("Text Files", "*.txt"));
+        File selectedFile = fileChooser.showOpenDialog(stage);
+        System.out.println("Selected file is : " + selectedFile);
+        String fileNameOnly = selectedFile.getName();
+        File newFile = new File (path + "/" + fileNameOnly);
+        try {
+            Files.copy(selectedFile.toPath(),newFile.toPath());
+        } catch (IOException e) {
+            throw new RuntimeException(e);
+        }
+//        data.add(selectedFile);
+        listFiles();
     }
 
-    public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
-        addButton.setOnAction(eventHandler);
-    }
+//    public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
+//        addButton.setOnAction(eventHandler);
+//    }
 
     private void toolBarSetup() {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(addButton);
+        toolBar.getChildren().addAll(addButton, delButton);
     }
 
     private void displaySelected(File newValue) {
@@ -89,7 +135,6 @@ public class Documents {
 //        TextArea fileTextArea = new TextArea();
         Text textArea = new Text();
         VBox centerBox = new VBox();
-        System.out.println("Inside displaySelected Func");
 
         BufferedReader reader = null;
         try {
@@ -107,7 +152,6 @@ public class Documents {
 
             String content = stringBuilder.toString();
             textArea.setText(content);
-            System.out.println(content);
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
