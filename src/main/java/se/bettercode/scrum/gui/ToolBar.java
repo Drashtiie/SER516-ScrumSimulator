@@ -1,9 +1,4 @@
 package se.bettercode.scrum.gui;
-
-import javafx.scene.layout.StackPane;
-import javafx.scene.Scene;
-import java.time.LocalDateTime;
-import java.time.Duration;
 //Added comment for testing integration
 import java.io.BufferedWriter;
 import java.io.FileWriter;
@@ -32,11 +27,6 @@ public class ToolBar extends HBox {
     private final Button viewDocs = new Button("Documents");
     private ChoiceBox<String> teamChoiceBox = new ChoiceBox<>();
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
-
-
-    private final Button viewtime = new Button("Enter Time 1");
-
-
     private final Button addUsers = new Button("Users + ");
     private final Button addTeam = new Button("Team + ");
 
@@ -59,15 +49,10 @@ public ToolBar(String[] teams, String[] backlogs) {
         viewDocs.setPrefSize(100, 20);
         toggleButton.setPrefSize(120,20);
         toggleButton2.setPrefSize(120,20);
-
-
-//<<<<<<< manantpu
-        //getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, userStory,userstoryalert, startButton, teamNameField, addNewTeamButton, teamAddedAlert, viewDocs, toggleButton, toggleButton2, viewtime);
         addUsers.setPrefSize(120,20);
 
         getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, viewDocs, toggleButton, toggleButton2, addUsers, addTeam);
 
-/* 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -99,7 +84,7 @@ public ToolBar(String[] teams, String[] backlogs) {
         
 
 
-*/
+
         teamChoiceBox.setItems(FXCollections.observableArrayList(teams));
         teamChoiceBox.setTooltip(new Tooltip("Select team"));
 
@@ -131,9 +116,6 @@ public ToolBar(String[] teams, String[] backlogs) {
     public void setToggleButton2Action(EventHandler<ActionEvent> eventHandler) {
         toggleButton2.setOnAction(eventHandler);
     }
-    public void setViewtimeAction(EventHandler<ActionEvent> eventHandler){
-            viewtime.setOnAction(eventHandler);
-    }
     public void bindRunningProperty(BooleanProperty booleanProperty) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
@@ -142,7 +124,6 @@ public ToolBar(String[] teams, String[] backlogs) {
         viewDocs.disableProperty().bind(booleanProperty);
         toggleButton.disableProperty().bind(booleanProperty);
         toggleButton2.disableProperty().bind(booleanProperty);
-        viewtime.disableProperty().bind(booleanProperty);
     }
 
     public void setTeamChoiceBoxListener(ChangeListener<String> changeListener) {

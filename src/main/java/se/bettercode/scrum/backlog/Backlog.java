@@ -6,18 +6,11 @@ import javafx.beans.property.IntegerProperty;
 import javafx.beans.property.SimpleDoubleProperty;
 import javafx.beans.property.SimpleIntegerProperty;
 import se.bettercode.scrum.Story;
-import se.bettercode.scrum.team.UserImpl;
 
-import java.io.*;
-import java.io.BufferedReader;
-import java.io.FileReader;
-import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.NoSuchElementException;
 import java.util.stream.Collectors;
-
-import static javax.swing.UIManager.put;
 
 public class Backlog {
 
@@ -28,7 +21,7 @@ public class Backlog {
 
     private BacklogBurnup burnup = new BacklogBurnup();
 
-    public Backlog(String name) {
+    protected Backlog(String name) {
         this.name = name;
     }
 
@@ -43,30 +36,13 @@ public class Backlog {
     protected Story getStory() {
         return stories.stream().filter(p -> p.getStatus() != Story.StoryState.FINISHED).findFirst().get();
     }
-    public void readFromTextFile(String fileName) {
-        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
-            String line = null;
-            while (line != null) {
 
-                line = reader.readLine();
-                System.out.println(line);
-                // read next line
-                User x = new UserImpl(line, 26);
-                put(x.getName(), x);
-
-
-            }
-        } catch (IOException e) {
-            System.out.println("Error reading from file " + fileName + ": " + e.getMessage());
-        }
-    }
     public List<Story> getStories() {
         return stories;
     }
 
     public List<Story> getStories(Story.StoryState filter) {
         return stories.stream().filter(p -> p.getStatus() == filter).collect(Collectors.toList());
-
     }
 
     public int getDonePoints() {
