@@ -29,6 +29,7 @@ public class ToolBar extends HBox {
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
     private final Button addUsers = new Button("Users + ");
     private final Button addTeam = new Button("Team + ");
+    private final Button addProject = new Button("Project + ");
 
 
     Button addUserStory = new Button("Add user story ");
@@ -50,8 +51,10 @@ public ToolBar(String[] teams, String[] backlogs) {
         toggleButton.setPrefSize(120,20);
         toggleButton2.setPrefSize(120,20);
         addUsers.setPrefSize(120,20);
+        addProject.setPrefSize(120,20);
+        addTeam.setPrefSize(120,20);
 
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, viewDocs, toggleButton, toggleButton2, addUsers, addTeam);
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, viewDocs, toggleButton, toggleButton2, addUsers, addTeam, addProject);
 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -108,6 +111,9 @@ public ToolBar(String[] teams, String[] backlogs) {
     public void setAddTeamButtonAction(EventHandler<ActionEvent> eventHandler) {
         addTeam.setOnAction(eventHandler);
     }
+    public void setAddProjectButtonAction(EventHandler<ActionEvent> eventHandler) {
+        addProject.setOnAction(eventHandler);
+    }
 
     public void setToggleButtonAction(EventHandler<ActionEvent> eventHandler) {
         toggleButton.setOnAction(eventHandler);
@@ -124,6 +130,7 @@ public ToolBar(String[] teams, String[] backlogs) {
         viewDocs.disableProperty().bind(booleanProperty);
         toggleButton.disableProperty().bind(booleanProperty);
         toggleButton2.disableProperty().bind(booleanProperty);
+        addProject.disableProperty().bind(booleanProperty);
     }
 
     public void setTeamChoiceBoxListener(ChangeListener<String> changeListener) {
