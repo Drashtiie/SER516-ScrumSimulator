@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
+<fx:root id="storyCard" fx:id="storyCard" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="228.0" styleClass="storycard" stylesheets="@../../../style.css" type="BorderPane" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+   <top>
+      <Text id="storyTitle" fx:id="storyTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Story title" wrappingWidth="211.6953125" BorderPane.alignment="CENTER_LEFT" />
+   </top>
+   <bottom>
+      <Text id="storyPoints" fx:id="storyPoints" strokeType="OUTSIDE" strokeWidth="0.0" text="0" textAlignment="RIGHT" wrappingWidth="32.2578125" BorderPane.alignment="BOTTOM_RIGHT" />
+   </bottom>
+</fx:root>
