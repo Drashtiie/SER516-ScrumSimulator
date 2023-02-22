@@ -59,11 +59,12 @@ public class Task {
         this.description = description;
     }
 
-    public Task(String title, String description, int storyID) {
+    public Task(String title, String description, String status) {
         this.id = IDCounter++;
         this.title = title;
         this.description = description;
         this.comments = new ArrayList<>();
+        this.status = status;
     }
 
     public Story addToStory(Story userStory){
