@@ -25,6 +25,7 @@ public class ScrumGameApplication extends Application {
     
     private UserWindow addUserWindow = new UserWindow();
     private TeamWindow addTeamWindow = new TeamWindow();
+    private ProjectWindow addProjectWindow = new ProjectWindow();
     private Team team;
 
     private NewUserStory nws = new NewUserStory();
@@ -129,16 +130,12 @@ public class ScrumGameApplication extends Application {
         toolBar.setBacklogChoiceBoxListener(backlogChoiceBoxListener);
         toolBar.setStartButtonAction((event) -> sprint.runSprint());
 
-
-
-
         toolBar.setViewDocsButtonAction((event) -> documents.show());
-    
-        
-//=======
+
         toolBar.setAddUsedrsButtonAction((event) -> addUserWindow.show());
 
         toolBar.setAddTeamButtonAction((event) -> addTeamWindow.show());
+        toolBar.setAddProjectButtonAction((event) -> addProjectWindow.show());
         toolBar.setUserStoryButtonAction((event) -> nws.show());
 
     }
