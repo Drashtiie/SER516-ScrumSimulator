@@ -73,6 +73,8 @@ public class NewUserStory {
                         bw.newLine();
                         bw.write(usertasktype.getValue());
                         bw.newLine();
+                        bw.write(comments.getText());
+                        bw.newLine();
                         bw.close();
     
                         System.out.println("Added user story"+userStory.getText());
@@ -131,7 +133,7 @@ public class NewUserStory {
 
     public Story getStory(){
         Integer sp = Integer.valueOf(storypoints.getText());
-        Story story = new Story( sp, userStory.getText(), usertasktype.getValue());
+        Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), comments.getText());
         return story;
     }
       

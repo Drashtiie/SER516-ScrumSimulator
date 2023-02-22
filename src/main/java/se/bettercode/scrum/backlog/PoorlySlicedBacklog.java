@@ -29,7 +29,7 @@ public class PoorlySlicedBacklog extends Backlog {
         try {
             sc = new Scanner(file);
             while (sc.hasNextLine() && storycount<4){
-                addStory(new Story(Integer.valueOf(sc.nextLine()), sc.nextLine(),sc.nextLine()));
+                addStory(new Story(Integer.valueOf(sc.nextLine()), sc.nextLine(),sc.nextLine(),sc.nextLine()));
                 storycount += 1;
             }
             } catch (FileNotFoundException e) {
