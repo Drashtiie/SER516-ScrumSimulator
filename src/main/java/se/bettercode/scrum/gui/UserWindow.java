@@ -44,10 +44,18 @@ public class UserWindow {
      String roles[] =
     { "Developer","Owner", "Scrum Master", "Stakeholder", "Design", "Front", "Back"};
 
+     String linesarray[] = {"Team 1", "Team 2", "Team 3"};
+     //read from teams text file
+
+
     // Create a combo box
     ComboBox userRoleField =
             new ComboBox(FXCollections
                     .observableArrayList(roles));
+
+
+    ComboBox userTeamField =
+            new ComboBox(FXCollections.observableArrayList(linesarray));
 
     //TextField userRoleField = new TextField("Add Role");
     //userRoleField.getItems().addAll("Developer", "Owner");
@@ -66,6 +74,27 @@ public class UserWindow {
 
 
     public UserWindow() {
+        File file = new File("Teams.txt");
+
+// Create a Scanner object to read the file
+//        Scanner scanner;
+//        try {
+//            scanner = new Scanner(file);
+//        } catch (FileNotFoundException e) {
+//            System.out.println("File not found.");
+//            return;
+//        }
+//
+//// Read the file contents into an array of strings
+//        List<String> lines = new ArrayList<>();
+//        while (scanner.hasNextLine()) {
+//            String line = scanner.nextLine();
+//            lines.add(line);
+//        }
+//        linesarray = lines.toArray(new String[0]);
+//
+//// Close the scanner
+//        scanner.close();
     }
 
     public void show() {
@@ -148,7 +177,7 @@ public class UserWindow {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll( userNameField, userEmailField, userRoleField, addButton);
+        toolBar.getChildren().addAll( userNameField, userEmailField, userRoleField, userTeamField, addButton);
 
 
         addButton.setOnAction(new EventHandler<ActionEvent>() {
