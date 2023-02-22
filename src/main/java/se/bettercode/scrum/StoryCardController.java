@@ -13,7 +13,9 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import javafx.stage.Modality;
 import javafx.stage.Stage;
+import javafx.stage.StageStyle;
 
 import java.io.IOException;
 import java.net.URL;
@@ -57,14 +59,13 @@ public class StoryCardController extends BorderPane {
         addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
                 System.out.println("Button Clicked");
-                Parent root;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("TaskCard.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TaskCard.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
-                    stage.setTitle("My New Stage Title");
-                    stage.setScene(new Scene(root, 450, 450));
+                    stage.setTitle("ABC");
+                    stage.setScene(new Scene(root1));
                     stage.show();
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
                 }
                 catch (IOException e) {
                     e.printStackTrace();

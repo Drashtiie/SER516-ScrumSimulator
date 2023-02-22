@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Text?>
+<BorderPane id="taskcard" fx:id="taskcard" styleClass="taskcard" stylesheets="@../../../style.css" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="124.0" prefWidth="228.0" xmlns="http://javafx.com/javafx/8" xmlns:fx="http://javafx.com/fxml/1">
+    <BorderPane styleClass="taskcard-inner" stylesheets="@../../../style.css">
+        <top>
+            <Text text="Task Title" BorderPane.alignment="TOP_LEFT" />
+        </top>
+    </BorderPane>
+</BorderPane>
