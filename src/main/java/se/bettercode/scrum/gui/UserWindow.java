@@ -190,7 +190,7 @@ public class UserWindow {
 
                     //************function to add user to file
                     User x = new User();
-                    x.addUser(userNameField.getText(), userEmailField.getText(),userRoleField.getValue().toString());
+                    x.addUser(userNameField.getText(), userEmailField.getText(),userRoleField.getValue().toString(),userTeamField.getValue().toString());
                     //System.out.println("Email sent");
 
                 }
