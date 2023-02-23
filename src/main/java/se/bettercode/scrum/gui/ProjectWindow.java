@@ -32,6 +32,8 @@ import javax.mail.internet.*;
 import javax.activation.*;
 public class ProjectWindow {
 
+    private AllProjects allProjectWindow = new AllProjects();
+
     private HBox toolBar = new HBox();
     private Button addButton = new Button();
 
@@ -40,12 +42,17 @@ public class ProjectWindow {
 
     Label teamAddedAlert = new Label("");
 
+    private Button viewButton = new Button();
+
 
     public void show() {
         toolBarSetup();
 
         addButton.setPrefSize(100, 20);
         addButton.setText("Add Project");
+
+        viewButton.setPrefSize(100, 20);
+        viewButton.setText("View Projects");
         Stage primaryStage = new Stage();
         StackPane secondaryLayout = new StackPane();
         BorderPane borderPane = new BorderPane();
@@ -71,16 +78,21 @@ public class ProjectWindow {
 
 
 
-    public void setAddUsersButtonAction(EventHandler<ActionEvent> eventHandler) {
-        addButton.setOnAction(eventHandler);
-    }
+
+//    public void setAddUsersButtonAction(EventHandler<ActionEvent> eventHandler) {
+//        addButton.setOnAction(eventHandler);
+//    }
 
     private void toolBarSetup() {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll( teamNameField, addButton);
-
+        toolBar.getChildren().addAll( teamNameField, addButton, viewButton);
+//
+//        toolBar.setViewProjectButtonAction((event) -> allProjectWindow.show());
+//        public void setViewProjectButtonAction(EventHandler<ActionEvent> eventHandler) {
+//            viewButton.setOnAction(eventHandler);
+//        eventHandler}
 
         addButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -112,10 +124,20 @@ public class ProjectWindow {
             }
 
         });
+        viewButton.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                allProjectWindow.show();
+            }
+
+        });
+
 
 
 
     }
+
 
 
 
