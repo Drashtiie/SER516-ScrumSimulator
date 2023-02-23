@@ -15,6 +15,11 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
+
 public class AllProjects{
 
     private HBox toolBar = new HBox();
@@ -40,11 +45,27 @@ public class AllProjects{
 
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
+        ObservableList<String> projects = FXCollections.observableArrayList();
+        try {
+            File myObj = new File("src/main/java/se/bettercode/scrum/gui/Projects");
+            Scanner myReader = new Scanner(myObj);
+            while (myReader.hasNextLine()) {
+                String data = myReader.nextLine();
 
+
+                projects.add(data);
+               }
+            myReader.close();
+        } catch (FileNotFoundException e) {
+            System.out.println("An error occurred.");
+            e.printStackTrace();
+        }
+        ListView<String> listView = new ListView<String>(projects);
+        listView.setMaxSize(700, 700);
 
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(5, 50, 5, 50));
-        layout.getChildren().addAll(teamAddedAlert);
+        layout.getChildren().addAll(listView);
         // layout.setStyle("-fx-background-color: BEIGE");
 
 
