@@ -58,13 +58,13 @@ public class StoryCardController extends BorderPane {
 
         addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                System.out.println("Button Clicked");
                 try {
                     FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TaskCard.fxml"));
                     Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setTitle("Task Card");
                     stage.setScene(new Scene(root1));
+                    stage.setUserData(story);
                     stage.show();
                 }
                 catch (IOException e) {

@@ -121,7 +121,7 @@ public class NewUserStory {
 
     public Story getStory(){
         Integer sp = Integer.valueOf(storypoints.getText());
-        Story story = new Story( sp, userStory.getText(), usertasktype.getValue());
+        Story story = new Story( sp, userStory.getText());
         return story;
     }
 

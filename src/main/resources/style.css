@@ -22,3 +22,9 @@
 .add_task_button-container {
     -fx-padding: 0 2;
 }
+
+.save_button {
+    -fx-background-color: "#3d91bf";
+    -fx-text-fill: white;
+    -fx-background-radius: 5px;
+}
