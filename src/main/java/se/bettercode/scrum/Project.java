@@ -9,10 +9,11 @@ public class Project {
     public Project(){
     }
     private final String projectsFilePath = "src/main/java/se/bettercode/scrum/projectList";
+    private boolean isStarred;
     private String projectName;
-    private ArrayList<String> projectList = new ArrayList<String>();
+    private ArrayList<ArrayList<String>> projectList = new ArrayList<ArrayList<String>>();
 
-    public ArrayList<String> getProjectList(){
+    public ArrayList<ArrayList<String>> getProjectList(){
         String[] token;
         BufferedReader reader = null;
         try {
@@ -20,24 +21,28 @@ public class Project {
             String line = null;
             line = reader.readLine();
             while (line != null){
-//                System.out.println("this is temp:" + temp);
-                projectList.add(projectName);
+                ArrayList<String> temp = new ArrayList();
+                token = line.split(":");
+                temp.add(token[0]);
+                temp.add(token[1]);
+                projectList.add(temp);
                 line = reader.readLine();
             }
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
-        System.out.println("Sending: " + projectList);
+        System.out.println("Sending"  + projectList);
         return projectList;
     }
 
-    public void setProject(String projectName){
+    public void setProject(String projectName, boolean isStarred){
         this.projectName = projectName;
+        this.isStarred = isStarred;
         File file = new File(projectsFilePath);
         BufferedWriter bf;
         try {
             bf = new BufferedWriter(new FileWriter(file, true));
-            bf.write(this.projectName);
+            bf.write(this.projectName + ":" + this.isStarred);
             bf.newLine();
             bf.flush();
         } catch (IOException e) {
