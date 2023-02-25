@@ -87,7 +87,24 @@ public class Story {
     }
 
     public int getPointsDoneAsInt() {
-        return getPointsDone().getPoints();
+        if(status_set_by_user.equals("STARTED")){
+            int x = getTotalPointsAsInt();
+            int y = 1;
+            if(x==y){
+                System.out.println("Integer wala case");
+                return 1;
+            }
+            else{
+
+            return (getTotalPointsAsInt()/2);
+            }
+        }
+        else if(status_set_by_user.equals("FINISHED")){
+            return (getTotalPointsAsInt());
+        }
+        else{
+            return getPointsDone().getPoints();
+        }
     }
 /* 
     public StoryState getStat(){
@@ -142,6 +159,7 @@ public class Story {
         int pointsToApply;
 
         if (points >= getRemainingPoints()) {
+            
             pointsToApply = getRemainingPoints();
             storyPointSet.apply(pointsToApply);
             leftover = points - pointsToApply;

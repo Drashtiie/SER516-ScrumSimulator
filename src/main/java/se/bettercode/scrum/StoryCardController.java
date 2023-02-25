@@ -50,7 +50,7 @@ public class StoryCardController extends BorderPane {
         }
 
         storyTitle.setText(story.getTitle());
-        storyPoints.setText(Integer.toString(story.getPointsDone().getPoints()) +
+        storyPoints.setText(Integer.toString(story.getPointsDoneAsInt()) +
                 "/" + Integer.toString(story.getTotalPoints().getPoints()));
         setPrefHeight(getHeightBasedOnStoryPoints());
 
