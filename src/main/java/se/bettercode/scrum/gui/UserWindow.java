@@ -47,7 +47,21 @@ public class UserWindow {
      String linesarray[] = {"Team 1", "Team 2", "Team 3"};
      //read from teams text file
 
+    public static String[] readLinesFromFile(String filePath) {
+        List<String> linesList = new ArrayList<>();
 
+        try (BufferedReader br = new BufferedReader(new FileReader(filePath))) {
+            String line;
+            while ((line = br.readLine()) != null) {
+                linesList.add(line);
+            }
+        } catch (IOException e) {
+            // Handle the exception
+        }
+
+        String[] linesArray = linesList.toArray(new String[0]);
+        return linesArray;
+    }
     // Create a combo box
     ComboBox userRoleField =
             new ComboBox(FXCollections
@@ -55,7 +69,7 @@ public class UserWindow {
 
 
     ComboBox userTeamField =
-            new ComboBox(FXCollections.observableArrayList(linesarray));
+            new ComboBox(FXCollections.observableArrayList(readLinesFromFile("Teams.txt")));
 
     //TextField userRoleField = new TextField("Add Role");
     //userRoleField.getItems().addAll("Developer", "Owner");
@@ -73,7 +87,7 @@ public class UserWindow {
 //userNameField.setFocusTraversable(false);
 
 
-    public UserWindow() {
+    public UserWindow() throws FileNotFoundException {
         File file = new File("Teams.txt");
 
 // Create a Scanner object to read the file

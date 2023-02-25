@@ -15,6 +15,8 @@ import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
 
+import java.io.FileNotFoundException;
+
 public class ScrumGameApplication extends Application {
 
     private static final int SPRINT_LENGTH_IN_DAYS = 10;
@@ -36,6 +38,9 @@ public class ScrumGameApplication extends Application {
     private BurnupChart burnupChart = getNewBurnupChart();
     private Stage primaryStage;
     private StageUserPrefs prefs;
+
+    public ScrumGameApplication() throws FileNotFoundException {
+    }
 
     public static void main(String[] args) {
         System.out.println("Launching JavaFX application.");
