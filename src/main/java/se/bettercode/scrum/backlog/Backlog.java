@@ -18,7 +18,6 @@ public class Backlog {
     List<Story> stories = new ArrayList<>();
     IntegerProperty donePoints = new SimpleIntegerProperty(0);
     private DoubleProperty averageLeadTime = new SimpleDoubleProperty();
-
     private BacklogBurnup burnup = new BacklogBurnup();
 
     protected Backlog(String name) {

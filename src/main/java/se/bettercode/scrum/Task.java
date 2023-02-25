@@ -81,7 +81,13 @@ public class Task {
     }
 
     public void moveTo(String status){
-        this.setStatus(status);
+        String x = NewUserStory.getstorystatus();
+        if(x.length()!=0){
+            this.setStatus(x);
+        }
+        else{
+            this.setStatus(status);
+        }
         //reload UI now after this status change
     }
 }

@@ -18,6 +18,8 @@ public class Story {
 
     private ArrayList<Comment> comments;
 
+    public String status_set_by_user;
+
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
@@ -34,10 +36,10 @@ public class Story {
         return comments;
     }
     public Story(int points) {
-        this(points, "", "");
+        this(points, "", "","");
     }
 
-    public Story(int points, String title, String Tasktype) {
+    public Story(int points, String title, String Tasktype, String newstat) {
 
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
@@ -48,6 +50,17 @@ public class Story {
         this.tasks = new ArrayList<>();
         this.comments = new ArrayList<>();
         this.taskType = taskType;
+        this.status_set_by_user = newstat;
+        if(newstat.equals("TODO")){
+            System.out.println("Hello");
+            status.setState(StoryState.TODO);
+        }
+        else if(newstat.equals("STARTED")){
+            status.setState(StoryState.STARTED);
+        }
+        else{
+            status.setState(StoryState.FINISHED);
+        }
     }
 
     public String getTaskType() {
@@ -76,7 +89,20 @@ public class Story {
     public int getPointsDoneAsInt() {
         return getPointsDone().getPoints();
     }
-
+/* 
+    public StoryState getStat(){
+        System.out.println("Status set by the user is " + newstat);
+        if(user == "TODO"){
+            status.setState(StoryState.TODO);
+        }
+        else if(newstat == "STARTED"){
+            status.setState(StoryState.STARTED);
+        }
+        else if(newstat == "FINISHED"){
+            status.setState(StoryState.FINISHED);
+        }
+    }
+*/
     public StoryState getStatus() {
         return status.getState();
     }
@@ -105,6 +131,7 @@ public class Story {
      * @param points
      * @return any leftover points
      */
+
     public int workOnStory(int points, int day) {
         if (status.getState() == StoryState.TODO) {
             status.setState(StoryState.STARTED);

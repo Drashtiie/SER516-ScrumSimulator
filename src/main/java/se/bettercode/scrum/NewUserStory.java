@@ -45,8 +45,8 @@ public class NewUserStory {
     String st[] = { "Feature", "Bug", "Release", "Other" };
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
 
-    String status[] = { "New", "In Progress", "Ready to test","Completed", "Blocked" };
-    private ChoiceBox<String> userstorystatus = new ChoiceBox<>(FXCollections.observableArrayList(status));
+    static String status[] = { "TODO","STARTED","FINISHED"};
+    private static ChoiceBox<String> userstorystatus = new ChoiceBox<>(FXCollections.observableArrayList(status));
 
     public NewUserStory(){
 
@@ -78,6 +78,8 @@ public class NewUserStory {
                         bw.write(userStory.getText());
                         bw.newLine();
                         bw.write(usertasktype.getValue());
+                        bw.newLine();
+                        bw.write(userstorystatus.getValue());
                         bw.newLine();
                         bw.close();
     
@@ -137,10 +139,13 @@ public class NewUserStory {
 
     public Story getStory(){
         Integer sp = Integer.valueOf(storypoints.getText());
-        Story story = new Story( sp, userStory.getText(), usertasktype.getValue());
+        Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), userstorystatus.getValue());
         return story;
     }
       
+    public static String getstorystatus(){
+        return userstorystatus.getValue();
+    }
     public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
         
