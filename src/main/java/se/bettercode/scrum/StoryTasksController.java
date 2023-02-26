@@ -10,7 +10,10 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.HBox;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -45,14 +48,44 @@ public class StoryTasksController extends BorderPane {
 
     public VBox getTaskCard(Task task){
         VBox taskCard = new VBox();
+        VBox titleContainer = new VBox();
+        HBox descContainer = new HBox();
 
         Text titleNode = new Text();
         titleNode.setText("# " + task.getTitle());
-        taskCard.getChildren().add(0, titleNode);
+        titleNode.setStyle("-fx-font-weight: bold;");
+        titleContainer.getChildren().add(0, titleNode);
 
         Text descNode = new Text();
         descNode.setText(task.getDescription());
-        taskCard.getChildren().add(1, descNode);
+        descContainer.getChildren().add(0, descNode);
+
+        Button deleteButton = new Button();
+        descContainer.getChildren().add(1, deleteButton);
+        deleteButton.setAlignment(Pos.CENTER_RIGHT);
+        deleteButton.setStyle(
+                "    -fx-background-color: #3d91bf;\n" +
+                "    -fx-background-radius: 50px;\n" +
+                "\n" +
+                "    -fx-border-radius: 50px;\n" +
+                "    -fx-border-width: 1px;\n" +
+                "    -fx-border-color: black;\n" +
+                "    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 0, 0, 0);");
+
+        Image img = new Image("https://cdn-icons-png.flaticon.com/512/3334/3334328.png");
+        ImageView view = new ImageView(img);
+        view.setPreserveRatio(true);
+        view.setFitWidth(20);
+        view.setFitHeight(20);
+
+        deleteButton.setPrefSize(30, 30);
+        deleteButton.setMinSize(30, 30);
+        deleteButton.setMaxSize(30, 30);
+        deleteButton.setGraphic(view);
+        deleteButton.setAlignment(Pos.CENTER);
+
+        taskCard.getChildren().add(0, titleContainer);
+        taskCard.getChildren().add(1, descContainer);
 
         taskCard.setPrefWidth(10);
         taskCard.setMaxWidth(10);
@@ -72,6 +105,7 @@ public class StoryTasksController extends BorderPane {
         taskCard.setMinWidth(300);
 
         VBox.setMargin(taskCard, new Insets(20, 0, 0, 0));
+        HBox.setMargin(descNode, new Insets(10, 0, 0, 0));
 
         return taskCard;
     }
