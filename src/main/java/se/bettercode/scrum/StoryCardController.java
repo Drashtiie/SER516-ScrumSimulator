@@ -31,6 +31,9 @@ public class StoryCardController extends BorderPane {
     private Button addTaskButton;
 
     @FXML
+    private Button viewTaskButton;
+
+    @FXML
     private Text storyTitle;
 
     @FXML
@@ -65,6 +68,25 @@ public class StoryCardController extends BorderPane {
                     stage.setTitle("Task Card");
                     stage.setScene(new Scene(root1));
                     stage.setUserData(story);
+                    stage.show();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+
+        viewTaskButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoryTasks.fxml"));
+                    Parent root2 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Story Tasks");
+                    stage.setScene(new Scene(root2));
+                    stage.setUserData(story);
+                    StoryTasksController tasksController = fxmlLoader.getController();
+                    tasksController.setStage(stage);
                     stage.show();
                 }
                 catch (IOException e) {
