@@ -24,11 +24,14 @@ import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import se.bettercode.scrum.gui.Board;
+import se.bettercode.scrum.team.User;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class NewUserStory {
@@ -43,6 +46,8 @@ public class NewUserStory {
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
+    String st2[] = { "team1", "team2", "team3", "team4" };
+    private ChoiceBox<String> assignToUser = new ChoiceBox<>(FXCollections.observableArrayList(st2));
     public NewUserStory(){
 
     }
@@ -51,7 +56,6 @@ public class NewUserStory {
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
         UserStoryPoints.setText("Story Points");
-      
         comments.setPromptText("Add Comment");
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -133,7 +137,7 @@ public class NewUserStory {
 
     public Story getStory(){
         Integer sp = Integer.valueOf(storypoints.getText());
-        Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), comments.getText());
+        Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), assignToUser.getValue(),comments.getText());
         return story;
     }
       
@@ -147,7 +151,7 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,comments);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,assignToUser,comments);
     }
 
    /*

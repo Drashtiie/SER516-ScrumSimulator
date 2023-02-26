@@ -14,6 +14,7 @@ public class Story {
     private String title = "";
 
     private String taskType = "";
+    private String userName = "";
     private ArrayList<Task> tasks;
 
     private String comments;
@@ -34,17 +35,17 @@ public class Story {
         return comments;
     }
     public Story(int points) {
-        this(points, "", "","");
+        this(points, "", "","","");
     }
 
-    public Story(int points, String title, String Tasktype, String comments) {
+    public Story(int points, String title, String taskType, String userName, String comments) {
 
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
         }
         this.title = title;
         storyPointSet = new StoryPointSet(points);
-
+        this.userName = userName;
         this.tasks = new ArrayList<>();
         this.comments = new String();
         this.taskType = taskType;
