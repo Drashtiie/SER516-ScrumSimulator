@@ -9,11 +9,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
+import javafx.scene.layout.Priority;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
@@ -49,7 +51,8 @@ public class StoryTasksController extends BorderPane {
     public VBox getTaskCard(Task task){
         VBox taskCard = new VBox();
         VBox titleContainer = new VBox();
-        HBox descContainer = new HBox();
+        VBox descContainer = new VBox();
+        HBox buttonContainer = new HBox();
 
         Text titleNode = new Text();
         titleNode.setText("# " + task.getTitle());
@@ -61,8 +64,9 @@ public class StoryTasksController extends BorderPane {
         descContainer.getChildren().add(0, descNode);
 
         Button deleteButton = new Button();
-        descContainer.getChildren().add(1, deleteButton);
-        deleteButton.setAlignment(Pos.CENTER_RIGHT);
+        descContainer.getChildren().add(1, buttonContainer);
+        buttonContainer.getChildren().add(0, deleteButton);
+        buttonContainer.setAlignment(Pos.CENTER_RIGHT);
         deleteButton.setStyle(
                 "    -fx-background-color: #3d91bf;\n" +
                 "    -fx-background-radius: 50px;\n" +
@@ -83,6 +87,20 @@ public class StoryTasksController extends BorderPane {
         deleteButton.setMaxSize(30, 30);
         deleteButton.setGraphic(view);
         deleteButton.setAlignment(Pos.CENTER);
+        deleteButton.getStyleClass().add("delete_button");
+        deleteButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                try {
+                  ArrayList<Task> updatedStoryTasks = story.getTasks();
+                  updatedStoryTasks.remove(task);
+                  story.setTasks(updatedStoryTasks);
+                  stage.close();
+                }
+                catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        });
 
         taskCard.getChildren().add(0, titleContainer);
         taskCard.getChildren().add(1, descContainer);
@@ -105,7 +123,7 @@ public class StoryTasksController extends BorderPane {
         taskCard.setMinWidth(300);
 
         VBox.setMargin(taskCard, new Insets(20, 0, 0, 0));
-        HBox.setMargin(descNode, new Insets(10, 0, 0, 0));
+        VBox.setMargin(descNode, new Insets(10, 0, 0, 0));
 
         return taskCard;
     }

@@ -28,3 +28,11 @@
     -fx-text-fill: white;
     -fx-background-radius: 5px;
 }
+
+.save_button:hover {
+    -fx-background-color: "#123763";
+}
+
+.delete_button:hover{
+    -fx-background-color: "#123763";
+}
