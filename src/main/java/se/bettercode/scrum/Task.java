@@ -9,6 +9,8 @@ public class Task {
 
     private String title = "";
 
+    private String taskType = "";
+
     private String status;
 
     public void setStatus(String status) {
@@ -59,10 +61,19 @@ public class Task {
         this.description = description;
     }
 
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
+
     public Task(String title, String description, String status) {
         this.id = IDCounter++;
         this.title = title;
         this.description = description;
+        this.taskType = "";
         this.comments = new ArrayList<>();
         this.status = status;
     }

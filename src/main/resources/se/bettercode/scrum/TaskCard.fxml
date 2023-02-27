@@ -39,11 +39,11 @@
                   <Font size="16.0" />
                </font>
             </TextArea>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="531.0">
                <children>
                   <ComboBox fx:id="taskStatus" prefWidth="150.0" promptText="Select Status">
                      <HBox.margin>
-                        <Insets />
+                        <Insets right="75.0" />
                      </HBox.margin>
                      <items>
                         <FXCollections fx:factory="observableArrayList">
@@ -52,6 +52,19 @@
                            <String fx:value="DONE" />
                         </FXCollections>
                      </items>
+                  </ComboBox>
+                  <ComboBox fx:id="taskType" layoutX="264.0" layoutY="28.0" prefWidth="150.0" promptText="Select Type">
+                     <items>
+                        <FXCollections fx:factory="observableArrayList">
+                           <String fx:value="BUG" />
+                           <String fx:value="FEATURE" />
+                           <String fx:value="ISSUE" />
+                           <String fx:value="DEBT" />
+                        </FXCollections>
+                     </items>
+                     <HBox.margin>
+                        <Insets left="75.0" />
+                     </HBox.margin>
                   </ComboBox>
                </children>
                <VBox.margin>

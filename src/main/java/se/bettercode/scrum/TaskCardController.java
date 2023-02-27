@@ -23,6 +23,9 @@ public class TaskCardController {
     private ComboBox<String> taskStatus;
 
     @FXML
+    private ComboBox<String> taskType;
+
+    @FXML
     private TextArea taskDescription;
 
     @FXML

@@ -13,7 +13,6 @@ public class Story {
     private StoryStateProperty status = new StoryStateProperty();
     private String title = "";
 
-    private String taskType = "";
     private ArrayList<Task> tasks;
 
     private ArrayList<Comment> comments;
@@ -48,13 +47,6 @@ public class Story {
         this.comments = new ArrayList<>();
     }
 
-    public String getTaskType() {
-        return taskType;
-    }
-
-    public void setTaskType(String taskType) {
-        this.taskType = taskType;
-    }
     public StoryStateProperty statusProperty() {
         return status;
     }
