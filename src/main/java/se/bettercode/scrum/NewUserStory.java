@@ -46,8 +46,9 @@ public class NewUserStory {
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
-    String st2[] = { "team1", "team2", "team3", "team4" };
-    private ChoiceBox<String> assignToUser = new ChoiceBox<>(FXCollections.observableArrayList(st2));
+    private ChoiceBox<String> assignToUser = new ChoiceBox<>();
+    ObservableList<String> userNamesList = FXCollections.observableArrayList();
+    ArrayList<ArrayList<String>> userDetailsList;
     public NewUserStory(){
 
     }
