@@ -38,7 +38,7 @@ public class NewUserStory {
 
     private TextField UserStoryPoints = new TextField();
     private TextField userStory = new TextField ();
-  
+    private TextField newstatus = new TextField("Type New Status Here..");
     private TextField comments = new TextField();
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
@@ -47,6 +47,8 @@ public class NewUserStory {
 
     static String status[] = { "TODO","STARTED","FINISHED"};
     private static ChoiceBox<String> userstorystatus = new ChoiceBox<>(FXCollections.observableArrayList(status));
+    private Button addnewstatus = new Button();
+    private Label newstatusaddedconfirm = new Label("");
 
     public NewUserStory(){
 
@@ -58,6 +60,25 @@ public class NewUserStory {
         UserStoryPoints.setText("Story Points");
       
         comments.setPromptText("Add Comment");
+        addnewstatus.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                if (!newstatus.getText().isEmpty()) {
+                    
+                        String x = newstatus.getText();
+                        userstorystatus.getItems().add(x);
+                        newstatusaddedconfirm.setText("New Status Added");
+                        System.out.println("Status has been added");
+                    
+                    
+                    } 
+                    else {
+                    userstoryalert.setText("You have not added the status");
+                }
+                }
+            });
+        
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -124,7 +145,7 @@ public class NewUserStory {
 //            }
 //        });
 
-        secondaryLayout.getChildren().addAll(storypoints,userstoryalert);
+        secondaryLayout.getChildren().addAll(storypoints,userstoryalert, newstatus, newstatusaddedconfirm);
 
         secondaryLayout.setAlignment(storypoints, Pos.CENTER_RIGHT);
 
@@ -148,7 +169,6 @@ public class NewUserStory {
     }
     public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
-        
 
     }
 
@@ -157,7 +177,7 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userstorystatus,comments);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userstorystatus,addnewstatus,comments);
 
         usertasktype.setTooltip(new Tooltip("Task Type"));
         userstorystatus.setTooltip(new Tooltip("Status"));
