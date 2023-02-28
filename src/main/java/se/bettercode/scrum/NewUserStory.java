@@ -53,6 +53,14 @@ public class NewUserStory {
 
     }
     public void show() {
+        User user = new User();
+        userDetailsList = user.getUsers();
+        for (int i = 0; i < userDetailsList.size(); i++){
+            userNamesList.add(userDetailsList.get(i).get(1));
+        }
+        if (userNamesList.size()!=0){
+            assignToUser.setItems(userNamesList);
+        }
         toolBarSetup();
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
