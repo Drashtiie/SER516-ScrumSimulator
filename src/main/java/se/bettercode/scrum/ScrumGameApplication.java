@@ -16,6 +16,7 @@ import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
 
 import java.io.FileNotFoundException;
+import java.io.IOException;
 
 public class ScrumGameApplication extends Application {
 
@@ -39,7 +40,7 @@ public class ScrumGameApplication extends Application {
     private Stage primaryStage;
     private StageUserPrefs prefs;
 
-    public ScrumGameApplication() throws FileNotFoundException {
+    public ScrumGameApplication() throws IOException {
     }
 
     public static void main(String[] args) {
