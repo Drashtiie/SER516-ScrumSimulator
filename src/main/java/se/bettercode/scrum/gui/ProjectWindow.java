@@ -43,6 +43,7 @@ public class ProjectWindow {
     Label teamAddedAlert = new Label("");
 
     private Button viewButton = new Button();
+    private CheckBox starred = new CheckBox("Star");
 
 
     public void show() {
@@ -87,25 +88,25 @@ public class ProjectWindow {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll( teamNameField, addButton, viewButton);
-//
-//        toolBar.setViewProjectButtonAction((event) -> allProjectWindow.show());
-//        public void setViewProjectButtonAction(EventHandler<ActionEvent> eventHandler) {
-//            viewButton.setOnAction(eventHandler);
-//        eventHandler}
+        toolBar.getChildren().addAll( teamNameField, addButton, viewButton, starred);
 
         addButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
             public void handle(ActionEvent e) {
                 if ((teamNameField.getText() != null && !teamNameField.getText().isEmpty())) {
-                    teamAddedAlert.setText(teamNameField.getText() +  " added as project");
+                    if(starred.isSelected()){
+                        teamAddedAlert.setText(teamNameField.getText() +  " added as project and it is starred.");
+                    }
+                    else {
+                        teamAddedAlert.setText(teamNameField.getText() + " added as project");
+                    }
                     try
                     {
                         String filename= "src/main/java/se/bettercode/scrum/gui/Projects";
                         FileWriter fw = new FileWriter(filename, true);
                         BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write(teamNameField.getText());
+                        bw.write(teamNameField.getText() + " - " + starred.isSelected());
                         bw.newLine();
                         bw.close();
                         System.out.println("Added ");
@@ -123,6 +124,8 @@ public class ProjectWindow {
                 }
             }
 
+
+
         });
         viewButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -130,6 +133,8 @@ public class ProjectWindow {
             public void handle(ActionEvent e) {
                 allProjectWindow.show();
             }
+
+
 
         });
 

@@ -35,7 +35,7 @@ public class AllProjects{
     public void show() {
         toolBarSetup();
 
-        addButton.setPrefSize(300, 20);
+        addButton.setPrefSize(300, 1);
         addButton.setText("List of All Project");
 
         Stage primaryStage = new Stage();
@@ -46,26 +46,45 @@ public class AllProjects{
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
         ObservableList<String> projects = FXCollections.observableArrayList();
+        projects.add("STARRED PROJECTS");
+        ObservableList<String> projectns = FXCollections.observableArrayList();
+        projectns.add("NOT STARRED PROJECTS");
         try {
             File myObj = new File("src/main/java/se/bettercode/scrum/gui/Projects");
             Scanner myReader = new Scanner(myObj);
             while (myReader.hasNextLine()) {
                 String data = myReader.nextLine();
+                String[] data2 = data.split(" - ");
+                //System.out.println(data2[1] + data2[1].length());
+                System.out.println(data2[1].compareTo("true" ));
+                String b = "true";
 
+                if(data2[1].compareTo("true") == 0){
+                    projects.add(data2[0]);
+                    System.out.println("stared");
+                }
+                else{
+                    projectns.add(data2[0]);
+                }
 
-                projects.add(data);
-               }
+                }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
             e.printStackTrace();
         }
         ListView<String> listView = new ListView<String>(projects);
-        listView.setMaxSize(700, 700);
+        listView.setMaxSize(700, 350);
+        ListView<String> listView2 = new ListView<String>(projectns);
+        listView.setMaxSize(700, 350);
 
+        HBox h1 = new HBox();
+        h1.getChildren().addAll(listView);
+        HBox h2 = new HBox();
+        h1.getChildren().addAll(listView2);
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(5, 50, 5, 50));
-        layout.getChildren().addAll(listView);
+        layout.getChildren().addAll(listView2,listView);
         // layout.setStyle("-fx-background-color: BEIGE");
 
 
@@ -76,9 +95,6 @@ public class AllProjects{
         primaryStage.show();
 
     }
-
-
-
 
     private void toolBarSetup() {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
