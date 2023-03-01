@@ -30,6 +30,14 @@ public class StoryTasksController extends BorderPane {
 
     private Stage stage;
 
+    public Story getStory() {
+        return story;
+    }
+
+    public Stage getStage() {
+        return stage;
+    }
+
     @FXML
     private VBox doneStatusBox;
 
@@ -53,6 +61,7 @@ public class StoryTasksController extends BorderPane {
         VBox titleContainer = new VBox();
         VBox descContainer = new VBox();
         HBox buttonContainer = new HBox();
+        HBox typeContainer = new HBox();
 
         Text titleNode = new Text();
         titleNode.setText("# " + task.getTitle());
@@ -63,8 +72,13 @@ public class StoryTasksController extends BorderPane {
         descNode.setText(task.getDescription());
         descContainer.getChildren().add(0, descNode);
 
+        Text typeNode = new Text();
+        typeNode.setText(task.getTaskType());
+        typeContainer.getChildren().add(0, typeNode);
+        descContainer.getChildren().add(1, typeContainer);
+
         Button deleteButton = new Button();
-        descContainer.getChildren().add(1, buttonContainer);
+        descContainer.getChildren().add(2, buttonContainer);
         buttonContainer.getChildren().add(0, deleteButton);
         buttonContainer.setAlignment(Pos.CENTER_RIGHT);
         deleteButton.setStyle(
@@ -74,7 +88,8 @@ public class StoryTasksController extends BorderPane {
                 "    -fx-border-radius: 50px;\n" +
                 "    -fx-border-width: 1px;\n" +
                 "    -fx-border-color: black;\n" +
-                "    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 0, 0, 0);");
+                "    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.8), 5, 0, 0, 0);"
+        );
 
         Image img = new Image("https://cdn-icons-png.flaticon.com/512/3334/3334328.png");
         ImageView view = new ImageView(img);
@@ -124,6 +139,7 @@ public class StoryTasksController extends BorderPane {
 
         VBox.setMargin(taskCard, new Insets(20, 0, 0, 0));
         VBox.setMargin(descNode, new Insets(10, 0, 0, 0));
+        HBox.setMargin(typeNode, new Insets(10, 0, 0, 0));
 
         return taskCard;
     }

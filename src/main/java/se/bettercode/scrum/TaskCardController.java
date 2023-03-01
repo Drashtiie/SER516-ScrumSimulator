@@ -44,6 +44,7 @@ public class TaskCardController {
         String description = taskDescription.getText().replaceAll("\n", System.getProperty("line.separator"));
         String title = taskTitle.getText();
         String status = taskStatus.getValue();
+        String type = taskType.getValue();
 
         try{
             if(description.trim().equals("") || title.trim().equals("") || status.trim().equals("")){
@@ -52,7 +53,7 @@ public class TaskCardController {
                 alert.setContentText("Please enter values for all the fields !");
                 alert.show();
             } else {
-                Task newTask = new Task(title, description, status);
+                Task newTask = new Task(title, description, status, type);
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
                 this.story = (Story) stage.getUserData();

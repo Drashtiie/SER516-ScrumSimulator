@@ -69,11 +69,11 @@ public class Task {
         this.taskType = taskType;
     }
 
-    public Task(String title, String description, String status) {
+    public Task(String title, String description, String status, String type) {
         this.id = IDCounter++;
         this.title = title;
         this.description = description;
-        this.taskType = "";
+        this.taskType = type;
         this.comments = new ArrayList<>();
         this.status = status;
     }
