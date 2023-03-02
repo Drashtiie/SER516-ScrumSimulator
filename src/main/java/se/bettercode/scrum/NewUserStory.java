@@ -88,6 +88,8 @@ public class NewUserStory {
                         bw.newLine();
                         bw.write(comments.getText());
                         bw.newLine();
+                        bw.write(assignToUser.getValue());
+                        bw.newLine();
                         bw.close();
     
                         System.out.println("Added user story"+userStory.getText());
