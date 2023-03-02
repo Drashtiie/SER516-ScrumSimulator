@@ -1,8 +1,5 @@
 package se.bettercode.scrum;
 
-/**
- * Manages the done, remaining and total StoryPoints for a Story
- */
 public class StoryPointSet {
 
     private StoryPoint done;
@@ -35,6 +32,5 @@ public class StoryPointSet {
     protected StoryPoint getTotal() {
         return total;
     }
-
 
 }

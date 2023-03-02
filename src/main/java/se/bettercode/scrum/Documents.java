@@ -50,17 +50,11 @@ public class Documents {
 
             @Override
             public void changed(ObservableValue<? extends File> observable, File oldValue, File newValue) {
-                // Your action here
                 System.out.println("Selected item: " + newValue);
                 displaySelected(newValue);
             }
         });
 
-//        addButton.setOnAction(new EventHandler<ActionEvent>() {
-//            @Override public void handle(ActionEvent event) {
-//                addDocFunc();
-//            }
-//        });
         secondaryLayout.getChildren().add(list);
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
@@ -86,7 +80,6 @@ public class Documents {
     private void displaySelected(File newValue) {
         Stage newWindow = new Stage();
         BorderPane root = new BorderPane();
-//        TextArea fileTextArea = new TextArea();
         Text textArea = new Text();
         VBox centerBox = new VBox();
         System.out.println("Inside displaySelected Func");

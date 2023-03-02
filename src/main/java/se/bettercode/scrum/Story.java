@@ -33,6 +33,7 @@ public class Story {
         return comments;
     }
 
+
     public Story(int points) {
         this(points, "");
     }
