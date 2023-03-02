@@ -15,6 +15,7 @@ import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import se.bettercode.scrum.Project;
 import se.bettercode.scrum.team.User;
 
 import java.util.*;
@@ -101,22 +102,16 @@ public class ProjectWindow {
                     else {
                         teamAddedAlert.setText(teamNameField.getText() + " added as project");
                     }
-                    try
-                    {
-                        String filename= "src/main/java/se/bettercode/scrum/gui/Projects";
-                        FileWriter fw = new FileWriter(filename, true);
-                        BufferedWriter bw = new BufferedWriter(fw);
-                        bw.write(teamNameField.getText() + " - " + starred.isSelected());
-                        bw.newLine();
-                        bw.close();
-                        System.out.println("Added ");
+                    Project p = new Project();
+                    //String filename= "src/main/java/se/bettercode/scrum/gui/Projects";
+//                        FileWriter fw = new FileWriter(filename, true);
+//                        BufferedWriter bw = new BufferedWriter(fw);
+//                        bw.write(teamNameField.getText() + " - " + starred.isSelected());
+                    p.setProject(teamNameField.getText(), starred.isSelected());
+//                        bw.newLine();
+//                        bw.close();
+                    System.out.println("Added ");
 
-
-                    }
-                    catch(IOException ioe)
-                    {
-                        System.err.println("IOException: " + ioe.getMessage());
-                    }
                 } else {
 
                     teamAddedAlert.setText("You have not left a project name.");
