@@ -14,15 +14,16 @@ public class Story {
     private String title = "";
 
     private String taskType = "";
+    private String userName = "";
     private ArrayList<Task> tasks;
 
-    private ArrayList<Comment> comments;
+    private String comments;
 
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
     }
 
-    public void setComments(ArrayList<Comment> comments) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
@@ -30,29 +31,30 @@ public class Story {
         return tasks;
     }
 
-    public ArrayList<Comment> getComments() {
+    public String getComments() {
         return comments;
     }
     public Story(int points) {
-        this(points, "", "");
+        this(points, "", "","","");
     }
 
-    public Story(int points, String title, String Tasktype) {
+    public Story(int points, String title, String taskType, String comments, String userName) {
 
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
         }
         this.title = title;
         storyPointSet = new StoryPointSet(points);
-
+        this.userName = userName;
         this.tasks = new ArrayList<>();
-        this.comments = new ArrayList<>();
+        this.comments = new String();
         this.taskType = taskType;
     }
 
     public String getTaskType() {
         return taskType;
     }
+    public String getUserName(){return userName;}
 
     public void setTaskType(String taskType) {
         this.taskType = taskType;

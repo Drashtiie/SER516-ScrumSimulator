@@ -21,7 +21,7 @@ public class SmallBacklog extends Backlog {
         try {
             sc = new Scanner(file);
             while (sc.hasNextLine() && storycount<5){
-                addStory(new Story(Integer.valueOf(sc.nextLine()), sc.nextLine(),sc.nextLine()));
+                addStory(new Story(Integer.valueOf(sc.nextLine()), sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine()));
                 storycount += 1;
             }
             } catch (FileNotFoundException e) {

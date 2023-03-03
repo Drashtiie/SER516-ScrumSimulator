@@ -21,13 +21,13 @@ public class Task {
 
     private String description = "";
 
-    private ArrayList<Comment> comments;
+    private String comments;
 
-    public ArrayList<Comment> getComments() {
+    public String getComments() {
         return comments;
     }
 
-    public void setComments(ArrayList<Comment> comments) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
@@ -63,7 +63,7 @@ public class Task {
         this.id = IDCounter++;
         this.title = title;
         this.description = description;
-        this.comments = new ArrayList<>();
+        this.comments = new String();
     }
 
     public Story addToStory(Story userStory){

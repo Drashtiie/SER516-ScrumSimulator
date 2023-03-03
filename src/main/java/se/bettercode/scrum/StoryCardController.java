@@ -32,6 +32,9 @@ public class StoryCardController extends BorderPane {
     private Text storyTitle;
 
     @FXML
+    private Text assignedTo;
+
+    @FXML
     private BorderPane storyCard;
 
     private Story story;
@@ -53,6 +56,7 @@ public class StoryCardController extends BorderPane {
         storyPoints.setText(Integer.toString(story.getPointsDone().getPoints()) +
                 "/" + Integer.toString(story.getTotalPoints().getPoints()));
         setPrefHeight(getHeightBasedOnStoryPoints());
+        assignedTo.setText(story.getUserName());
 
         addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
@@ -75,6 +79,10 @@ public class StoryCardController extends BorderPane {
 
     public void bindStoryTitle(StringProperty title) {
         storyTitle.textProperty().bind(title);
+    }
+
+    public void bindUserName(StringProperty userName){
+        assignedTo.textProperty().bind(userName);
     }
 
     public void bindStoryPoints(IntegerProperty points) {

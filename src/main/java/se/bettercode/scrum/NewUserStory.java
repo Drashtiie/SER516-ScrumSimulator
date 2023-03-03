@@ -14,8 +14,16 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.stage.Stage;
+import se.bettercode.scrum.gui.Board;
+import se.bettercode.scrum.team.User;
 
 import java.io.*;
+import java.nio.charset.Charset;
+import java.nio.charset.StandardCharsets;
+import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Scanner;
 
 public class NewUserStory {
     private HBox toolBar = new HBox();
@@ -32,38 +40,49 @@ public class NewUserStory {
     private String usersInfo = ReadFromTxt();
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
 
-    private ChoiceBox<String> userAssign = new ChoiceBox<>(FXCollections.observableArrayList(usersInfo));
+    // private ChoiceBox<String> userAssign = new ChoiceBox<>(FXCollections.observableArrayList(usersInfo));
 
-    public String ReadFromTxt() throws IOException {
-        BufferedReader reader = new BufferedReader(new FileReader("src/main/java/se/bettercode/scrum/team/usersInfo"));
-        StringBuffer stringBuffer = new StringBuffer();
+    // public String ReadFromTxt() throws IOException {
+    //     BufferedReader reader = new BufferedReader(new FileReader("src/main/java/se/bettercode/scrum/team/usersInfo"));
+    //     StringBuffer stringBuffer = new StringBuffer();
 
-        // Read file line by line
-        String line;
-        while ((line = reader.readLine()) != null) {
-            // Split line at ":"
-            String[] parts = line.split(":");
+    //     // Read file line by line
+    //     String line;
+    //     while ((line = reader.readLine()) != null) {
+    //         // Split line at ":"
+    //         String[] parts = line.split(":");
 
-            // Append each part to string buffer on a new line
-            for (String part : parts) {
-                stringBuffer.append(part + "\n");
-            }
-        }
-        reader.close();
+    //         // Append each part to string buffer on a new line
+    //         for (String part : parts) {
+    //             stringBuffer.append(part + "\n");
+    //         }
+    //     }
+    //     reader.close();
 
-        // Get the final string
-        String usersInfo = stringBuffer.toString();
-        return usersInfo;
-    }
-    public NewUserStory() throws IOException {
+    //     // Get the final string
+    //     String usersInfo = stringBuffer.toString();
+    //     return usersInfo;
+    // }
+    // public NewUserStory() throws IOException {
+    private ChoiceBox<String> assignToUser = new ChoiceBox<>();
+    ObservableList<String> userNamesList = FXCollections.observableArrayList();
+    ArrayList<ArrayList<String>> userDetailsList;
+    public NewUserStory(){
 
     }
     public void show() {
+        User user = new User();
+        userDetailsList = user.getUsers();
+        for (int i = 0; i < userDetailsList.size(); i++){
+            userNamesList.add(userDetailsList.get(i).get(1));
+        }
+        if (userNamesList.size()!=0){
+            assignToUser.setItems(userNamesList);
+        }
         toolBarSetup();
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
         UserStoryPoints.setText("Story Points");
-      
         comments.setPromptText("Add Comment");
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -84,6 +103,10 @@ public class NewUserStory {
                         bw.write(userStory.getText());
                         bw.newLine();
                         bw.write(usertasktype.getValue());
+                        bw.newLine();
+                        bw.write(comments.getText());
+                        bw.newLine();
+                        bw.write(assignToUser.getValue());
                         bw.newLine();
                         bw.close();
     
@@ -143,7 +166,7 @@ public class NewUserStory {
 
     public Story getStory(){
         Integer sp = Integer.valueOf(storypoints.getText());
-        Story story = new Story( sp, userStory.getText(), usertasktype.getValue());
+        Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), assignToUser.getValue(),comments.getText());
         return story;
     }
       
@@ -157,7 +180,7 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userAssign ,comments);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,assignToUser,comments);
     }
 
    /*
