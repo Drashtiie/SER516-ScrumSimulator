@@ -38,7 +38,7 @@ public class Story {
         this(points, "", "","","");
     }
 
-    public Story(int points, String title, String taskType, String userName, String comments) {
+    public Story(int points, String title, String taskType, String comments, String userName) {
 
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
@@ -54,6 +54,7 @@ public class Story {
     public String getTaskType() {
         return taskType;
     }
+    public String getUserName(){return userName;}
 
     public void setTaskType(String taskType) {
         this.taskType = taskType;
