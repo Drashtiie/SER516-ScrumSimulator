@@ -11,6 +11,8 @@ public class Project {
     private final String projectsFilePath = "src/main/java/se/bettercode/scrum/gui/Projects";
     private boolean isStarred;
     private String projectName;
+
+    private String projectTag;
     private ArrayList<ArrayList<String>> projectList = new ArrayList<ArrayList<String>>();
 
     public ArrayList<ArrayList<String>> getProjectList(){
@@ -34,15 +36,22 @@ public class Project {
         System.out.println("Sending"  + projectList);
         return projectList;
     }
+    public String getProjectTag(){
+        return this.projectTag;
+    }
+    public void setProjectTag(String tag){
+        this.projectTag = tag;
+    }
 
-    public void setProject(String projectName, boolean isStarred){
+    public void setProject(String projectName, boolean isStarred, String projectTag){
         this.projectName = projectName;
         this.isStarred = isStarred;
+        this.projectTag = projectTag;
         File file = new File(projectsFilePath);
         BufferedWriter bf;
         try {
             bf = new BufferedWriter(new FileWriter(file, true));
-            bf.write(this.projectName + " - " + this.isStarred);
+            bf.write(this.projectName + " - " + this.isStarred + " - " + this.projectTag);
             bf.newLine();
             bf.flush();
         } catch (IOException e) {

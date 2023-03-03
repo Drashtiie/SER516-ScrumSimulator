@@ -18,7 +18,18 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 
 import javafx.scene.layout.HBox;
+import se.bettercode.scrum.backlog.Backlog;
+import se.bettercode.scrum.backlog.SelectableBacklogs;
+import se.bettercode.scrum.team.SelectableTeams;
+
 public class ToolBar extends HBox {
+
+    private Backlog backlog;
+    private StatusBar statusBar = new StatusBar();
+    private SelectableBacklogs backlogs = new SelectableBacklogs();
+    private SelectableTeams teams = new SelectableTeams();
+    //private ToolBar toolBar = new ToolBar(teams.getKeys(), backlogs.getKeys());
+
 
     private final Button toggleButton = new Button("Hide Burnup");
 
@@ -100,7 +111,9 @@ public ToolBar(String[] teams, String[] backlogs) {
     }
 
 
-
+//    private void reload(){
+//        this.toolBar = new ToolBar(teams.getKeys(), backlogs.getKeys() );
+//    }
 
     public void setViewDocsButtonAction(EventHandler<ActionEvent> eventHandler) {
         viewDocs.setOnAction(eventHandler);
@@ -110,6 +123,7 @@ public ToolBar(String[] teams, String[] backlogs) {
     }
     public void setAddTeamButtonAction(EventHandler<ActionEvent> eventHandler) {
         addTeam.setOnAction(eventHandler);
+        //toolBar.reload();
     }
     public void setAddProjectButtonAction(EventHandler<ActionEvent> eventHandler) {
         addProject.setOnAction(eventHandler);
@@ -126,7 +140,6 @@ public ToolBar(String[] teams, String[] backlogs) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
         teamChoiceBox.disableProperty().bind(booleanProperty);
-//=======
         viewDocs.disableProperty().bind(booleanProperty);
         toggleButton.disableProperty().bind(booleanProperty);
         toggleButton2.disableProperty().bind(booleanProperty);
@@ -140,11 +153,7 @@ public ToolBar(String[] teams, String[] backlogs) {
     public void setBacklogChoiceBoxListener(ChangeListener<String> changeListener) {
         backlogChoiceBox.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }
-
     public void setUserStoryButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
-
     }
-
-
 }

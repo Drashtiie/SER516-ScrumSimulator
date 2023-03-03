@@ -137,6 +137,7 @@ public class ScrumGameApplication extends Application {
         toolBar.setAddTeamButtonAction((event) -> addTeamWindow.show());
         toolBar.setAddProjectButtonAction((event) -> addProjectWindow.show());
         toolBar.setUserStoryButtonAction((event) -> nws.show());
+        //toolBar
 
     }
 
