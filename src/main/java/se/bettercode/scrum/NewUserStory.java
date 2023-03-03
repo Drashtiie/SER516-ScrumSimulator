@@ -242,7 +242,7 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userstorystatus,addnewstatus,comments);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userstorystatus,addnewstatus,assignToUser, comments);
 
         usertasktype.setTooltip(new Tooltip("Task Type"));
         userstorystatus.setTooltip(new Tooltip("Status"));
