@@ -20,7 +20,11 @@ public class WellSlicedBacklog extends Backlog {
         try {
             sc = new Scanner(file);
             while (sc.hasNextLine() && storycount<10){
+<<<<<<< HEAD
                 addStory(new Story(Integer.valueOf(sc.nextLine()), sc.nextLine(),sc.nextLine(),sc.nextLine()));
+=======
+                addStory(new Story(Integer.valueOf(sc.nextLine()), sc.nextLine(),sc.nextLine(),sc.nextLine(),sc.nextLine()));
+>>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
                 storycount += 1;
             }
             } catch (FileNotFoundException e) {

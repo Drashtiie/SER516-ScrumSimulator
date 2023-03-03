@@ -9,6 +9,7 @@ public class User {
     private String name;
     private String email;
     private String role;
+    private String team;
     HashMap<String, ArrayList<String>> addUsersMap = new HashMap<String, ArrayList<String>>();
     ArrayList<ArrayList<String>> usersList = new ArrayList<>();
     private final String usersFilePath = "src/main/java/se/bettercode/scrum/team/usersInfo";
@@ -25,13 +26,15 @@ public class User {
 
     public String getEmail(){return this.email;}
 
-    public void addUser(String name, String email, String role){
+    public void addUser(String name, String email, String role, String team){
         this.role = role;
         this.name = name;
         this. email = email;
+        this.team = team;
         ArrayList<String> values = new ArrayList<>();
         values.add(name);
         values.add(role);
+        values.add(team);
         addUsersMap.put(email,values);
         File file = new File(usersFilePath);
         BufferedWriter bf;
@@ -53,17 +56,24 @@ public class User {
         try {
             String name;
             String role;
+<<<<<<< HEAD
+            String team;
             ArrayList<String> temp = new ArrayList<>();
+=======
+>>>>>>> labdhi
             BufferedReader reader = new BufferedReader(new FileReader(usersFilePath));
             String line = reader.readLine();
             while (line != null){
+                ArrayList<String> temp = new ArrayList<>();
                 token = line.split(":");
                 commaLoc = token[1].indexOf(',');
                 name = token[1].substring(2,commaLoc);
                 role = token[1].substring(commaLoc + 2);
+                team = token[1].substring(commaLoc + commaLoc + 2);
                 temp.add(token[0]);
                 temp.add(name);
                 temp.add(role);
+                temp.add(team);
                 usersList.add(temp);
                 line = reader.readLine();
             }

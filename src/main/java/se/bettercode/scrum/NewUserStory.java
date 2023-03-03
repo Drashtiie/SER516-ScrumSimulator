@@ -1,35 +1,29 @@
 package se.bettercode.scrum;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import se.bettercode.scrum.gui.Board;
+import se.bettercode.scrum.team.User;
 
 import java.io.*;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Scanner;
 
 public class NewUserStory {
@@ -43,22 +37,61 @@ public class NewUserStory {
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
+
+    private String usersInfo = ReadFromTxt();
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
 
+<<<<<<< HEAD
     static String status[] = {};
     private static ChoiceBox<String> userstorystatus = new ChoiceBox<>(FXCollections.observableArrayList(status));
     private Button addnewstatus = new Button();
     private Label newstatusaddedconfirm = new Label("");
 
+=======
+    // private ChoiceBox<String> userAssign = new ChoiceBox<>(FXCollections.observableArrayList(usersInfo));
+
+    // public String ReadFromTxt() throws IOException {
+    //     BufferedReader reader = new BufferedReader(new FileReader("src/main/java/se/bettercode/scrum/team/usersInfo"));
+    //     StringBuffer stringBuffer = new StringBuffer();
+
+    //     // Read file line by line
+    //     String line;
+    //     while ((line = reader.readLine()) != null) {
+    //         // Split line at ":"
+    //         String[] parts = line.split(":");
+
+    //         // Append each part to string buffer on a new line
+    //         for (String part : parts) {
+    //             stringBuffer.append(part + "\n");
+    //         }
+    //     }
+    //     reader.close();
+
+    //     // Get the final string
+    //     String usersInfo = stringBuffer.toString();
+    //     return usersInfo;
+    // }
+    // public NewUserStory() throws IOException {
+    private ChoiceBox<String> assignToUser = new ChoiceBox<>();
+    ObservableList<String> userNamesList = FXCollections.observableArrayList();
+    ArrayList<ArrayList<String>> userDetailsList;
+>>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
     public NewUserStory(){
 
     }
     public void show() {
+        User user = new User();
+        userDetailsList = user.getUsers();
+        for (int i = 0; i < userDetailsList.size(); i++){
+            userNamesList.add(userDetailsList.get(i).get(1));
+        }
+        if (userNamesList.size()!=0){
+            assignToUser.setItems(userNamesList);
+        }
         toolBarSetup();
         addUserStory.setPrefSize(100, 20);
         addUserStory.setText("Add User Story");
         UserStoryPoints.setText("Story Points");
-      
         comments.setPromptText("Add Comment");
         addnewstatus.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -127,7 +160,13 @@ public class NewUserStory {
                         bw.newLine();
                         bw.write(usertasktype.getValue());
                         bw.newLine();
+<<<<<<< HEAD
                         bw.write(userstorystatus.getValue());
+=======
+                        bw.write(comments.getText());
+                        bw.newLine();
+                        bw.write(assignToUser.getValue());
+>>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
                         bw.newLine();
                         bw.close();
     
@@ -187,7 +226,11 @@ public class NewUserStory {
 
     public Story getStory(){
         Integer sp = Integer.valueOf(storypoints.getText());
+<<<<<<< HEAD
         Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), userstorystatus.getValue());
+=======
+        Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), assignToUser.getValue(),comments.getText());
+>>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
         return story;
     }
       
@@ -204,10 +247,14 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
+<<<<<<< HEAD
         toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userstorystatus,addnewstatus,comments);
 
         usertasktype.setTooltip(new Tooltip("Task Type"));
         userstorystatus.setTooltip(new Tooltip("Status"));
+=======
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,assignToUser,comments);
+>>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
     }
 
    /*

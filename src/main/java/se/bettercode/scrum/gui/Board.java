@@ -1,5 +1,4 @@
 package se.bettercode.scrum.gui;
-
 import javafx.application.Platform;
 import javafx.geometry.Insets;
 import javafx.scene.layout.ColumnConstraints;
@@ -9,10 +8,13 @@ import javafx.scene.text.Text;
 import se.bettercode.scrum.backlog.Backlog;
 import se.bettercode.scrum.Story;
 import se.bettercode.scrum.StoryCardController;
+<<<<<<< HEAD
 
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+=======
+>>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
 import java.util.Arrays;
 import java.util.List;
 

@@ -1,6 +1,7 @@
-3
-New User Story
+8
+#US 3
 Feature
+<<<<<<< HEAD
 FINISHED
 5
 User Story 2
@@ -22,3 +23,7 @@ FINISHED
 TEST USER STory
 Feature
 STARTED
+=======
+this is a comment
+My Name
+>>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978

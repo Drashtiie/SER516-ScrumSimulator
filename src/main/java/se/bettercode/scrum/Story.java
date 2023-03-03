@@ -14,9 +14,10 @@ public class Story {
     private String title = "";
 
     private String taskType = "";
+    private String userName = "";
     private ArrayList<Task> tasks;
 
-    private ArrayList<Comment> comments;
+    private String comments;
 
     public String status_set_by_user;
 
@@ -24,7 +25,7 @@ public class Story {
         this.tasks = tasks;
     }
 
-    public void setComments(ArrayList<Comment> comments) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
@@ -32,23 +33,30 @@ public class Story {
         return tasks;
     }
 
-    public ArrayList<Comment> getComments() {
+    public String getComments() {
         return comments;
     }
     public Story(int points) {
+<<<<<<< HEAD
         this(points, "", "","");
     }
 
     public Story(int points, String title, String Tasktype, String newstat) {
+=======
+        this(points, "", "","","");
+    }
+
+    public Story(int points, String title, String taskType, String comments, String userName) {
+>>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
 
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
         }
         this.title = title;
         storyPointSet = new StoryPointSet(points);
-
+        this.userName = userName;
         this.tasks = new ArrayList<>();
-        this.comments = new ArrayList<>();
+        this.comments = new String();
         this.taskType = taskType;
         this.status_set_by_user = newstat;
         if(newstat.equals("TODO")){
@@ -69,6 +77,7 @@ public class Story {
     public String getTaskType() {
         return taskType;
     }
+    public String getUserName(){return userName;}
 
     public void setTaskType(String taskType) {
         this.taskType = taskType;
