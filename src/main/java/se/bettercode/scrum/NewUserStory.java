@@ -45,7 +45,7 @@ public class NewUserStory {
     String st[] = { "Feature", "Bug", "Release", "Other" };
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
 
-    static String status[] = { "TODO","STARTED","FINISHED"};
+    static String status[] = {};
     private static ChoiceBox<String> userstorystatus = new ChoiceBox<>(FXCollections.observableArrayList(status));
     private Button addnewstatus = new Button();
     private Label newstatusaddedconfirm = new Label("");
@@ -64,18 +64,45 @@ public class NewUserStory {
 
             @Override
             public void handle(ActionEvent e) {
+                
+                try{
                 if (!newstatus.getText().isEmpty()) {
-                    
-                        String x = newstatus.getText();
-                        userstorystatus.getItems().add(x);
+                        //String x = newstatus.getText();
+                        //userstorystatus.getItems().add(x);
+                        String filename= "src/main/java/se/bettercode/scrum/gui/UserStoryStatus";
+    
+                        FileWriter fw = new FileWriter(filename, true);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(newstatus.getText());
+                        bw.newLine();
+                        bw.close();
+                        System.out.println("Written to the file");
+                        BufferedReader reader;
+                        reader = new BufferedReader(new FileReader("src/main/java/se/bettercode/scrum/gui/UserStoryStatus"));
+                        String line = reader.readLine();
+                        while (line != null) {
+                            System.out.println(line);
+                            // read next line
+                            userstorystatus.getItems().add(line);
+                            line = reader.readLine();
+                        }
+
                         newstatusaddedconfirm.setText("New Status Added");
                         System.out.println("Status has been added");
-                    
+            
+                        reader.close();
+
                     
                     } 
                     else {
                     userstoryalert.setText("You have not added the status");
                 }
+
+            }
+            catch(IOException ioe)
+                    {
+                        System.err.println("IOException: " + ioe.getMessage());
+                    }
                 }
             });
         
