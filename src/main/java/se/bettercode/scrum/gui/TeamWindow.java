@@ -34,10 +34,7 @@ public class TeamWindow {
 
     private HBox toolBar = new HBox();
     private Button addButton = new Button();
-
-
     TextField teamNameField = new TextField ();
-
     Label teamAddedAlert = new Label("");
 
 
@@ -58,9 +55,6 @@ public class TeamWindow {
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(5, 50, 5, 50));
         layout.getChildren().addAll(teamAddedAlert);
-        // layout.setStyle("-fx-background-color: BEIGE");
-
-
         secondaryLayout.getChildren().add(layout);
 
         //Setting the stage
@@ -81,7 +75,6 @@ public class TeamWindow {
         toolBar.setStyle("-fx-background-color: #336699;");
         toolBar.getChildren().addAll( teamNameField, addButton);
 
-
         addButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -97,9 +90,6 @@ public class TeamWindow {
                         bw.newLine();
                         bw.close();
                         System.out.println("Added ");
-
-
-
                     }
                     catch(IOException ioe)
                     {
@@ -113,11 +103,5 @@ public class TeamWindow {
             }
 
         });
-
-
-
     }
-
-
-
 }

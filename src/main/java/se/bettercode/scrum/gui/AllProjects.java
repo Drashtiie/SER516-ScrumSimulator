@@ -1,11 +1,6 @@
 package se.bettercode.scrum.gui;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.geometry.Insets;
 import javafx.scene.Scene;
 import javafx.scene.control.*;
@@ -13,9 +8,7 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.Scanner;
@@ -24,14 +17,6 @@ public class AllProjects{
 
     private HBox toolBar = new HBox();
     private Button addButton = new Button();
-
-
-    TextField teamNameField = new TextField ();
-
-    Label teamAddedAlert = new Label("");
-
-
-
     public void show() {
         toolBarSetup();
 
@@ -58,7 +43,6 @@ public class AllProjects{
                 //System.out.println(data2[1] + data2[1].length());
                 System.out.println(data2[1].compareTo("true" ));
                 String b = "true";
-
                 if(data2[1].compareTo("true") == 0){
                     projects.add(data2[0]);
                     System.out.println("stared");
@@ -67,7 +51,7 @@ public class AllProjects{
                     projectns.add(data2[0]);
                 }
 
-                }
+            }
             myReader.close();
         } catch (FileNotFoundException e) {
             System.out.println("An error occurred.");
@@ -85,13 +69,8 @@ public class AllProjects{
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(5, 50, 5, 50));
         layout.getChildren().addAll(listView2,listView);
-        // layout.setStyle("-fx-background-color: BEIGE");
-
-
         secondaryLayout.getChildren().add(layout);
-
-        //Setting the stage
-        primaryStage.setScene(new Scene(borderPane, 800, 600));
+         primaryStage.setScene(new Scene(borderPane, 800, 600));
         primaryStage.show();
 
     }

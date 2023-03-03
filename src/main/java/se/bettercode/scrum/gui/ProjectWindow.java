@@ -1,9 +1,5 @@
 package se.bettercode.scrum.gui;
-
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -13,24 +9,8 @@ import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
 import se.bettercode.scrum.Project;
-import se.bettercode.scrum.team.User;
-
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
-
-import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.*;
-import javax.mail.*;
-import javax.mail.internet.*;
-import javax.activation.*;
 public class ProjectWindow {
 
     private AllProjects allProjectWindow = new AllProjects();
@@ -38,8 +18,6 @@ public class ProjectWindow {
     private HBox toolBar = new HBox();
     private Button addButton = new Button();
     String tagList[] = {"Internal", "External"};
-
-    // Create a combo box
     ComboBox comboBox = new ComboBox(FXCollections.observableArrayList(tagList));
 
     TextField teamNameField = new TextField ();
@@ -66,27 +44,15 @@ public class ProjectWindow {
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
 
-
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(5, 50, 5, 50));
         layout.getChildren().addAll(teamAddedAlert);
-        // layout.setStyle("-fx-background-color: BEIGE");
-
-
         secondaryLayout.getChildren().add(layout);
-
-        //Setting the stage
         primaryStage.setScene(new Scene(borderPane, 800, 600));
         primaryStage.show();
 
     }
 
-
-
-
-//    public void setAddUsersButtonAction(EventHandler<ActionEvent> eventHandler) {
-//        addButton.setOnAction(eventHandler);
-//    }
 
     private void toolBarSetup() {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
@@ -94,7 +60,6 @@ public class ProjectWindow {
         toolBar.setStyle("-fx-background-color: #336699;");
         comboBox.getSelectionModel().selectFirst();
         toolBar.getChildren().addAll( teamNameField, addButton, viewButton, starred, comboBox);
-
         addButton.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -107,22 +72,12 @@ public class ProjectWindow {
                         teamAddedAlert.setText(teamNameField.getText() + " added as project" + "It is "+ comboBox.getValue().toString() + " project.");
                     }
                     Project p = new Project();
-                    //String filename= "src/main/java/se/bettercode/scrum/gui/Projects";
-//                        FileWriter fw = new FileWriter(filename, true);
-//                        BufferedWriter bw = new BufferedWriter(fw);
-//                        bw.write(teamNameField.getText() + " - " + starred.isSelected());
                     p.setProject(teamNameField.getText(), starred.isSelected(), comboBox.getValue().toString());
-//                        bw.newLine();
-//                        bw.close();
                     System.out.println("Added ");
-
                 } else {
-
                     teamAddedAlert.setText("You have not left a project name.");
-
                 }
             }
-
 
 
         });
@@ -133,16 +88,6 @@ public class ProjectWindow {
                 allProjectWindow.show();
             }
 
-
-
         });
-
-
-
-
     }
-
-
-
-
 }
