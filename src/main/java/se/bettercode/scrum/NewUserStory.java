@@ -1,35 +1,21 @@
 package se.bettercode.scrum;
 
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
-import javafx.event.EventType;
 import javafx.geometry.Insets;
 import javafx.geometry.Pos;
-import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
-import javafx.scene.layout.VBox;
-import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import se.bettercode.scrum.gui.Board;
 
 import java.io.*;
-import java.nio.charset.Charset;
-import java.nio.charset.StandardCharsets;
-import java.nio.file.Files;
-import java.util.Scanner;
 
 public class NewUserStory {
     private HBox toolBar = new HBox();
@@ -42,8 +28,34 @@ public class NewUserStory {
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
+
+    private String usersInfo = ReadFromTxt();
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
-    public NewUserStory(){
+
+    private ChoiceBox<String> userAssign = new ChoiceBox<>(FXCollections.observableArrayList(usersInfo));
+
+    public String ReadFromTxt() throws IOException {
+        BufferedReader reader = new BufferedReader(new FileReader("src/main/java/se/bettercode/scrum/team/usersInfo"));
+        StringBuffer stringBuffer = new StringBuffer();
+
+        // Read file line by line
+        String line;
+        while ((line = reader.readLine()) != null) {
+            // Split line at ":"
+            String[] parts = line.split(":");
+
+            // Append each part to string buffer on a new line
+            for (String part : parts) {
+                stringBuffer.append(part + "\n");
+            }
+        }
+        reader.close();
+
+        // Get the final string
+        String usersInfo = stringBuffer.toString();
+        return usersInfo;
+    }
+    public NewUserStory() throws IOException {
 
     }
     public void show() {
@@ -145,7 +157,7 @@ public class NewUserStory {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,comments);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userAssign ,comments);
     }
 
    /*
