@@ -37,7 +37,7 @@ public class NewUserStory {
     private TextField comments = new TextField();
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
-    String st[] = { "Feature", "Bug", "Release", "Other" };
+    private String[] st = {"FEATURE", "BUG", "ISSUE", "DEBT"};
 
     //private String usersInfo = ReadFromTxt();
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));

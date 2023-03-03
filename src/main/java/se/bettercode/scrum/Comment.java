@@ -51,16 +51,16 @@ public class Comment {
     }
 
     public Story addToStory(Story userStory){
-        String storyComments = userStory.getComments();
+        //String storyComments = userStory.getComments();
 //        storyComments.add(this);
-        userStory.setComments(storyComments);
+        //userStory.setComments(storyComments);
         return userStory;
     }
 
     public Story deleteFromStory(Story userStory){
-        String storyComments = userStory.getComments();
+       // String storyComments = userStory.getComments();
 //        storyComments.remove(this);
-        userStory.setComments(storyComments);
+        //userStory.setComments(storyComments);
         return userStory;
     }
 
