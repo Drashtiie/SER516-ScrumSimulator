@@ -7,7 +7,7 @@ public class Story {
 
     private StoryDays storyDays = new StoryDays();
 
-    public enum StoryState {TODO, STARTED, FINISHED;}
+    public enum StoryState {TODO, STARTED, READYTOTEST, FINISHED;}
     private StoryPointSet storyPointSet;
 
     private StoryStateProperty status = new StoryStateProperty();
@@ -57,6 +57,9 @@ public class Story {
         }
         else if(newstat.equals("STARTED")){
             status.setState(StoryState.STARTED);
+        }
+        else if(newstat.equals("READYTOTEST")){
+            status.setState(StoryState.READYTOTEST);
         }
         else{
             status.setState(StoryState.FINISHED);

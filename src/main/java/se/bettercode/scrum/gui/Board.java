@@ -10,15 +10,22 @@ import se.bettercode.scrum.backlog.Backlog;
 import se.bettercode.scrum.Story;
 import se.bettercode.scrum.StoryCardController;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
+import java.io.IOException;
 import java.util.Arrays;
 import java.util.List;
 
 public class Board extends GridPane {
 
     private Backlog backlog;
+
     private final VBox todoColumn = new VBox(10);
     private final VBox startedColumn = new VBox(10);
+
+    private final VBox readytoTest = new VBox(10);
     private final VBox doneColumn = new VBox(10);
+
     private final DingAudioClip dingAudioClip = new DingAudioClip();
 
     public Board() {
@@ -35,7 +42,7 @@ public class Board extends GridPane {
     }
 
     private List<VBox> columns() {
-        return Arrays.asList(todoColumn, startedColumn, doneColumn);
+        return Arrays.asList(todoColumn, startedColumn, readytoTest, doneColumn);
     }
 
 
@@ -61,6 +68,9 @@ public class Board extends GridPane {
                     case STARTED:
                         startedColumn.getChildren().add(new StoryCardController(story));
                         break;
+                    case READYTOTEST:
+                        readytoTest.getChildren().add(new StoryCardController(story));
+                        break;      
                     case FINISHED:
                         doneColumn.getChildren().add(new StoryCardController(story));
                         break;
@@ -73,6 +83,7 @@ public class Board extends GridPane {
     private void clearAllColumns() {
         todoColumn.getChildren().clear();
         startedColumn.getChildren().clear();
+        readytoTest.getChildren().clear();
         doneColumn.getChildren().clear();
         addColumnHeaders();
     }
@@ -80,6 +91,7 @@ public class Board extends GridPane {
     private void addColumnHeaders() {
         todoColumn.getChildren().add(new Text("TODO"));
         startedColumn.getChildren().add(new Text("STARTED"));
+        readytoTest.getChildren().add(new Text("READY TO TEST"));
         doneColumn.getChildren().add(new Text("DONE"));
     }
 }
