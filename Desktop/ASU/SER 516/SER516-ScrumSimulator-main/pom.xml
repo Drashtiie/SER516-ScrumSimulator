@@ -45,11 +45,6 @@
     </build>
 
     <dependencies>
-    <dependency>
-        <groupId>de.saxsys</groupId>
-        <artifactId>jfx-testrunner</artifactId>
-        <version>1.2</version>
-    </dependency>
 	<dependency>
     		<groupId>org.openjfx</groupId>
     		<artifactId>javafx-controls</artifactId>
@@ -75,22 +70,6 @@
             <groupId>org.openjfx</groupId>
             <artifactId>javafx-media</artifactId>
             <version>16</version>
-        </dependency>
-        <dependency>
-                <groupId>com.sun.mail</groupId>
-                <artifactId>jakarta.mail</artifactId>
-                <version>1.6.3</version>
-        </dependency>
-        <dependency>
-            <groupId>com.sun.mail</groupId>
-            <artifactId>javax.mail</artifactId>
-            <version>1.6.2</version>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.8.1</version>
-            <scope>test</scope>
         </dependency>
     </dependencies>
 </project>

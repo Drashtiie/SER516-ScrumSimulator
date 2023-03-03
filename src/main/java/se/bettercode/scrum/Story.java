@@ -7,7 +7,7 @@ public class Story {
 
     private StoryDays storyDays = new StoryDays();
 
-    public enum StoryState {TODO, STARTED, FINISHED;}
+    public enum StoryState {TODO, STARTED, READYTOTEST, FINISHED;}
     private StoryPointSet storyPointSet;
 
     private StoryStateProperty status = new StoryStateProperty();
@@ -18,6 +18,8 @@ public class Story {
     private ArrayList<Task> tasks;
 
     private String comments;
+
+    public String status_set_by_user;
 
     public void setTasks(ArrayList<Task> tasks) {
         this.tasks = tasks;
@@ -35,10 +37,10 @@ public class Story {
         return comments;
     }
     public Story(int points) {
-        this(points, "", "","","");
+        this(points, "", "","","","");
     }
 
-    public Story(int points, String title, String taskType, String comments, String userName) {
+    public Story(int points, String title, String taskType, String newstat,String comments, String userName) {
 
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");
@@ -49,6 +51,20 @@ public class Story {
         this.tasks = new ArrayList<>();
         this.comments = new String();
         this.taskType = taskType;
+        this.status_set_by_user = newstat;
+        if(newstat.equals("TODO")){
+            System.out.println("Hello");
+            status.setState(StoryState.TODO);
+        }
+        else if(newstat.equals("STARTED")){
+            status.setState(StoryState.STARTED);
+        }
+        else if(newstat.equals("READYTOTEST")){
+            status.setState(StoryState.READYTOTEST);
+        }
+        else{
+            status.setState(StoryState.FINISHED);
+        }
     }
 
     public String getTaskType() {
@@ -76,9 +92,39 @@ public class Story {
     }
 
     public int getPointsDoneAsInt() {
-        return getPointsDone().getPoints();
-    }
+        if(status_set_by_user.equals("STARTED")){
+            int x = getTotalPointsAsInt();
+            int y = 1;
+            if(x==y){
+                System.out.println("Integer wala case");
+                return 1;
+            }
+            else{
 
+            return (getTotalPointsAsInt()/2);
+            }
+        }
+        else if(status_set_by_user.equals("FINISHED")){
+            return (getTotalPointsAsInt());
+        }
+        else{
+            return getPointsDone().getPoints();
+        }
+    }
+/* 
+    public StoryState getStat(){
+        System.out.println("Status set by the user is " + newstat);
+        if(user == "TODO"){
+            status.setState(StoryState.TODO);
+        }
+        else if(newstat == "STARTED"){
+            status.setState(StoryState.STARTED);
+        }
+        else if(newstat == "FINISHED"){
+            status.setState(StoryState.FINISHED);
+        }
+    }
+*/
     public StoryState getStatus() {
         return status.getState();
     }
@@ -107,6 +153,7 @@ public class Story {
      * @param points
      * @return any leftover points
      */
+
     public int workOnStory(int points, int day) {
         if (status.getState() == StoryState.TODO) {
             status.setState(StoryState.STARTED);
@@ -117,6 +164,7 @@ public class Story {
         int pointsToApply;
 
         if (points >= getRemainingPoints()) {
+            
             pointsToApply = getRemainingPoints();
             storyPointSet.apply(pointsToApply);
             leftover = points - pointsToApply;

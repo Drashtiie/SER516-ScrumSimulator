@@ -1,6 +1,7 @@
 package se.bettercode.scrum;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -10,6 +11,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
+import javafx.scene.control.Tooltip;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.HBox;
 import javafx.scene.layout.StackPane;
@@ -31,7 +33,7 @@ public class NewUserStory {
 
     private TextField UserStoryPoints = new TextField();
     private TextField userStory = new TextField ();
-  
+    private TextField newstatus = new TextField("Type New Status Here..");
     private TextField comments = new TextField();
     private Label userstoryalert = new Label("");
     private Label storypoints = new Label("");
@@ -39,6 +41,11 @@ public class NewUserStory {
 
     private String usersInfo = ReadFromTxt();
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
+
+    static String status[] = {};
+    private static ChoiceBox<String> userstorystatus = new ChoiceBox<>(FXCollections.observableArrayList(status));
+    private Button addnewstatus = new Button();
+    private Label newstatusaddedconfirm = new Label("");
 
     // private ChoiceBox<String> userAssign = new ChoiceBox<>(FXCollections.observableArrayList(usersInfo));
 
@@ -70,6 +77,9 @@ public class NewUserStory {
     public NewUserStory(){
 
     }
+    private String ReadFromTxt() {
+        return null;
+    }
     public void show() {
         User user = new User();
         userDetailsList = user.getUsers();
@@ -84,6 +94,52 @@ public class NewUserStory {
         addUserStory.setText("Add User Story");
         UserStoryPoints.setText("Story Points");
         comments.setPromptText("Add Comment");
+        addnewstatus.setOnAction(new EventHandler<ActionEvent>() {
+
+            @Override
+            public void handle(ActionEvent e) {
+                
+                try{
+                if (!newstatus.getText().isEmpty()) {
+                        //String x = newstatus.getText();
+                        //userstorystatus.getItems().add(x);
+                        String filename= "src/main/java/se/bettercode/scrum/gui/UserStoryStatus";
+    
+                        FileWriter fw = new FileWriter(filename, true);
+                        BufferedWriter bw = new BufferedWriter(fw);
+                        bw.write(newstatus.getText());
+                        bw.newLine();
+                        bw.close();
+                        System.out.println("Written to the file");
+                        BufferedReader reader;
+                        reader = new BufferedReader(new FileReader("src/main/java/se/bettercode/scrum/gui/UserStoryStatus"));
+                        String line = reader.readLine();
+                        while (line != null) {
+                            System.out.println(line);
+                            // read next line
+                            userstorystatus.getItems().add(line);
+                            line = reader.readLine();
+                        }
+
+                        newstatusaddedconfirm.setText("New Status Added");
+                        System.out.println("Status has been added");
+            
+                        reader.close();
+
+                    
+                    } 
+                    else {
+                    userstoryalert.setText("You have not added the status");
+                }
+
+            }
+            catch(IOException ioe)
+                    {
+                        System.err.println("IOException: " + ioe.getMessage());
+                    }
+                }
+            });
+        
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
             @Override
@@ -94,6 +150,7 @@ public class NewUserStory {
                     try
                     {
                         String filename= "src/main/java/se/bettercode/scrum/gui/UserStory";
+                        
     
                         FileWriter fw = new FileWriter(filename, true);
                         BufferedWriter bw = new BufferedWriter(fw);   
@@ -103,6 +160,8 @@ public class NewUserStory {
                         bw.write(userStory.getText());
                         bw.newLine();
                         bw.write(usertasktype.getValue());
+                        bw.newLine();
+                        bw.write(userstorystatus.getValue());
                         bw.newLine();
                         bw.write(comments.getText());
                         bw.newLine();
@@ -151,7 +210,7 @@ public class NewUserStory {
 //            }
 //        });
 
-        secondaryLayout.getChildren().addAll(storypoints,userstoryalert);
+        secondaryLayout.getChildren().addAll(storypoints,userstoryalert, newstatus, newstatusaddedconfirm);
 
         secondaryLayout.setAlignment(storypoints, Pos.CENTER_RIGHT);
 
@@ -166,21 +225,27 @@ public class NewUserStory {
 
     public Story getStory(){
         Integer sp = Integer.valueOf(storypoints.getText());
-        Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), assignToUser.getValue(),comments.getText());
+        Story story = new Story( sp, userStory.getText(), usertasktype.getValue(), userstorystatus.getValue(), assignToUser.getValue(),comments.getText());
         return story;
     }
       
+    public static String getstorystatus(){
+        return userstorystatus.getValue();
+    }
     public void setAddButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
-        
 
     }
 
     private void toolBarSetup() {
+
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,assignToUser,comments);
+        toolBar.getChildren().addAll(userStory,addUserStory,UserStoryPoints,usertasktype,userstorystatus,addnewstatus,comments);
+
+        usertasktype.setTooltip(new Tooltip("Task Type"));
+        userstorystatus.setTooltip(new Tooltip("Status"));
     }
 
    /*
