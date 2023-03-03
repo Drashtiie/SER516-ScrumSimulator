@@ -1,6 +1,7 @@
 package se.bettercode.scrum;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
@@ -37,7 +38,7 @@ public class NewUserStory {
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
 
-    private String usersInfo = ReadFromTxt();
+    //private String usersInfo = ReadFromTxt();
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
 
     // private ChoiceBox<String> userAssign = new ChoiceBox<>(FXCollections.observableArrayList(usersInfo));

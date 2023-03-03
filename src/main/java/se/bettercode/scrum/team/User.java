@@ -56,18 +56,15 @@ public class User {
         try {
             String name;
             String role;
-<<<<<<< HEAD
             String team;
-            ArrayList<String> temp = new ArrayList<>();
-=======
->>>>>>> labdhi
+            //ArrayList<String> temp = new ArrayList<>();
             BufferedReader reader = new BufferedReader(new FileReader(usersFilePath));
             String line = reader.readLine();
             while (line != null){
                 ArrayList<String> temp = new ArrayList<>();
                 token = line.split(":");
                 commaLoc = token[1].indexOf(',');
-                name = token[1].substring(2,commaLoc);
+                name = token[1].substring(1,commaLoc);
                 role = token[1].substring(commaLoc + 2);
                 team = token[1].substring(commaLoc + commaLoc + 2);
                 temp.add(token[0]);

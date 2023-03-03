@@ -35,8 +35,8 @@ public class SelectableTeams extends Selectable<Team> {
         } catch (IOException e) {
             e.printStackTrace();
         }
-        put(cobras.getName(), cobras);
-        put(smurfs.getName(), smurfs);
+        //put(cobras.getName(), cobras);
+        //put(smurfs.getName(), smurfs);
     }
 
 }
