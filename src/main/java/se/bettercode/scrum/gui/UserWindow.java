@@ -95,9 +95,6 @@ public class UserWindow {
 
         borderPane.setCenter(secondaryLayout);
         borderPane.setTop(toolBar);
-//        User y = new User();
-//        System.out.println(y.getUsers());
-
         ObservableList<String> emails = FXCollections.observableArrayList();
         ObservableList<String> roles = FXCollections.observableArrayList();
         ObservableList<String> names = FXCollections.observableArrayList();
@@ -129,13 +126,8 @@ public class UserWindow {
             e.printStackTrace();
         }
 
-
-
-        //ObservableList<ArrayList<String>> names = FXCollections.observableList(y.getUsers());
-                //FXCollections.observableArrayList("Engineering", "MCA", "MBA", "Graduation", "MTECH", "Mphil", "Phd");
         ListView<String> listView = new ListView<String>(emails);
         listView.setMaxSize(300, 500);
-        //Creating the layout
         ListView<String> listView2 = new ListView<String>(roles);
         listView.setMaxSize(300, 500);
         ListView<String> listView3 = new ListView<String>(names);
@@ -149,38 +141,22 @@ public class UserWindow {
         VBox layout = new VBox(10);
         layout.setPadding(new Insets(5, 50, 5, 50));
         layout.getChildren().addAll(hbox);
-       // layout.setStyle("-fx-background-color: BEIGE");
-
-
         secondaryLayout.getChildren().add(layout);
-        //Setting the stage
-        primaryStage.setScene(new Scene(borderPane, 1000, 600));
+        primaryStage.setScene(new Scene(borderPane, 800, 600));
         primaryStage.show();
 
     }
-
-
-
-    public void setAddUsersButtonAction(EventHandler<ActionEvent> eventHandler) {
-        addButton.setOnAction(eventHandler);
-    }
-
     private void toolBarSetup() {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
         toolBar.getChildren().addAll( userNameField, userEmailField, userRoleField, userTeamField, addButton);
 
-
         addButton.setOnAction(new EventHandler<ActionEvent>() {
-
             @Override
             public void handle(ActionEvent e) {
                 if ((userNameField.getText() != null && !userNameField.getText().isEmpty())) {
                     System.out.println(userNameField.getText());
-                    //sendemail(userNameField.getText());
-
-                    //************function to add user to file
                     User x = new User();
                     x.addUser(userNameField.getText(), userEmailField.getText(),userRoleField.getValue().toString(),userTeamField.getValue().toString());
                     //System.out.println("Email sent");
@@ -191,73 +167,5 @@ public class UserWindow {
             }
         });
 
-
-
     }
-
-    private void sendemail(String email) {
-        String to = email;
-
-        // Sender's email ID needs to be mentioned
-//        String from = "dpate191@asu.edu";
-//
-//        // Assuming you are sending email from localhost
-//        String host = "localhost";
-//
-//        // Get system properties
-//        Properties properties = System.getProperties();
-//
-//        // Setup mail server
-//        properties.setProperty("mail.smtp.host", host);
-//
-//        // Get the default Session object.
-//        Session session = Session.getDefaultInstance(properties);
-//
-//        try {
-//            // Create a default MimeMessage object.
-//            MimeMessage message = new MimeMessage(session);
-//
-//            // Set From: header field of the header.
-//            message.setFrom(new InternetAddress(from));
-//
-//            // Set To: header field of the header.
-//            message.addRecipient(Message.RecipientType.TO, new InternetAddress(to));
-//            message.setSubject("This is the Subject Line!");
-//
-//            // Now set the actual message
-//            message.setText("This is actual message");
-//
-//            // Send message
-//            Transport.send(message);
-//            System.out.println("Sent message successfully....");
-//        } catch (MessagingException mex) {
-//            mex.printStackTrace();
-//        }
-
-        //String to = "sonoojaiswal1988@gmail.com";//change accordingly
-        String from = "dpate191@asu.edu";//change accordingly
-        String host = "localhost";//or IP address
-
-        //Get the session object
-        Properties properties = System.getProperties();
-        properties.setProperty("mail.smtp.host", host);
-        Session session = Session.getDefaultInstance(properties);
-
-        //compose the message
-        try{
-            MimeMessage message = new MimeMessage(session);
-            message.setFrom(new InternetAddress(from));
-            message.addRecipient(Message.RecipientType.TO,new InternetAddress(to));
-            message.setSubject("Ping");
-            message.setText("Hello, this is example of sending email  ");
-
-            // Send message
-            Transport.send(message);
-            System.out.println("message sent successfully....");
-
-        }catch (MessagingException mex) {mex.printStackTrace();}
-
-    }
-
-
-        }
+}
