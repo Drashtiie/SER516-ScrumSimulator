@@ -37,17 +37,10 @@ public class Story {
         return comments;
     }
     public Story(int points) {
-<<<<<<< HEAD
-        this(points, "", "","");
+        this(points, "", "","","","");
     }
 
-    public Story(int points, String title, String Tasktype, String newstat) {
-=======
-        this(points, "", "","","");
-    }
-
-    public Story(int points, String title, String taskType, String comments, String userName) {
->>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
+    public Story(int points, String title, String taskType, String newstat,String comments, String userName) {
 
         if (points < 0) {
             throw new IllegalArgumentException("Points must not be negative.");

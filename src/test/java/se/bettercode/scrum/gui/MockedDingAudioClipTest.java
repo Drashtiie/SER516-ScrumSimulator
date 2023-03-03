@@ -13,34 +13,6 @@ import static org.mockito.Mockito.*;
 @RunWith(MockitoJUnitRunner.class)
 public class MockedDingAudioClipTest {
 
-<<<<<<< HEAD
-    @Mock
-    DingAudioClip dingAudioClipMock;
-
-    Story notDoneStory;
-    Story doneStory;
-
-    @Before
-    public void setUp() throws Exception {
-
-        notDoneStory = new Story(5, "Not done story", "New","FINISHED");
-        doneStory = new Story(3, "Done story", "New","FINISHED");
-
-        doneStory.workOnStory(3, 1);
-    }
-
-    @Test
-    public void notDoneStoryWillNotPlaySound() {
-        dingAudioClipMock.playIfDone(notDoneStory);
-        Mockito.verify(dingAudioClipMock, times(0)).play();
-    }
-
-    public void doneStoryWillPlaySoundsEqualToNumberOfStoryPoints() {
-        dingAudioClipMock.playIfDone(doneStory);
-        int expectedPlayTimes = doneStory.getTotalPoints().getPoints();
-        Mockito.verify(dingAudioClipMock, times(expectedPlayTimes)).play();
-    }
-=======
 //    @Mock
 //    DingAudioClip dingAudioClipMock;
 //
@@ -67,5 +39,4 @@ public class MockedDingAudioClipTest {
 //        int expectedPlayTimes = doneStory.getTotalPoints().getPoints();
 //        Mockito.verify(dingAudioClipMock, times(expectedPlayTimes)).play();
 //    }
->>>>>>> 119da7acd7ceb48f843f008914b8f204eb4a4978
 }
