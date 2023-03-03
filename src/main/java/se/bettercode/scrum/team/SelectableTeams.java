@@ -10,8 +10,8 @@ import java.io.IOException;
 public class SelectableTeams extends Selectable<Team> {
 
     public SelectableTeams() {
-//        Team cobras = new CobraTeam();
-//        Team smurfs = new SmurfTeam();
+        //Team cobras = new CobraTeam();
+        //Team smurfs = new SmurfTeam();
 
 
         BufferedReader reader;
