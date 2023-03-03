@@ -51,31 +51,30 @@ public class Comment {
     }
 
     public Story addToStory(Story userStory){
-        ArrayList<Comment> storyComments = userStory.getComments();
-        storyComments.add(this);
-        userStory.setComments(storyComments);
+        //String storyComments = userStory.getComments();
+//        storyComments.add(this);
+        //userStory.setComments(storyComments);
         return userStory;
     }
 
     public Story deleteFromStory(Story userStory){
-        ArrayList<Comment> storyComments = userStory.getComments();
-        storyComments.remove(this);
-        userStory.setComments(storyComments);
+       // String storyComments = userStory.getComments();
+//        storyComments.remove(this);
+        //userStory.setComments(storyComments);
         return userStory;
     }
 
     public Task addToTask(Task storyTask){
-        ArrayList<Comment> storyComments = storyTask.getComments();
-        storyComments.add(this);
+        String storyComments = storyTask.getComments();
+//        storyComments.add(this);
         storyTask.setComments(storyComments);
         return storyTask;
     }
 
     public Task deleteFromTask(Task storyTask){
-        ArrayList<Comment> storyComments = storyTask.getComments();
-        storyComments.remove(this);
+        String storyComments = storyTask.getComments();
+//        storyComments.remove(this);
         storyTask.setComments(storyComments);
         return storyTask;
     }
 }
-

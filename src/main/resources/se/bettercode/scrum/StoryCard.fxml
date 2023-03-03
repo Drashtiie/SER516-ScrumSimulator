@@ -9,12 +9,17 @@
       <top>
          <Text id="storyTitle" fx:id="storyTitle" strokeType="OUTSIDE" strokeWidth="0.0" text="Story title" wrappingWidth="211.6953125" BorderPane.alignment="TOP_LEFT" />
       </top>
+       <center>
+           <Text id="assignedTo" fx:id="assignedTo" strokeType="OUTSIDE" strokeWidth="0.0" text="Assigned To" wrappingWidth="211.6953125" BorderPane.alignment="TOP_LEFT" />
+       </center>
       <bottom>
-        <BorderPane styleClass="storycard-button-container">
+         <BorderPane styleClass="storycard-button-container">
            <left>
               <HBox>
+                 <HBox><Button id="addUserButton" fx:id="addUserButton" styleClass="add_user_button" BorderPane.alignment="BOTTOM_LEFT" style="-fx-font-size: 10px">Asn User</Button></HBox>
                  <HBox><Button id="addTaskButton" fx:id="addTaskButton" styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">Add Task</Button></HBox>
-                 <HBox styleClass="add_task_button-container"><Button fx:id="viewTaskButton" styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">View Tasks</Button></HBox>
+                 <HBox styleClass="add_task_button-container"><Button id="viewTaskButton" fx:id="viewTaskButton" styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">View Tasks</Button></HBox>
+
               </HBox>
            </left>
            <right>

@@ -37,7 +37,7 @@ public class Sprint {
         return lengthInDays;
     }
 
-    public int getDailyBurnRate() {
+    public int getDailyBurnrate() {
         return team.velocityProperty().get() / lengthInDays.get();
     }
 
@@ -66,7 +66,7 @@ public class Sprint {
             throw new IllegalArgumentException("Team and Backlog must both be set before running Sprint");
         }
 
-        int dailyBurn = getDailyBurnRate();
+        int dailyBurn = getDailyBurnrate();
 
         System.out.println("Running Sprint simulation with team " + team + " for Sprint \"" + name + "\" for " + lengthInDays.get() + " days...");
         System.out.println(backlog);

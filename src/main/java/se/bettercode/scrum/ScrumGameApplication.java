@@ -1,3 +1,4 @@
+
 package se.bettercode.scrum;
 
 import javafx.application.Application;
@@ -14,6 +15,9 @@ import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class ScrumGameApplication extends Application {
 
     private static final int SPRINT_LENGTH_IN_DAYS = 10;
@@ -21,8 +25,10 @@ public class ScrumGameApplication extends Application {
     private Board board = new Board();
     private Sprint sprint;
     private Documents documents = new Documents();
+    
     private UserWindow addUserWindow = new UserWindow();
     private TeamWindow addTeamWindow = new TeamWindow();
+    private ProjectWindow addProjectWindow = new ProjectWindow();
     private Team team;
 
     private NewUserStory nws = new NewUserStory();
@@ -34,6 +40,9 @@ public class ScrumGameApplication extends Application {
     private BurnupChart burnupChart = getNewBurnupChart();
     private Stage primaryStage;
     private StageUserPrefs prefs;
+
+    public ScrumGameApplication() throws IOException {
+    }
 
     public static void main(String[] args) {
         System.out.println("Launching JavaFX application.");
@@ -72,6 +81,7 @@ public class ScrumGameApplication extends Application {
             sprint = new Sprint("First sprint", SPRINT_LENGTH_IN_DAYS, team, backlog);
             board.bindBacklog(backlog);
             burnupChart.removeAllData();
+            //burnupChart = getNewBurnupChart();
             ToggleButton toggleButton = new ToggleButton("Hide Burnup Chart");
             ToggleButton toggleButton2 = new ToggleButton("Show Burnup Chart");
             toolBar.setToggleButtonAction(event -> {
@@ -121,17 +131,19 @@ public class ScrumGameApplication extends Application {
             }
         };
 
+
         toolBar.setTeamChoiceBoxListener(teamChoiceBoxListener);
         toolBar.setBacklogChoiceBoxListener(backlogChoiceBoxListener);
         toolBar.setStartButtonAction((event) -> sprint.runSprint());
 
         toolBar.setViewDocsButtonAction((event) -> documents.show());
 
-        toolBar.setUserStoryButtonAction((event -> nws.show()));
-
         toolBar.setAddUsedrsButtonAction((event) -> addUserWindow.show());
 
         toolBar.setAddTeamButtonAction((event) -> addTeamWindow.show());
+        toolBar.setAddProjectButtonAction((event) -> addProjectWindow.show());
+        toolBar.setUserStoryButtonAction((event) -> nws.show());
+        //toolBar
 
     }
 
@@ -143,6 +155,7 @@ public class ScrumGameApplication extends Application {
 
     public void stop() {
         System.out.println("Inside stop()");
+       // prefs.save();
     }
 
     private BurnupChart getNewBurnupChart() {

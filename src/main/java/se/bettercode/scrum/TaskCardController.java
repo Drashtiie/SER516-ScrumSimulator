@@ -53,7 +53,7 @@ public class TaskCardController {
                 alert.setContentText("Please enter values for all the fields !");
                 alert.show();
             } else {
-                Task newTask = new Task(title, description, status, type);
+                Task newTask = new Task(title, description, status, type );
                 Node node = (Node) event.getSource();
                 Stage stage = (Stage) node.getScene().getWindow();
                 this.story = (Story) stage.getUserData();
