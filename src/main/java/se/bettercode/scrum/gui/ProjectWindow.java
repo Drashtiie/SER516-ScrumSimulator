@@ -37,7 +37,10 @@ public class ProjectWindow {
 
     private HBox toolBar = new HBox();
     private Button addButton = new Button();
+    String tagList[] = {"Internal", "External"};
 
+    // Create a combo box
+    ComboBox comboBox = new ComboBox(FXCollections.observableArrayList(tagList));
 
     TextField teamNameField = new TextField ();
 
@@ -89,7 +92,8 @@ public class ProjectWindow {
         toolBar.setPadding(new Insets(15, 12, 15, 12));
         toolBar.setSpacing(10);
         toolBar.setStyle("-fx-background-color: #336699;");
-        toolBar.getChildren().addAll( teamNameField, addButton, viewButton, starred);
+        comboBox.getSelectionModel().selectFirst();
+        toolBar.getChildren().addAll( teamNameField, addButton, viewButton, starred, comboBox);
 
         addButton.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -97,17 +101,17 @@ public class ProjectWindow {
             public void handle(ActionEvent e) {
                 if ((teamNameField.getText() != null && !teamNameField.getText().isEmpty())) {
                     if(starred.isSelected()){
-                        teamAddedAlert.setText(teamNameField.getText() +  " added as project and it is starred.");
+                        teamAddedAlert.setText(teamNameField.getText() +  " added as project and it is starred." + "It is "+ comboBox.getValue().toString() + " project.");
                     }
                     else {
-                        teamAddedAlert.setText(teamNameField.getText() + " added as project");
+                        teamAddedAlert.setText(teamNameField.getText() + " added as project" + "It is "+ comboBox.getValue().toString() + " project.");
                     }
                     Project p = new Project();
                     //String filename= "src/main/java/se/bettercode/scrum/gui/Projects";
 //                        FileWriter fw = new FileWriter(filename, true);
 //                        BufferedWriter bw = new BufferedWriter(fw);
 //                        bw.write(teamNameField.getText() + " - " + starred.isSelected());
-                    p.setProject(teamNameField.getText(), starred.isSelected());
+                    p.setProject(teamNameField.getText(), starred.isSelected(), comboBox.getValue().toString());
 //                        bw.newLine();
 //                        bw.close();
                     System.out.println("Added ");

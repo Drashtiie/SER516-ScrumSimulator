@@ -26,8 +26,9 @@ public class ProjectTest extends TestCase {
         Scanner myReader = new Scanner(myObj);
         while (myReader.hasNextLine()) {
             String data = myReader.nextLine();
-            String[] data2 = data.split(" - ",2);
+            String[] data2 = data.split(" - ");
             this.projectTag = data2[2];
+            System.out.println(this.projectTag);
             boolean x= this.tagList.contains(this.projectTag);
             assertTrue(x);
 
