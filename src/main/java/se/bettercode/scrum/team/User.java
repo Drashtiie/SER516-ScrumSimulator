@@ -57,6 +57,7 @@ public class User {
             String name;
             String role;
             String team;
+            //ArrayList<String> temp = new ArrayList<>();
             BufferedReader reader = new BufferedReader(new FileReader(usersFilePath));
             String line = reader.readLine();
             while (line != null){

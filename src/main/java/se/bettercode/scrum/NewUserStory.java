@@ -39,7 +39,7 @@ public class NewUserStory {
     private Label storypoints = new Label("");
     String st[] = { "Feature", "Bug", "Release", "Other" };
 
-    private String usersInfo = ReadFromTxt();
+    //private String usersInfo = ReadFromTxt();
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
 
     static String status[] = {};
