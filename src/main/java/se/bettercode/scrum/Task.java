@@ -9,7 +9,9 @@ public class Task {
 
     private String title = "";
 
-    private String status;
+    private String taskType = "";
+
+    private String status = "";
 
     public void setStatus(String status) {
         this.status = status;
@@ -59,11 +61,13 @@ public class Task {
         this.description = description;
     }
 
-    public Task(String title, String description, int storyID) {
+    public Task(String title, String description,String status, String type) {
         this.id = IDCounter++;
         this.title = title;
         this.description = description;
         this.comments = new String();
+        this.status = status;
+        this.taskType = type;
     }
 
     public Story addToStory(Story userStory){
@@ -80,6 +84,13 @@ public class Task {
         return userStory;
     }
 
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
     public void moveTo(String status){
         String x = NewUserStory.getstorystatus();
         if(x.length()!=0){

@@ -1,0 +1,19 @@
+Online Service Development Intern
+P2S Information Systems
+Mumbai
+Researched on the reason for incomplete university applications of students. Discovered that it was because of the drawn-out procedure. Automated a system to cut application time by 70% using Google apps script. Determined test cases to test system’s performance and reliability. The new system led to a 50% jump in the number of complete applications.
+
+Android Developer Intern 
+Northstar Innovations LLP
+Mumbai
+Developed new features such as quick sign-in and registration through Google sign-in, implemented automated in-application notifications in Events Online App, using Java and XML, making the app user friendly. Worked on the features and user interface of a food delivery and file transfer application.
+
+Android Developer Intern
+Rashtriya Vidyapith School
+Ratlam, Madhya Pradesh
+Built an android application during the pandemic when classes were online, which enabled teachers to share notes, notices and update test results. Designed the user interface using Extensible Markup Language (XML). Implemented a functionality to update students about holidays and activities taking place in the school. Students could view test scores and download notices. Executed the functions using Java and Firebase database.
+
+Web Development Intern
+KJ Somaiya College of Engineering
+Mumbai
+Incorporated Industrial Automation of Inventory System which allowed customers to register on the website and place orders, admin to track the inventory system and employees could view allocated tasks. Self-Learned about latest technologies. Built the web application and documented the project using LaTeX.

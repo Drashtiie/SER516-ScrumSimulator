@@ -1,0 +1,22 @@
+1st Standup:
+What will you do today?
+I will run the code to see if it works fine on my system, look at the flow of the code and will think about how to include add/delete resources feature in the code.
+
+2nd Standup:
+What did you do yesterday?
+Yesterday I worked on 2 tasks, one is Done and the other one is ready to test. The user should now be able to 
+What will you do today?
+Today I will work on reading documents from the file system and enabling users to read the document.
+
+Are there any blockers or impediments preventing you from doing your work?
+I did have a problem in setting up the code on my system, but I resolved it soon. So no impediments now.
+
+3rd standup:
+What did you do yesterday?
+I was able to read the local storage so the users are now able to view the documents in the system.
+
+What will you do today?
+I will work on allowing user to add and delete resource.
+
+Are there any blockers or impediments preventing you from doing your work?
+Yes, my system is only able to read text files yet, I am unable to read pdf, word, etc files yet.

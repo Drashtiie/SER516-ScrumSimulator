@@ -17,7 +17,7 @@ public class Story {
     private String userName = "";
     private ArrayList<Task> tasks;
 
-    private String comments;
+    private ArrayList<Comment> comments;
 
     public String status_set_by_user;
 
@@ -25,7 +25,7 @@ public class Story {
         this.tasks = tasks;
     }
 
-    public void setComments(String comments) {
+    public void setComments(ArrayList<Comment> comments) {
         this.comments = comments;
     }
 
@@ -33,9 +33,10 @@ public class Story {
         return tasks;
     }
 
-    public String getComments() {
+    public ArrayList<Comment> getComments() {
         return comments;
     }
+
     public Story(int points) {
         this(points, "", "","","","");
     }
@@ -49,7 +50,7 @@ public class Story {
         storyPointSet = new StoryPointSet(points);
         this.userName = userName;
         this.tasks = new ArrayList<>();
-        this.comments = new String();
+        this.comments = new ArrayList<>();
         this.taskType = taskType;
         this.status_set_by_user = newstat;
         if(newstat.equals("TODO")){

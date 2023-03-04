@@ -11,7 +11,7 @@ public class User {
     private String role;
     HashMap<String, ArrayList<String>> addUsersMap = new HashMap<String, ArrayList<String>>();
     ArrayList<ArrayList<String>> usersList = new ArrayList<>();
-    private final String usersFilePath = "src/main/java/se/bettercode/scrum/gui/UserStoryStatus";
+    private final String usersFilePath = "src/main/java/se/bettercode/scrum/team/usersInfo";
     public User(){
     }
 

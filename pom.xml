@@ -45,11 +45,6 @@
     </build>
 
     <dependencies>
-    <dependency>
-        <groupId>de.saxsys</groupId>
-        <artifactId>jfx-testrunner</artifactId>
-        <version>1.2</version>
-    </dependency>
 	<dependency>
     		<groupId>org.openjfx</groupId>
     		<artifactId>javafx-controls</artifactId>
@@ -86,11 +81,6 @@
             <artifactId>javax.mail</artifactId>
             <version>1.6.2</version>
         </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter</artifactId>
-            <version>5.8.1</version>
-            <scope>test</scope>
-        </dependency>
     </dependencies>
+
 </project>

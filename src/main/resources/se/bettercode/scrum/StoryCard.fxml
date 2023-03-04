@@ -18,7 +18,7 @@
               <HBox>
                  <HBox><Button id="addUserButton" fx:id="addUserButton" styleClass="add_user_button" BorderPane.alignment="BOTTOM_LEFT" style="-fx-font-size: 10px">Asn User</Button></HBox>
                  <HBox><Button id="addTaskButton" fx:id="addTaskButton" styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">Add Task</Button></HBox>
-                 <HBox styleClass="add_task_button-container"><Button styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">View Tasks</Button></HBox>
+                 <HBox styleClass="add_task_button-container"><Button id="viewTaskButton" fx:id="viewTaskButton" styleClass="add_task_button" BorderPane.alignment="BOTTOM_LEFT">View Tasks</Button></HBox>
 
               </HBox>
            </left>

@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+
+<BorderPane fx:id="borderPane" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="761.0" prefWidth="1167.0" stylesheets="@../../../style.css" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="se.bettercode.scrum.StoryTasksController">
+   <left>
+      <VBox fx:id="newStatusBox" prefHeight="714.0" prefWidth="378.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="NEW" textAlignment="CENTER" wrappingWidth="377.6708984375">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+   </left>
+   <center>
+      <VBox fx:id="progressStatusBox" prefHeight="714.0" prefWidth="423.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="IN PROGRESS" textAlignment="CENTER" wrappingWidth="408.6708984375">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+   </center>
+   <right>
+      <VBox fx:id="doneStatusBox" prefHeight="714.0" prefWidth="382.0" BorderPane.alignment="CENTER">
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <children>
+            <Text strokeType="OUTSIDE" strokeWidth="0.0" text="DONE" textAlignment="CENTER" wrappingWidth="381.6708984375">
+               <font>
+                  <Font name="System Bold" size="16.0" />
+               </font>
+               <VBox.margin>
+                  <Insets top="10.0" />
+               </VBox.margin>
+            </Text>
+         </children>
+      </VBox>
+   </right>
+   <top>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="67.0" prefWidth="1169.0" style="-fx-background-color: #3d91bf; -fx-border-color: black; -fx-border-width: 3px;" BorderPane.alignment="CENTER">
+         <children>
+            <Text fx:id="storyTitle" fill="WHITE" strokeType="OUTSIDE" strokeWidth="0.0" text="Story Title" textAlignment="CENTER" wrappingWidth="1168.6708984375">
+               <font>
+                  <Font name="System Bold" size="24.0" />
+               </font>
+            </Text>
+         </children>
+      </HBox>
+   </top>
+</BorderPane>
