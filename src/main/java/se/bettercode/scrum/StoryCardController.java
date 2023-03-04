@@ -29,7 +29,13 @@ public class StoryCardController extends BorderPane {
     private Button addTaskButton;
 
     @FXML
+    private Button viewTaskButton;
+    
+    @FXML
     private Text storyTitle;
+
+    @FXML
+    private Text assignedTo;
 
     @FXML
     private BorderPane storyCard;
@@ -50,21 +56,40 @@ public class StoryCardController extends BorderPane {
         }
 
         storyTitle.setText(story.getTitle());
-        storyPoints.setText(Integer.toString(story.getPointsDone().getPoints()) +
+        storyPoints.setText(Integer.toString(story.getPointsDoneAsInt()) +
                 "/" + Integer.toString(story.getTotalPoints().getPoints()));
         setPrefHeight(getHeightBasedOnStoryPoints());
+        assignedTo.setText(story.getUserName());
 
         addTaskButton.setOnAction(new EventHandler<ActionEvent>() {
             public void handle(ActionEvent event) {
-                System.out.println("Button Clicked");
-                Parent root;
                 try {
-                    root = FXMLLoader.load(getClass().getResource("TaskCard.fxml"));
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("TaskCard.fxml"));
+                    Parent root1 = (Parent) fxmlLoader.load();
                     Stage stage = new Stage();
                     stage.setTitle("My New Stage Title");
-                    stage.setScene(new Scene(root, 450, 450));
+                    stage.setScene(new Scene(root1, 450, 450));
+                    stage.setUserData(story);
                     stage.show();
-                    ((Node)(event.getSource())).getScene().getWindow().hide();
+                    //((Node)(event.getSource())).getScene().getWindow().hide();
+                }
+                catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        });
+        viewTaskButton.setOnAction(new EventHandler<ActionEvent>() {
+            public void handle(ActionEvent event) {
+                try {
+                    FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("StoryTasks.fxml"));
+                    Parent root2 = (Parent) fxmlLoader.load();
+                    Stage stage = new Stage();
+                    stage.setTitle("Story Tasks");
+                    stage.setScene(new Scene(root2));
+                    stage.setUserData(story);
+                    StoryTasksController tasksController = fxmlLoader.getController();
+                    tasksController.setStage(stage);
+                    stage.show();
                 }
                 catch (IOException e) {
                     e.printStackTrace();
@@ -75,6 +100,10 @@ public class StoryCardController extends BorderPane {
 
     public void bindStoryTitle(StringProperty title) {
         storyTitle.textProperty().bind(title);
+    }
+
+    public void bindUserName(StringProperty userName){
+        assignedTo.textProperty().bind(userName);
     }
 
     public void bindStoryPoints(IntegerProperty points) {

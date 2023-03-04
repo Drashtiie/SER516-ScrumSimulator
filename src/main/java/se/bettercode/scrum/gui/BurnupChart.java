@@ -8,14 +8,7 @@ import javafx.scene.chart.NumberAxis;
 import javafx.scene.chart.XYChart;
 import se.bettercode.scrum.backlog.BurnupDay;
 
-
 public class BurnupChart extends AreaChart<Number, Number> {
-//    ToggleButton toggleButton = new ToggleButton("Toggle Burn Up Chart");
-//    getChildren().add(toggleButton);
-
-
-
-
     XYChart.Series totalSeries;
     XYChart.Series doneSeries;
     static final double lowerBound = 0;
@@ -28,7 +21,6 @@ public class BurnupChart extends AreaChart<Number, Number> {
         getYAxis().setLabel("Points");
         getXAxis().setLabel("Days");
         setTitle("Burnup");
-
         initChart();
         totalSeries.setName("Total");
         doneSeries.setName("Done");

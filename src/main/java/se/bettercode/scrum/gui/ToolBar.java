@@ -3,22 +3,30 @@ package se.bettercode.scrum.gui;
 import java.io.BufferedWriter;
 import java.io.FileWriter;
 import java.io.IOException;
-
 import javafx.beans.property.BooleanProperty;
 import javafx.beans.value.ChangeListener;
 import javafx.collections.FXCollections;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.geometry.Insets;
-//<<<<<<< manantpu
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.control.Tooltip;
-
 import javafx.scene.layout.HBox;
+import se.bettercode.scrum.backlog.Backlog;
+import se.bettercode.scrum.backlog.SelectableBacklogs;
+import se.bettercode.scrum.team.SelectableTeams;
+
 public class ToolBar extends HBox {
+
+    private Backlog backlog;
+    private StatusBar statusBar = new StatusBar();
+    private SelectableBacklogs backlogs = new SelectableBacklogs();
+    private SelectableTeams teams = new SelectableTeams();
+    //private ToolBar toolBar = new ToolBar(teams.getKeys(), backlogs.getKeys());
+
 
     private final Button toggleButton = new Button("Hide Burnup");
 
@@ -29,6 +37,7 @@ public class ToolBar extends HBox {
     private ChoiceBox<String> backlogChoiceBox = new ChoiceBox<>();
     private final Button addUsers = new Button("Users + ");
     private final Button addTeam = new Button("Team + ");
+    private final Button addProject = new Button("Project + ");
 
 
     Button addUserStory = new Button("Add user story ");
@@ -50,8 +59,10 @@ public ToolBar(String[] teams, String[] backlogs) {
         toggleButton.setPrefSize(120,20);
         toggleButton2.setPrefSize(120,20);
         addUsers.setPrefSize(120,20);
+        addProject.setPrefSize(120,20);
+        addTeam.setPrefSize(120,20);
 
-        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, viewDocs, toggleButton, toggleButton2, addUsers, addTeam);
+        getChildren().addAll(teamChoiceBox, backlogChoiceBox, addUserStory, startButton, viewDocs, toggleButton, toggleButton2, addUsers, addTeam, addProject);
 
         addUserStory.setOnAction(new EventHandler<ActionEvent>() {
 
@@ -97,7 +108,9 @@ public ToolBar(String[] teams, String[] backlogs) {
     }
 
 
-
+//    private void reload(){
+//        this.toolBar = new ToolBar(teams.getKeys(), backlogs.getKeys() );
+//    }
 
     public void setViewDocsButtonAction(EventHandler<ActionEvent> eventHandler) {
         viewDocs.setOnAction(eventHandler);
@@ -107,6 +120,10 @@ public ToolBar(String[] teams, String[] backlogs) {
     }
     public void setAddTeamButtonAction(EventHandler<ActionEvent> eventHandler) {
         addTeam.setOnAction(eventHandler);
+        //toolBar.reload();
+    }
+    public void setAddProjectButtonAction(EventHandler<ActionEvent> eventHandler) {
+        addProject.setOnAction(eventHandler);
     }
 
     public void setToggleButtonAction(EventHandler<ActionEvent> eventHandler) {
@@ -120,10 +137,10 @@ public ToolBar(String[] teams, String[] backlogs) {
         backlogChoiceBox.disableProperty().bind(booleanProperty);
         startButton.disableProperty().bind(booleanProperty);
         teamChoiceBox.disableProperty().bind(booleanProperty);
-//=======
         viewDocs.disableProperty().bind(booleanProperty);
         toggleButton.disableProperty().bind(booleanProperty);
         toggleButton2.disableProperty().bind(booleanProperty);
+        addProject.disableProperty().bind(booleanProperty);
     }
 
     public void setTeamChoiceBoxListener(ChangeListener<String> changeListener) {
@@ -133,11 +150,7 @@ public ToolBar(String[] teams, String[] backlogs) {
     public void setBacklogChoiceBoxListener(ChangeListener<String> changeListener) {
         backlogChoiceBox.getSelectionModel().selectedItemProperty().addListener(changeListener);
     }
-
     public void setUserStoryButtonAction(EventHandler<ActionEvent> eventHandler) {
         addUserStory.setOnAction(eventHandler);
-
     }
-
-
 }

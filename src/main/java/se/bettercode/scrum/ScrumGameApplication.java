@@ -15,6 +15,9 @@ import se.bettercode.scrum.prefs.StageUserPrefs;
 import se.bettercode.scrum.team.SelectableTeams;
 import se.bettercode.scrum.team.Team;
 
+import java.io.FileNotFoundException;
+import java.io.IOException;
+
 public class ScrumGameApplication extends Application {
 
     private static final int SPRINT_LENGTH_IN_DAYS = 10;
@@ -25,6 +28,7 @@ public class ScrumGameApplication extends Application {
     
     private UserWindow addUserWindow = new UserWindow();
     private TeamWindow addTeamWindow = new TeamWindow();
+    private ProjectWindow addProjectWindow = new ProjectWindow();
     private Team team;
 
     private NewUserStory nws = new NewUserStory();
@@ -36,6 +40,9 @@ public class ScrumGameApplication extends Application {
     private BurnupChart burnupChart = getNewBurnupChart();
     private Stage primaryStage;
     private StageUserPrefs prefs;
+
+    public ScrumGameApplication() throws IOException {
+    }
 
     public static void main(String[] args) {
         System.out.println("Launching JavaFX application.");
@@ -129,17 +136,14 @@ public class ScrumGameApplication extends Application {
         toolBar.setBacklogChoiceBoxListener(backlogChoiceBoxListener);
         toolBar.setStartButtonAction((event) -> sprint.runSprint());
 
-
-
-
         toolBar.setViewDocsButtonAction((event) -> documents.show());
-    
-        
-//=======
+
         toolBar.setAddUsedrsButtonAction((event) -> addUserWindow.show());
 
         toolBar.setAddTeamButtonAction((event) -> addTeamWindow.show());
+        toolBar.setAddProjectButtonAction((event) -> addProjectWindow.show());
         toolBar.setUserStoryButtonAction((event) -> nws.show());
+        //toolBar
 
     }
 

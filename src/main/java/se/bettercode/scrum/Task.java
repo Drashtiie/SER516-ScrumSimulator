@@ -9,7 +9,9 @@ public class Task {
 
     private String title = "";
 
-    private String status;
+    private String taskType = "";
+
+    private String status = "";
 
     public void setStatus(String status) {
         this.status = status;
@@ -21,13 +23,13 @@ public class Task {
 
     private String description = "";
 
-    private ArrayList<Comment> comments;
+    private String comments;
 
-    public ArrayList<Comment> getComments() {
+    public String getComments() {
         return comments;
     }
 
-    public void setComments(ArrayList<Comment> comments) {
+    public void setComments(String comments) {
         this.comments = comments;
     }
 
@@ -59,11 +61,13 @@ public class Task {
         this.description = description;
     }
 
-    public Task(String title, String description, int storyID) {
+    public Task(String title, String description,String status, String type) {
         this.id = IDCounter++;
         this.title = title;
         this.description = description;
-        this.comments = new ArrayList<>();
+        this.comments = new String();
+        this.status = status;
+        this.taskType = type;
     }
 
     public Story addToStory(Story userStory){
@@ -80,8 +84,21 @@ public class Task {
         return userStory;
     }
 
+    public String getTaskType() {
+        return taskType;
+    }
+
+    public void setTaskType(String taskType) {
+        this.taskType = taskType;
+    }
     public void moveTo(String status){
-        this.setStatus(status);
+        String x = NewUserStory.getstorystatus();
+        if(x.length()!=0){
+            this.setStatus(x);
+        }
+        else{
+            this.setStatus(status);
+        }
         //reload UI now after this status change
     }
 }
