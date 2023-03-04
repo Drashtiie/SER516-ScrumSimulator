@@ -42,7 +42,7 @@ public class NewUserStory {
     //private String usersInfo = ReadFromTxt();
     private ChoiceBox<String> usertasktype = new ChoiceBox<>(FXCollections.observableArrayList(st));
 
-    static String status[] = {};
+    static String status[] = {"TODO", "STARTED", "FINISHED"};
     private static ChoiceBox<String> userstorystatus = new ChoiceBox<>(FXCollections.observableArrayList(status));
     private Button addnewstatus = new Button();
     private Label newstatusaddedconfirm = new Label("");
